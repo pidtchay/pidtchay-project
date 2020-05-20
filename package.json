@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --host localhost --port 5454 --open --hot --config webpack/webpack.dev.js",
-    "build": "cross-env NODE_ENV=env.production webpack --mode production"
+    "build": "webpack --mode production --config webpack/webpack.prod.js"
   },
   "keywords": [
     "react",
@@ -28,6 +28,7 @@
     "fork-ts-checker-webpack-plugin": "^4.1.4",
     "happypack": "^5.0.1",
     "html-webpack-plugin": "^4.3.0",
+    "jsdoc": "^3.6.4",
     "less-loader": "^6.1.0",
     "mini-css-extract-plugin": "^0.9.0",
     "react": "^16.13.1",
@@ -36,6 +37,7 @@
     "style-loader": "^1.2.1",
     "ts-loader": "^7.0.4",
     "typescript": "^3.9.3",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack-bundle-analyzer": "^3.8.0"
   }
 }
