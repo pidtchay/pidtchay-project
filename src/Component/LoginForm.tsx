@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ILoginData } from 'src/Model/Login';
+import { ILoginData } from 'Model/Login';
 
 /**
  * LogIn Form props
@@ -14,7 +14,7 @@ interface ILogInProps {
  * @param [ILoginData] initialData - LogIn Data model.
  * @param [Function] onSubmit - submit action. 
  */
-export const LogInForm = ({initialData, onSubmit}: ILogInProps) => {
+export const LogInForm: React.FC<ILogInProps> = ({initialData, onSubmit}) => {
     const [loginData, setLoginData] = React.useState(initialData);
     
     const handleSubmit = (e: any) => {
