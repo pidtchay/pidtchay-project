@@ -31,11 +31,11 @@ export const LogInForm: React.FC<ILogInProps> = ({initialData, onSubmit}) => {
     }
 
     return (
-        <form className={style.main} onSubmit={handleSubmit}>
+        <form className={style.loginForm} onSubmit={handleSubmit}>
             <InputField label="Enter your nickname" type="text" value={loginData.nickName} onChange={handleChange('nickName')}/>
             <InputField label="Enter your email" type="email" value={loginData.email} onChange={handleChange('email')}/>
             <InputField label="Enter your password" type="password" value={loginData.password} onChange={handleChange('password')}/>
-            <button>Submit</button>
+            <button className={style.submitButton}>Submit</button>
         </form>
     );
 };
