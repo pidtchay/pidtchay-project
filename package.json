@@ -1,13 +1,18 @@
 {
   "name": "pidtchay-project",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Personal project on the react framework",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --host localhost --port 5454 --open --hot --config webpack/webpack.dev.js",
-    "build": "webpack --mode production --config webpack/webpack.prod.js",
-    "test": "jest --watch",
+    "build": "webpack --config webpack/webpack.prod.js",
+    "test": "jest",
     "test:updateShapshots": "jest --updateSnapshot"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsc --noEmit && npm run test"
+    }
   },
   "keywords": [
     "react",
@@ -39,6 +44,7 @@
     "fork-ts-checker-webpack-plugin": "^4.1.4",
     "happypack": "^5.0.1",
     "html-webpack-plugin": "^4.3.0",
+    "husky": "^4.2.5",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.0.1",
     "jsdoc": "^3.6.4",

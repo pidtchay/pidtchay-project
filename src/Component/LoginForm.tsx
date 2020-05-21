@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ILoginData } from 'Model/Login';
 import { InputField } from './ImputField';
-
+import style from 'Style/LogInForm.less'
 /**
  * LogIn Form props
  */
@@ -23,11 +23,18 @@ export const LogInForm: React.FC<ILogInProps> = ({initialData, onSubmit}) => {
         onSubmit(loginData);
     }
 
+    const handleChange = (fieldName: string) => (fieldValue: string) => {
+        setLoginData({
+            ...loginData,
+            [fieldName]: fieldValue
+        })
+    }
+
     return (
-        <form onSubmit={handleSubmit}>
-            <InputField label="Enter your nickname" type="text" value={loginData.nickName} onChange={e => setLoginData({...loginData, nickName: e.target.value})}/>
-            <InputField label="Enter your email" type="text" value={loginData.email} onChange={e => setLoginData({...loginData, email: e.target.value})}/>
-            <InputField label="Enter your password" type="text" value={loginData.password} onChange={e => setLoginData({...loginData, password: e.target.value})}/>
+        <form className={style.main} onSubmit={handleSubmit}>
+            <InputField label="Enter your nickname" type="text" value={loginData.nickName} onChange={handleChange('nickName')}/>
+            <InputField label="Enter your email" type="email" value={loginData.email} onChange={handleChange('email')}/>
+            <InputField label="Enter your password" type="password" value={loginData.password} onChange={handleChange('password')}/>
             <button>Submit</button>
         </form>
     );

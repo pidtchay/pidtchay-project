@@ -16,7 +16,7 @@ exports[`LogIn form render success should match the snapshot 1`] = `
     Enter your email
     <input
       onChange={[Function]}
-      type="text"
+      type="email"
       value="test@test.com"
     />
   </label>
@@ -24,7 +24,7 @@ exports[`LogIn form render success should match the snapshot 1`] = `
     Enter your password
     <input
       onChange={[Function]}
-      type="text"
+      type="password"
       value="111"
     />
   </label>

@@ -7,7 +7,7 @@ const smp = new SpeedMeasurePlugin();
 
 const common = {
     entry: applicationOptions.entry,
-    output: applicationOptions.webpack.output,
+    output: applicationOptions.output,
     resolve: {
         modules: [
             'node_modules',
@@ -47,7 +47,7 @@ const common = {
         webpackPlugins.plugins.forkTsChecker,
         webpackPlugins.plugins.happyPack,
         webpackPlugins.plugins.htmlWebpack,
-        // webpackPlugins.plugins.miniCssExtract,
+        webpackPlugins.plugins.miniCssExtract,
     ],
     ...webpackModuleRules
 }

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import style from 'Style/InputField.less';
 
 /**
  * Input field props
@@ -11,7 +12,7 @@ interface InputFieldProps {
     label: string;
     type: string;
     value: string;
-    onChange: (e: any) => void;
+    onChange: (field: string) => void;
 }
 
 /**
@@ -23,9 +24,9 @@ interface InputFieldProps {
  */
 export const InputField: React.FC<InputFieldProps> = ({label, type, value, onChange}) => {
     return(
-        <label>
+        <label className={style.inputField}>
             {label}
-            <input type={type} value={value} onChange={onChange} />
+            <input className={style.field} type={type} value={value} onChange={(e) => onChange(e.target.value)} />
         </label>
     )
 }

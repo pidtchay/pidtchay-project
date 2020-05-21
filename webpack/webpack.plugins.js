@@ -15,9 +15,9 @@ const webpackPlugins = {
             template: './src/index.html',
         }),
         bundleAnalyzer: new BundleAnalyzerPlugin({}),
-        miniCssExtract: (node_env) => new MiniCssExtractPlugin({
-            filename: node_env === 'production' ? 'css/[name].[hash].css' : 'css/[name].css',
-            chunkFilename: node_env === 'production' ? 'css/[name].[hash].css' : 'css/[name].css',
+        miniCssExtract: new MiniCssExtractPlugin({
+            filename: 'css/[name].[hash].css',
+            chunkFilename:'css/[name].[hash].css',
         }),
         cleanWebpack: new CleanWebpackPlugin(),
         forkTsChecker: new ForkTsCheckerWebpackPlugin({

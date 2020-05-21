@@ -4,14 +4,16 @@ const webpackModuleRules = {
     module: {
         rules: [
             {
-                test: /\.ts(x?)$/,
+                test: /\.tsx?$/,
                 exclude: /(node_modules)/,
                 loader: 'happypack/loader?id=ts'
             },
             {
                 test: /\.less$/,
                 use: [
-                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                    },
                     {
                         loader: 'css-loader',
                         options: {

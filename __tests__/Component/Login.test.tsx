@@ -11,7 +11,11 @@ describe('LogIn form render success', () => {
         password: '111'
     };
     const handleSubmit = (data: ILoginData) => {
-        console.debug(`You enter data: ${data}`);
+        console.group('onSubmit');
+        console.debug(`Your nickname: ${data.nickName}`);
+        console.debug(`Your email: ${data.email}`);
+        console.debug(`Your password: ${data.password}`);
+        console.groupEnd();
     };
     it('should match the snapshot', () => {
         const component = renderer.create(<LogInForm initialData={initialData} onSubmit={handleSubmit} />);
