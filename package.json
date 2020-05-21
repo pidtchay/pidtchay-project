@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server --host localhost --port 5454 --open --hot --config webpack/webpack.dev.js",
     "build": "webpack --mode production --config webpack/webpack.prod.js",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "test:updateShapshots": "jest --updateSnapshot"
   },
   "keywords": [
     "react",

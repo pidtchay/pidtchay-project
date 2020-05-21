@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ILoginData } from 'Model/Login';
+import { InputField } from './ImputField';
 
 /**
  * LogIn Form props
@@ -24,18 +25,10 @@ export const LogInForm: React.FC<ILogInProps> = ({initialData, onSubmit}) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <label>
-                Enter your nickname
-                <input value={loginData.nickName} onChange={e => setLoginData({...loginData, nickName: e.target.value})} />
-            </label>
-            <label>
-                Enter your email
-                <input type="email" value={loginData.email} onChange={e => setLoginData({...loginData, email: e.target.value})} />
-            </label>
-            <label>
-                Your password
-                <input type="password" value={loginData.password} onChange={e => setLoginData({...loginData, password: e.target.value})} />
-            </label>
+            <InputField label="Enter your nickname" type="text" value={loginData.nickName} onChange={e => setLoginData({...loginData, nickName: e.target.value})}/>
+            <InputField label="Enter your email" type="text" value={loginData.email} onChange={e => setLoginData({...loginData, email: e.target.value})}/>
+            <InputField label="Enter your password" type="text" value={loginData.password} onChange={e => setLoginData({...loginData, password: e.target.value})}/>
+            <button>Submit</button>
         </form>
     );
 };
