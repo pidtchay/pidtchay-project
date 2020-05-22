@@ -1,0 +1,43 @@
+.main__3RYf7 {
+  font-family: sans-serif;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.inputField__3V2bi {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 5px;
+}
+.inputField__3V2bi .field__2CMjl {
+  background-color: #ffffff;
+  border-radius: 6px;
+  border: 1px solid #777;
+  line-height: 1.25;
+  color: #000000;
+  height: 22px;
+  padding: 10px 25px 10px 10px;
+}
+
+.loginForm__3uErx {
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.loginForm__3uErx .submitButton__3UELE {
+  padding: 10px 15px;
+  background-color: #4699b3;
+  color: white;
+  border: 1px solid #4699b3;
+  border-radius: 6px;
+  background-color: 250ms;
+}
+.loginForm__3uErx .submitButton__3UELE:hover {
+  cursor: pointer;
+  background-color: white;
+  color: #4699b3;
+}
+
