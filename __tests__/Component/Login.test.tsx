@@ -1,7 +1,7 @@
 
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
-import { ILoginData } from 'Model/Login';
+import { ILoginData } from 'Model/Authenticate';
 import { LogInForm } from 'Component/LoginForm';
 
 describe('LogIn form render success', () => {

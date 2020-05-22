@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { ILoginData } from 'Model/Login';
+import { ILoginData } from 'Model/Authenticate';
 import { InputField } from './ImputField';
 import style from 'Style/LogInForm.less'
+
 /**
  * LogIn Form props
  */

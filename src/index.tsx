@@ -1,25 +1,14 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { LogInForm } from './Component/LoginForm';
-import { ILoginData } from './Model/Login';
-import style from 'Style/App.less';
+import { App } from 'app';
+import { createStore, applyMiddleware } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import { rootReducer } from 'Store';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 
-const loginData: ILoginData = {
-    nickName: 'Tom',
-    email: 'tom@test.com',
-    password: '111'
-}
-
-const onSubmit = (data: ILoginData) => {
-    console.group('onSubmit'); 
-    console.debug(`Your nickname: ${data.nickName}`);
-    console.debug(`Your email: ${data.email}`);
-    console.debug(`Your password: ${data.password}`);
-    console.groupEnd();
-}
-
-const App = () => (<div className={style.main}><LogInForm initialData={loginData} onSubmit={onSubmit} /></div>);
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
 ReactDOM.render(
-    <App />, document.getElementById('root'),
+    <Provider store={store}><App / ></Provider> , document.getElementById('root'),
 );

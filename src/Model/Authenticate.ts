@@ -9,3 +9,14 @@ export interface ILoginData {
     email: string;
     password: string;
 }
+
+/**
+ * @property [boolean] authenticated
+ * @property [string] session
+ * @property [string] userName
+ */
+export interface ISystemState {
+    authenticated: boolean;
+    session: string;
+    userName: string;
+}
