@@ -1,12 +1,14 @@
 {
   "name": "pidtchay-project",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "homepage": "https://p1dtchay.github.io/pidtchay-project",
   "description": "Personal project on the react framework",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --host localhost --port 5454 --open --hot --config webpack/webpack.dev.js",
     "build": "webpack --config webpack/webpack.prod.js",
+    "deploy": "gh-pages -d out",
+    "predeploy": "npm run build",
     "test": "jest",
     "test:updateShapshots": "jest --updateSnapshot"
   },
@@ -50,6 +52,7 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "fork-ts-checker-webpack-plugin": "^4.1.4",
+    "gh-pages": "^2.2.0",
     "happypack": "^5.0.1",
     "html-webpack-plugin": "^4.3.0",
     "husky": "^4.2.5",
