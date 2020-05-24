@@ -33,6 +33,7 @@ export const LogInForm: React.FC<ILogInProps> = ({initialData, onSubmit}) => {
 
     return (
         <form className={style.loginForm} onSubmit={handleSubmit}>
+            <div className={style.alert}>Just press Enter</div>
             <InputField label="Enter your nickname" type="text" value={loginData.nickName} onChange={handleChange('nickName')}/>
             <InputField label="Enter your email" type="email" value={loginData.email} onChange={handleChange('email')}/>
             <InputField label="Enter your password" type="password" value={loginData.password} onChange={handleChange('password')}/>

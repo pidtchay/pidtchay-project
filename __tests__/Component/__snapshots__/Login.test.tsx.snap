@@ -4,6 +4,9 @@ exports[`LogIn form render success should match the snapshot 1`] = `
 <form
   onSubmit={[Function]}
 >
+  <div>
+    Just press Enter
+  </div>
   <label>
     Enter your nickname
     <input

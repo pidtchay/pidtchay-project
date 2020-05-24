@@ -27,7 +27,9 @@ const LogInContainer = ({logInSubmit}: IProps) => {
         }, 1000);
     }
     return(
-        <LogInForm initialData={loginData} onSubmit={handleSubmit} />
+        <div>
+            <LogInForm initialData={loginData} onSubmit={handleSubmit} />
+        </div>
     );
 }
 
