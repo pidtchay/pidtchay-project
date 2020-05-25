@@ -19,6 +19,10 @@
   height: 22px;
   padding: 10px 25px 10px 10px;
 }
+.inputField__3V2bi .field__2CMjl:focus {
+  border: 2px solid #4699b3;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.075), 0px 1px 8px #4699ad;
+}
 
 .loginForm__3uErx {
   max-width: 500px;
@@ -26,6 +30,15 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+}
+.loginForm__3uErx .alert__3acio {
+  background-color: #46919c;
+  border: 1px solid #46ad9c;
+  color: white;
+  border-radius: 10px;
+  margin: 10px 0px;
+  text-align: center;
+  padding: 15px;
 }
 .loginForm__3uErx .submitButton__3UELE {
   padding: 10px 15px;
