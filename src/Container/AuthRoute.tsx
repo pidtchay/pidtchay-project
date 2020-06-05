@@ -10,7 +10,7 @@ import { RootState } from 'Store';
  * @property exact
  */
 interface IProps {
-    Component: React.FC<RouteComponentProps>;
+    Component: React.FC<RouteComponentProps> |  React.ComponentType<any>;
     path: string;
     exact?: boolean;
 }

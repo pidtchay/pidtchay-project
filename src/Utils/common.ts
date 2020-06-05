@@ -5,15 +5,17 @@
  * @param [number] limit - time interval 
  */
 export const throttle = (func, limit: number) => {
-    let timeout = null
-    console.debug({
-        func,
-        limit
-    });
+    let timeout = null;
     if (!timeout) {
         timeout = setTimeout(() => {
             func();
-            timeout = null
+            timeout = null;
         }, limit)
     }
+}
+
+export const debounce = (func, limit: number) => {
+    let timeout = null;
+    clearTimeout(timeout);
+    timeout = setTimeout(func, limit);
 }

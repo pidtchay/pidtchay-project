@@ -3,8 +3,8 @@ import React from 'react';
 import { LogIn } from 'Container/Login';
 import { BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import { AuthRoute } from 'Container/AuthRoute';
-
-const Home = () => (<div>Home</div>);
+import { HomPage } from 'Container/HomePage';
+import 'antd/dist/antd.css';
 
 export const App = () => (<Router>
     <div>
@@ -19,7 +19,7 @@ export const App = () => (<Router>
             <Route path='/login'>
                 <div className={style.main}><LogIn /></div>
             </Route>
-            <AuthRoute path="/" Component={Home} />
+            <AuthRoute path="/" Component={HomPage} />
         </Switch>
     </div>
 </Router>);
