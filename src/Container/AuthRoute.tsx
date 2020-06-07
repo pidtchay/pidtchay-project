@@ -1,28 +1,28 @@
 import * as React from 'react';
-import { RouteComponentProps, Route } from "react-router-dom";
+import { RouteComponentProps, Route } from 'react-router-dom';
 import { LogIn } from './Login';
 import { useSelector } from 'react-redux';
 import { RootState } from 'Store';
 
 /**
- * @property Component 
+ * @property Component
  * @property path
  * @property exact
  */
 interface IProps {
-    Component: React.FC<RouteComponentProps> |  React.ComponentType<any>;
-    path: string;
-    exact?: boolean;
+  Component: React.FC<RouteComponentProps> |  React.ComponentType<any>;
+  path: string;
+  exact?: boolean;
 }
 
 /**
  * Authorisation route component
  */
-export const AuthRoute:React.FC<IProps> = ({Component, path, exact = false}) => {
-    const authenticated = useSelector((state: RootState) => state.system.authenticated);
-    return (
-        <Route path={path} exact={exact}  render={(props: RouteComponentProps) => 
+export const AuthRoute: React.FC<IProps> = ({ Component, path, exact = false }) => {
+  const authenticated = useSelector((state: RootState) => state.system.authenticated);
+  return (
+        <Route path={path} exact={exact}  render={(props: RouteComponentProps) =>
             authenticated ? <Component {...props}/> : <LogIn />
         }/>
-    );
-}
+  );
+};
