@@ -1,4 +1,4 @@
-import { LogInForm } from "Component/LoginForm";
+import { LoginForm } from "Component/LoginForm";
 import { connect } from "react-redux";
 import { thunkUpdateSession } from "Store/system/thunks";
 import { ILoginData } from "Model/Authenticate";
@@ -23,7 +23,7 @@ const LogInContainer = ({logInSubmit}: IProps) => {
     }
     return(
         <div>
-            <LogInForm initialData={loginData} onSubmit={handleSubmit} />
+            <LoginForm initialData={loginData} onSubmit={handleSubmit} />
         </div>
     );
 }

@@ -1,7 +1,13 @@
 import * as React from 'react';
 import { ILoginData } from 'Model/Authenticate';
-import { InputField } from './ImputField';
 import style from 'Style/LogInForm.less'
+import { Form, Input, Button } from 'antd';
+
+const layout = {
+    labelCol: { span: 8 },
+    wrapperCol: { span: 16 },
+};
+
 
 /**
  * LogIn Form props
@@ -16,28 +22,55 @@ interface ILogInProps {
  * @param [ILoginData] initialData - LogIn Data model.
  * @param [Function] onSubmit - submit action. 
  */
-export const LogInForm: React.FC<ILogInProps> = ({initialData, onSubmit}) => {
-    const [loginData, setLoginData] = React.useState(initialData);
-    
-    const handleSubmit = (e: any) => {
-        e.preventDefault();
-        onSubmit(loginData);
-    }
+export const LoginForm: React.FC<ILogInProps> = ({initialData, onSubmit}) => {    
+    const [form] = Form.useForm();
 
-    const handleChange = (fieldName: string) => (fieldValue: string) => {
-        setLoginData({
-            ...loginData,
-            [fieldName]: fieldValue
-        })
-    }
+    const onFinish = values => {
+        onSubmit({...values});
+    };
+
+    const onReset = () => {
+        form.resetFields();
+    };
+    
+    const onFill = () => {
+        form.setFieldsValue(initialData);
+    };
 
     return (
-        <form className={style.loginForm} onSubmit={handleSubmit}>
-            <div className={style.alert}>Just press Enter</div>
-            <InputField label="Enter your nickname" type="text" value={loginData.nickName} onChange={handleChange('nickName')}/>
-            <InputField label="Enter your email" type="email" value={loginData.email} onChange={handleChange('email')}/>
-            <InputField label="Enter your password" type="password" value={loginData.password} onChange={handleChange('password')}/>
-            <button className={style.submitButton}>Submit</button>
-        </form>
+        <Form {...layout} className={style.loginForm} form={form} onFinish={onFinish}>
+            <Form.Item
+                    label="Nickname"
+                    name="nickName"
+                    rules={[{ required: true, message: 'Please input your nickname!' }]}
+                >
+                <Input/>
+            </Form.Item>
+            <Form.Item
+                    label="Email"
+                    name="email"
+                    rules={[{ required: true, message: 'Please input your email!', type: 'email' }]}
+                >
+                <Input/>
+            </Form.Item>
+            <Form.Item 
+                    label="Password"
+                    name="password"
+                    rules={[{ required: true, message: 'Please input your password!' }]}
+                >
+                <Input.Password/>
+            </Form.Item>
+            <Form.Item  wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
+                <Button type="primary" htmlType="submit">
+                    Submit
+                </Button>
+                <Button htmlType="button" onClick={onReset}>
+                    Reset
+                </Button>
+                <Button type="link" htmlType="button" onClick={onFill}>
+                    Fill form
+                </Button>
+            </Form.Item>
+        </Form>
     );
-};
+}
