@@ -12,14 +12,14 @@
  * @property watchers
  */
 export interface IRepositoryData {
-    avatarImg: string;
-    description: string;
-    forks: number;
-    homepage: string;
-    id: number;
-    language: string;
-    name: string;
-    owner: string;
-    type: string;
-    watchers: number;
-  };
+  avatarImg: string;
+  description: string;
+  forks: number;
+  homepage: string;
+  id: number;
+  language: string;
+  name: string;
+  owner: string;
+  type: string;
+  watchers: number;
+}

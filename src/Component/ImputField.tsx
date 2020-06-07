@@ -9,10 +9,10 @@ import style from 'Style/InputField.less';
  * @property [Function] onChange - handle change event
  */
 interface InputFieldProps {
-    label: string;
-    type: string;
-    value: string;
-    onChange: (field: string) => void;
+  label: string;
+  type: string;
+  value: string;
+  onChange: (field: string) => void;
 }
 
 /**
@@ -22,11 +22,11 @@ interface InputFieldProps {
  * @param [string] value - changed value
  * @param [Function] onChange - handle change event
  */
-export const InputField: React.FC<InputFieldProps> = ({label, type, value, onChange}) => {
-    return(
+export const InputField: React.FC<InputFieldProps> = ({ label, type, value, onChange }) => {
+  return(
         <label className={style.inputField}>
             {label}
             <input className={style.field} type={type} value={value} onChange={(e) => onChange(e.target.value)} />
         </label>
-    )
-}
+  );
+};

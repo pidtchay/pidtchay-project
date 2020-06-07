@@ -9,12 +9,13 @@
     "build": "webpack --config webpack/webpack.prod.js",
     "deploy": "gh-pages -d out",
     "predeploy": "npm run build",
+    "precommit": "tsc --noEmit && tslint --fix",
     "test": "jest",
     "test:updateShapshots": "jest --updateSnapshot"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "tsc --noEmit"
+      "post-commit": "tsc --noEmit && npm run test"
     }
   },
   "keywords": [

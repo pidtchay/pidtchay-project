@@ -1,9 +1,9 @@
-const applicationOptions = require('./webpack.appOptions');
-const webpackPlugins = require('./webpack.plugins');
-const webpackModuleRules = require('./webpack.rules');
+const applicationOptions = require('./webpack.appOptions')
+const webpackPlugins = require('./webpack.plugins')
+const webpackModuleRules = require('./webpack.rules')
 
-const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
-const smp = new SpeedMeasurePlugin();
+const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
+const smp = new SpeedMeasurePlugin()
 
 const common = {
     entry: applicationOptions.entry,
@@ -13,7 +13,7 @@ const common = {
             'node_modules',
             'src'
         ],
-        extensions: ['.ts', '.tsx', '.js'],
+        extensions: ['.ts', '.tsx', '.js']
     },
     // https://medium.com/hackernoon/the-100-correct-way-to-split-your-chunks-with-webpack-f8a9df5b7758
     // We’ve saved a whopping 56% in downloads, and this saving will continue until the end of time.
@@ -32,14 +32,14 @@ const common = {
                 vendors: {
                     test: /[\\/]node_modules[\\/]/,
                     chunks: 'all',
-                    filename: 'js/[name].bundle.[hash].js',
+                    filename: 'js/[name].bundle.[hash].js'
                 },
                 default: {
                     priority: -20,
-                    reuseExistingChunk: true,
-                },
-            },
-        },
+                    reuseExistingChunk: true
+                }
+            }
+        }
     },
     plugins: [
         // webpackPlugins.plugins.bundleAnalyzer,
@@ -47,9 +47,9 @@ const common = {
         webpackPlugins.plugins.forkTsChecker,
         webpackPlugins.plugins.happyPack,
         webpackPlugins.plugins.htmlWebpack,
-        webpackPlugins.plugins.miniCssExtract,
+        webpackPlugins.plugins.miniCssExtract
     ],
     ...webpackModuleRules
 }
 
-module.exports = smp.wrap(common);
+module.exports = smp.wrap(common)

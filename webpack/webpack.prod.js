@@ -1,6 +1,6 @@
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
-const commonConfig = require('./webpack.common');
+const commonConfig = require('./webpack.common')
 
 module.exports = Object.assign({}, commonConfig, {
     mode: 'production',
@@ -15,9 +15,9 @@ module.exports = Object.assign({}, commonConfig, {
                 uglifyOptions: {
                     parallel: 5,
                     extractComments: false,
-                    exclude: /[\\/]node_modules[\\/]/,
-                },
-            }),
-        ],
-    }),
-});
+                    exclude: /[\\/]node_modules[\\/]/
+                }
+            })
+        ]
+    })
+})

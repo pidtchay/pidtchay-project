@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Table} from 'antd';
+import { Table } from 'antd';
 
 /**
  * Data model for displaying a Table.
@@ -7,15 +7,15 @@ import {Table} from 'antd';
  * @property dataSource transmitted data for display in a table.
  */
 interface ITableProps {
-    columns: any;
-    dataSource: any;
+  columns: any;
+  dataSource: any;
 }
 
 /**
  * Wrapper for component table.
  */
-export const TableComponent: React.FC<ITableProps> = ({columns, dataSource}) => {
-    return(
+export const TableComponent: React.FC<ITableProps> = ({ columns, dataSource }) => {
+  return(
         <Table dataSource={dataSource} columns={columns} />
-    );
-}
+  );
+};

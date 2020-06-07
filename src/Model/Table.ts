@@ -6,8 +6,8 @@
  * @property {JSX.Element} render
  */
 export interface IColumnField {
-    dataIndex: string;
-    key: string;
-    title: string;
-    render?: () => JSX.Element;
+  dataIndex: string;
+  key: string;
+  title: string;
+  render?: () => JSX.Element;
 }
