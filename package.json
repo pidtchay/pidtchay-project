@@ -5,17 +5,19 @@
   "description": "Personal project on the react framework",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --host localhost --port 5454 --open --hot --config webpack/webpack.dev.js",
     "build": "webpack --config webpack/webpack.prod.js",
+    "codestyle": "npm run prettier && npm run tslint",
     "deploy": "gh-pages -d out",
     "predeploy": "npm run build",
-    "precommit": "tsc --noEmit && tslint --fix",
+    "prettier": "npx prettier --write src/*",
+    "start": "webpack-dev-server --host localhost --port 5454 --open --hot --config webpack/webpack.dev.js",
     "test": "jest",
-    "test:updateShapshots": "jest --updateSnapshot"
+    "test:updateShapshots": "jest --updateSnapshot",
+    "tslint": "tslint -p tslint -p tsconfig.json"
   },
   "husky": {
     "hooks": {
-      "post-commit": "tsc --noEmit && npm run test"
+      "pre-commit": "npm run codestyle"
     }
   },
   "keywords": [
@@ -34,7 +36,6 @@
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
-    "tslint": "^6.1.2",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.11.0"
@@ -45,6 +46,7 @@
     "@types/jest": "^25.2.3",
     "@types/jsdom": "^16.2.3",
     "@types/jsdom-global": "^3.0.2",
+    "@types/node": "^14.0.12",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
     "@types/react-redux": "^7.1.9",
@@ -68,13 +70,16 @@
     "jsdom-global": "^3.0.2",
     "less-loader": "^6.1.0",
     "mini-css-extract-plugin": "^0.9.0",
+    "prettier": "^2.0.5",
     "react-test-renderer": "^16.13.1",
     "speed-measure-webpack-plugin": "^1.3.3",
     "style-loader": "^1.2.1",
-    "ts-jest": "^26.0.0",
+    "ts-jest": "^26.1.0",
     "ts-loader": "^7.0.4",
+    "tslint": "^6.1.2",
+    "tslint-config-prettier": "^1.18.0",
     "tslint-config-standard": "^9.0.0",
-    "typescript": "^3.9.3",
+    "typescript": "^3.9.5",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack-bundle-analyzer": "^3.8.0"
   }
