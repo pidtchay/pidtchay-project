@@ -8,9 +8,10 @@ TODO:
 3. ~~Add tests.~~
 4. ~~Add Ant Design. Redo the design of all pages using Ant Design. Add tslint.~~
 5. Repair tests.
-6. Add a repository card. In which detailed information about the repository will be displayed.
+6. ~~Add a repository card. In which detailed information about the repository will be displayed.~~~
 7. About page.
 8. Add breadcrumbs to sections.
+9. Add translation module.
 
 # Available Scripts
 
