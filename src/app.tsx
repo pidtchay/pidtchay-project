@@ -13,7 +13,7 @@ import style from 'Style/App.less';
 import 'antd/dist/antd.css';
 import { LogInPage } from 'Container/LoginPage';
 import { RepositoriesPage } from 'Container/Repositories/RepositoriesPage';
-import { RepositoryDetails } from 'Container/Repositories/RepositoryDetails';
+import { RepositoryDetailsPage } from 'Container/Repositories/RepositoryDetailsPage';
 import history from 'Utils/history';
 import { MenuRoute, ContentRoute } from 'Constants/Routes';
 import { AuthRoute } from 'Container/AuthRoute';
@@ -53,7 +53,7 @@ export const App = () => {
             <Switch>
               <Route path={ContentRoute.LOGIN} render={(props) => <LogInPage {...props} />} />
               <Route path={ContentRoute.ABOUT} render={() => <div>About</div>} />
-              <AuthRoute path={ContentRoute.REPOSITORIES.DETAILS} component={RepositoryDetails} />
+              <AuthRoute path={ContentRoute.REPOSITORIES.DETAILS} component={RepositoryDetailsPage} />
               <AuthRoute path={ContentRoute.REPOSITORIES.DEFAULT} component={RepositoriesPage} />
               <AuthRoute path={ContentRoute.HOME} component={() => <div>Home</div>} />
             </Switch>

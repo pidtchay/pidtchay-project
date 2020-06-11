@@ -1,22 +1,14 @@
 import * as React from 'react';
 import { Divider, Row, Col, Avatar, Descriptions, Tag, Button, PageHeader } from 'antd';
 import style from 'Style/RepositoryDetails.less';
-import { useSelector } from 'react-redux';
-import { RootState } from 'Store';
-import { RouteComponentProps } from 'react-router-dom';
+import { IRepositoryData } from 'Model/RepositoryData';
 
-export const RepositoryDetails:React.FC<RouteComponentProps> = (props) => {
-    const store = useSelector((state: RootState) => state.repository);
-    const repository = store.find(x => x.id === +props.match.params['id']);
-    if(!repository) {
-        return (
-            <div>Empty</div>
-        );
-    }
+interface IProps {
+    repository: IRepositoryData;
+    onBackClick: () => void;
+}
 
-    const handleBackClick = () => {
-        props.history.push('/github_repositories');
-    };
+export const RepositoryDetails:React.FC<IProps> = ({repository, onBackClick: handleBackClick}) => {
 
     return(
         <div className={style.details_layout}>

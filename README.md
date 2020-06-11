@@ -12,6 +12,7 @@ TODO:
 7. About page.
 8. Add breadcrumbs to sections.
 9. Add translation module.
+10. Add Notifications: Login, Logout, Request Error, Render Error.
 
 # Available Scripts
 
