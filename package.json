@@ -1,19 +1,20 @@
 {
   "name": "pidtchay-project",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "homepage": "https://p1dtchay.github.io/pidtchay-project",
   "description": "Personal project on the react framework",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config webpack/webpack.prod.js",
+    "build": "node node_modules/webpack/bin/webpack.js --config webpack/webpack.prod.js",
     "codestyle": "npm run prettier && npm run tslint",
     "deploy": "gh-pages -d out",
     "predeploy": "npm run build",
     "prettier": "npx prettier --write src/*",
-    "start": "webpack-dev-server --host localhost --port 5454 --open --hot --config webpack/webpack.dev.js",
-    "test": "jest",
-    "test:updateShapshots": "jest --updateSnapshot",
-    "tslint": "tslint -p tslint -p tsconfig.json"
+    "start": "node node_modules/webpack-dev-server/bin/webpack-dev-server.js --host localhost --port 5454 --open --hot --config webpack/webpack.dev.js",
+    "test": "jest --colors",
+    "test:updateShapshots": "jest --updateSnapshot --colors",
+    "tslint": "tslint -p tslint -p tsconfig.json",
+    "tsc": "node max-old-space-size=4096 node_modules/typescript/bin/tsc --noEmit"
   },
   "husky": {
     "hooks": {
@@ -29,6 +30,7 @@
   "license": "ISC",
   "dependencies": {
     "antd": "^4.2.5",
+    "history": "^4.10.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
@@ -43,6 +45,7 @@
   "devDependencies": {
     "@types/enzyme": "^3.10.5",
     "@types/enzyme-adapter-react-16": "^1.0.6",
+    "@types/history": "^4.7.6",
     "@types/jest": "^25.2.3",
     "@types/jsdom": "^16.2.3",
     "@types/jsdom-global": "^3.0.2",
@@ -51,6 +54,7 @@
     "@types/react-dom": "^16.9.8",
     "@types/react-redux": "^7.1.9",
     "@types/react-router-dom": "^5.1.5",
+    "@types/react-test-renderer": "^16.9.2",
     "@types/redux": "^3.6.0",
     "@types/redux-thunk": "^2.1.0",
     "clean-webpack-plugin": "^3.0.0",

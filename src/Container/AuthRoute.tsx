@@ -1,28 +1,20 @@
 import * as React from 'react';
-import { RouteComponentProps, Route } from 'react-router-dom';
-import { LogIn } from './Login';
+import { Route, RouteProps, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from 'Store';
-
-/**
- * @property Component
- * @property path
- * @property exact
- */
-interface IProps {
-  Component: React.FC<RouteComponentProps> |  React.ComponentType<any>;
-  path: string;
-  exact?: boolean;
-}
+import { MenuRoute } from 'Constants/Routes';
 
 /**
  * Authorisation route component
  */
-export const AuthRoute: React.FC<IProps> = ({ Component, path, exact = false }) => {
-  const authenticated = useSelector((state: RootState) => state.system.authenticated);
+export const AuthRoute: React.FC<RouteProps> = ({component: Component, ...rest}) => {
+  const auth = useSelector((state: RootState) => state.system.authenticated);
+  console.debug({auth, rest, Component});
   return (
-        <Route path={path} exact={exact}  render={(props: RouteComponentProps) =>
-            authenticated ? <Component {...props}/> : <LogIn />
-        }/>
+    <Route {...rest} render={(props) => (
+      !auth
+      ? <Redirect to={MenuRoute.LOGIN} />
+      : <Component {...props}/>
+    )} />
   );
 };

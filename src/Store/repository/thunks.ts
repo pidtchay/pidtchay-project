@@ -8,7 +8,6 @@ import { fetchRepositoryData, clearRepositoryData } from './actions';
 export const thunkFetchRepositoryData = (orgName: string): ThunkAction<void, RootState, unknown, Action<string>> => async dispatch => {
   try {
     const data = await fetchRepositoryApi(orgName) as IRepositoryData[];
-    console.debug({ data });
     dispatch(
            fetchRepositoryData(data)
        );

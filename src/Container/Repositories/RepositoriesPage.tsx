@@ -2,12 +2,9 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { thunkFetchRepositoryData } from 'Store/repository/thunks';
 import { RootState } from 'Store';
-import { TableComponent } from 'Component/TableComponent';
 import { IRepositoryData } from 'Model/RepositoryData';
 import { convertRepositoryDataToSchema, convertRepositoryDataToColumns } from 'Utils/TableUtils';
-import { Input } from 'antd';
-
-const { Search } = Input;
+import { RepositoriesBody } from './RepositoriesBody';
 
 interface IState {
   orgname: string;
@@ -19,9 +16,9 @@ interface IProps {
 }
 
 /**
- * Home page component.
+ * Repositories page component.
  */
-class HomPageComponent extends React.Component<IProps, IState> {
+class RepositoriesPageComponent extends React.Component<IProps, IState> {
   state: IState = {
     orgname: 'facebook'
   };
@@ -35,15 +32,13 @@ class HomPageComponent extends React.Component<IProps, IState> {
   }
 
   render () {
+    console.debug({props: this.props});
     const { repositoryData } = this.props;
     const columns = convertRepositoryDataToColumns(convertRepositoryDataToSchema(repositoryData[0]));
     return (
-            <div>
-                <div>
-                    <Search  placeholder='input search org. name' enterButton='Search' size='large' onSearch={this.handleFetchRepositories} />
-                </div>
-                <TableComponent columns={columns} dataSource={repositoryData || []} />
-            </div>
+      <>
+         <RepositoriesBody columns={columns} data={repositoryData} />
+      </>
     );
   }
 }
@@ -58,4 +53,4 @@ const mapPropsToDispatch = {
   fetchRepositories: (orgName: string) => thunkFetchRepositoryData(orgName)
 };
 
-export const HomPage = connect(mapStateToProps, mapPropsToDispatch)(HomPageComponent);
+export const RepositoriesPage = connect(mapStateToProps, mapPropsToDispatch)(RepositoriesPageComponent);

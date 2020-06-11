@@ -1,30 +1,45 @@
-import style from 'Style/App.less';
 import React, { useState } from 'react';
-import { LogIn } from 'Container/Login';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import { AuthRoute } from 'Container/AuthRoute';
-import { HomPage } from 'Container/HomePage';
-import 'antd/dist/antd.css';
+import { Router, Switch, Route, Link } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
-import { HomeOutlined, IdcardOutlined, MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
-
+import {
+  GithubOutlined,
+  HomeOutlined,
+  InfoCircleOutlined,
+  MenuUnfoldOutlined,
+  MenuFoldOutlined // ,
+  // UserOutlined
+} from '@ant-design/icons';
+import style from 'Style/App.less';
+import 'antd/dist/antd.css';
+import { LogInPage } from 'Container/LoginPage';
+import { RepositoriesPage } from 'Container/Repositories/RepositoriesPage';
+import { RepositoryDetailsPage } from 'Container/Repositories/RepositoryDetailsPage';
+import history from 'Utils/history';
+import { MenuRoute, ContentRoute } from 'Constants/Routes';
+import { AuthRoute } from 'Container/AuthRoute';
 const { Header, Content, Footer, Sider } = Layout;
 
 export const App = () => {
-  const [isSideMenuToogle, setSideMenuToggled] = useState(false);
+  const [isSideMenuToogle, setSideMenuToggled] = useState(true);
   const toggleTrueFalse = () => setSideMenuToggled(!isSideMenuToogle);
 
   return (
-    <Router>
+    <Router history={history}>
       <Layout>
         <Sider trigger={null} collapsible collapsed={isSideMenuToogle}>
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
             <Menu.Item key="1" icon={<HomeOutlined />}>
-              <Link to="/">Home</Link>
+              <Link to={MenuRoute.HOME}>Home</Link>
             </Menu.Item>
-            <Menu.Item key="2" icon={<IdcardOutlined />}>
-              About
+            <Menu.Item key="2" icon={<InfoCircleOutlined />}>
+              <Link to={MenuRoute.ABOUT}>About</Link>
             </Menu.Item>
+            <Menu.Item key="3" icon={<GithubOutlined />}>
+              <Link to={MenuRoute.REPOSITORIES.DEFAULT}>Github repositories</Link>
+            </Menu.Item>
+            {/* <Menu.Item key="4" icon={<UserOutlined />}>
+              <Link to={MenuRoute.LOGIN}>Login</Link>
+            </Menu.Item> */}
           </Menu>
         </Sider>
         <Layout className={style.site_layout}>
@@ -36,12 +51,11 @@ export const App = () => {
           </Header>
           <Content className={style.site_layout_content}>
             <Switch>
-              <Route path="/login">
-                <div className={style.main}>
-                  <LogIn />
-                </div>
-              </Route>
-              <AuthRoute path="/" Component={HomPage} />
+              <Route path={ContentRoute.LOGIN} render={(props) => <LogInPage {...props} />} />
+              <Route path={ContentRoute.ABOUT} render={() => <div>About</div>} />
+              <AuthRoute path={ContentRoute.REPOSITORIES.DETAILS} component={RepositoryDetailsPage} />
+              <AuthRoute path={ContentRoute.REPOSITORIES.DEFAULT} component={RepositoriesPage} />
+              <AuthRoute path={ContentRoute.HOME} component={() => <div>Home</div>} />
             </Switch>
           </Content>
           <Footer>Pidtchay Project ©2020 Created by PidtChay</Footer>

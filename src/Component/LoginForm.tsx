@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ILoginData } from 'Model/Authenticate';
-import style from 'Style/LogInForm.less';
+import style from 'Style/Login/LoginForm.less';
 import { Form, Input, Button } from 'antd';
 
 const layout = {

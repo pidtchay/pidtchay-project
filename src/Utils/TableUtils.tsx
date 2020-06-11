@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { IColumnField } from 'Model/Table';
 import { IRepositoryData } from 'Model/RepositoryData';
-import { Avatar, Tag } from 'antd';
+import { Avatar, Tag, Button } from 'antd';
+import history from "Utils/history";
+import { MenuRoute } from 'Constants/Routes';
 
 enum ERenderType {
     TEXT= 'TEXT',
@@ -25,6 +27,9 @@ export const convertRepositoryDataToColumns = (data: ISchema[]): IColumnField[] 
       title: item?.name
     };
 
+    if (item.type === ERenderType.LINK) {
+      column.render = () => <Button type='link' onClick={() => history.push(MenuRoute.REPOSITORIES.DETAILS(item.description))}>{item.description}</Button>;
+    }
     if (item.type === ERenderType.AVATAR) {
       column.render = () => <Avatar src={item.description} />;
     }
@@ -44,6 +49,9 @@ export const convertRepositoryDataToSchema = (data: IRepositoryData): ISchema[] 
       type: ERenderType.TEXT,
       description: data[item]
     };
+    if(item === 'id') {
+      schema.type = ERenderType.LINK;
+    }
     if (item === 'avatarImg') {
       schema.type = ERenderType.AVATAR;
     }
