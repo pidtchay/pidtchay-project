@@ -1,4 +1,4 @@
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const webpackModuleRules = {
     module: {
@@ -12,7 +12,7 @@ const webpackModuleRules = {
                 test: /\.less$/,
                 use: [
                     {
-                        loader: 'style-loader'// MiniCssExtractPlugin.loader
+                        loader: MiniCssExtractPlugin.loader
                     },
                     {
                         loader: 'css-loader',
