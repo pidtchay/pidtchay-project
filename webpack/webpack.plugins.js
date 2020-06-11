@@ -1,6 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const HappyPack = require('happypack')
@@ -15,10 +15,10 @@ const webpackPlugins = {
             template: './src/index.html'
         }),
         bundleAnalyzer: new BundleAnalyzerPlugin({}),
-        miniCssExtract: new MiniCssExtractPlugin({
-            filename: 'css/[name].[hash].css',
-            chunkFilename: 'css/[name].[hash].css'
-        }),
+        // miniCssExtract: new MiniCssExtractPlugin({
+        //     filename: 'css/[name].[hash].css',
+        //     chunkFilename: 'css/[name].[hash].css'
+        // }),
         cleanWebpack: new CleanWebpackPlugin(),
         forkTsChecker: new ForkTsCheckerWebpackPlugin({
             checkSyntacErrors: true,

@@ -47,7 +47,7 @@ const common = {
         webpackPlugins.plugins.forkTsChecker,
         webpackPlugins.plugins.happyPack,
         webpackPlugins.plugins.htmlWebpack,
-        webpackPlugins.plugins.miniCssExtract
+        // webpackPlugins.plugins.miniCssExtract
     ],
     ...webpackModuleRules
 }
