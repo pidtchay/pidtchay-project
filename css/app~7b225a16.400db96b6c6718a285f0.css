@@ -1,0 +1,46 @@
+#components-layout-demo-custom-trigger__3Ri2x .trigger__zsppO {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+#components-layout-demo-custom-trigger__3Ri2x .trigger__zsppO:hover {
+  color: #1890ff;
+}
+.site_layout__-UcNY .site_layout_header__fprzq {
+  background: #fff;
+}
+.site_layout__-UcNY .site_layout_content__RUy30 {
+  background: #fff;
+  margin: 24px 16px;
+  padding: 24px;
+  min-height: 600px;
+}
+
+.loginForm__FJxE7 {
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.login_form__3PsLY {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.details_layout__hHfFu {
+  padding: 15px;
+  margin: 0px;
+}
+.avatar_panel__1HRY1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
