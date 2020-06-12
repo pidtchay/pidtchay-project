@@ -50,7 +50,7 @@ export const HomePage = () => {
             <Row>
                 <div className={style.home_title}>
                     <Title>Welcome to my web app fully focused on the React</Title>
-                    <Title level={2}>Thank you for visiting <a href="https://p1dtchay.github.io/pidtchay-project" target="_blank">p1dtchay.github.io</a></Title>
+                    <Title level={2}>Thank you for visiting <a href="https://pidtchay.github.io/" target="_blank">pidtchay.github.io</a></Title>
                 </div>
             </Row>
             
