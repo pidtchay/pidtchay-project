@@ -16,6 +16,7 @@ import history from 'Utils/history';
 import { MenuRoute, ContentRoute } from 'Constants/Routes';
 import { AuthRoute } from 'Container/AuthRoute';
 import { HeaderPanel } from 'Component/HeaderPanel';
+import { HomePage } from 'Container/Home/HomePage';
 const { Header, Content, Footer, Sider } = Layout;
 
 export const App = () => {
@@ -51,7 +52,7 @@ export const App = () => {
               <Route path={ContentRoute.ABOUT} render={() => <div>About</div>} />
               <AuthRoute path={ContentRoute.REPOSITORIES.DETAILS} component={RepositoryDetailsPage} />
               <AuthRoute path={ContentRoute.REPOSITORIES.DEFAULT} component={RepositoriesPage} />
-              <AuthRoute path={ContentRoute.HOME} component={() => <div>Home</div>} />
+              <AuthRoute path={ContentRoute.HOME} component={() => <HomePage />} />
             </Switch>
           </Content>
           <Footer>Pidtchay Project ©2020 Created by PidtChay</Footer>
