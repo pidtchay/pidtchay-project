@@ -20,7 +20,7 @@ export const thunkFetchRepositoryData = (orgName: string): ThunkAction<void, Roo
 };
 
 const fetchRepositoryApi = async (orgName: string) => {
-  const response = await fetch(GITHUB_API(orgName));
+  const response = await fetch(GITHUB_API.REPOS.LIST_BY_ORGNAME(orgName));
   const body = await response.json();
   return body.map((item: any) => {
     return {

@@ -17,11 +17,17 @@ import { MenuRoute, ContentRoute } from 'Constants/Routes';
 import { AuthRoute } from 'Container/AuthRoute';
 import { HeaderPanel } from 'Component/HeaderPanel';
 import { HomePage } from 'Container/Home/HomePage';
+import { AboutPage } from 'Container/About';
+import { useDispatch } from 'react-redux';
+import { loadLiterals } from 'Store/literals/actions';
+import { loadLang } from 'i18n/i18n';
 const { Header, Content, Footer, Sider } = Layout;
 
 export const App = () => {
   const [isSideMenuToogle, setSideMenuToggled] = useState(true);
   const toggleTrueFalse = () => setSideMenuToggled(!isSideMenuToogle);
+  const dispatch = useDispatch();
+  dispatch(loadLiterals(loadLang()));
 
   return (
     <Router history={history}>
@@ -49,7 +55,7 @@ export const App = () => {
           <Content className={style.site_layout_content}>
             <Switch>
               <Route path={ContentRoute.LOGIN} render={(props) => <LogInPage {...props} />} />
-              <Route path={ContentRoute.ABOUT} render={() => <div>About</div>} />
+              <Route path={ContentRoute.ABOUT} render={() => <AboutPage />} />
               <AuthRoute path={ContentRoute.REPOSITORIES.DETAILS} component={RepositoryDetailsPage} />
               <AuthRoute path={ContentRoute.REPOSITORIES.DEFAULT} component={RepositoriesPage} />
               <AuthRoute path={ContentRoute.HOME} component={() => <HomePage />} />
