@@ -14,6 +14,7 @@ TODO:
 9. Add translation module.
 10. Add Notifications: Login, Logout, Request Error, Render Error.
 11. ~~Add Logout button.~~
+12. ~~Add Home Page.~~
 
 # Available Scripts
 
