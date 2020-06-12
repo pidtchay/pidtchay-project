@@ -4,19 +4,18 @@ import { Layout, Menu } from 'antd';
 import {
   GithubOutlined,
   HomeOutlined,
-  InfoCircleOutlined,
-  MenuUnfoldOutlined,
-  MenuFoldOutlined // ,
+  InfoCircleOutlined
   // UserOutlined
 } from '@ant-design/icons';
 import style from 'Style/App.less';
 import 'antd/dist/antd.css';
-import { LogInPage } from 'Container/LoginPage';
+import { LogInPage } from 'Container/Login/LoginPage';
 import { RepositoriesPage } from 'Container/Repositories/RepositoriesPage';
 import { RepositoryDetailsPage } from 'Container/Repositories/RepositoryDetailsPage';
 import history from 'Utils/history';
 import { MenuRoute, ContentRoute } from 'Constants/Routes';
 import { AuthRoute } from 'Container/AuthRoute';
+import { HeaderPanel } from 'Component/HeaderPanel';
 const { Header, Content, Footer, Sider } = Layout;
 
 export const App = () => {
@@ -44,10 +43,7 @@ export const App = () => {
         </Sider>
         <Layout className={style.site_layout}>
           <Header className={style.site_layout_header}>
-            {React.createElement(isSideMenuToogle ? MenuUnfoldOutlined : MenuFoldOutlined, {
-              className: 'trigger',
-              onClick: toggleTrueFalse
-            })}
+            <HeaderPanel isSideMenuToogle={isSideMenuToogle} onToggleTrueFalse={toggleTrueFalse} />
           </Header>
           <Content className={style.site_layout_content}>
             <Switch>

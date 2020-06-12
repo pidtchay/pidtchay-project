@@ -32,12 +32,11 @@ class RepositoriesPageComponent extends React.Component<IProps, IState> {
   }
 
   render () {
-    console.debug({props: this.props});
     const { repositoryData } = this.props;
     const columns = convertRepositoryDataToColumns(convertRepositoryDataToSchema(repositoryData[0]));
     return (
       <>
-         <RepositoriesBody columns={columns} data={repositoryData} />
+         <RepositoriesBody columns={columns} data={repositoryData} onFetchRepositories={this.handleFetchRepositories}/>
       </>
     );
   }

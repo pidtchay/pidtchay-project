@@ -9,7 +9,6 @@ import { MenuRoute } from 'Constants/Routes';
  */
 export const AuthRoute: React.FC<RouteProps> = ({component: Component, ...rest}) => {
   const auth = useSelector((state: RootState) => state.system.authenticated);
-  console.debug({auth, rest, Component});
   return (
     <Route {...rest} render={(props) => (
       !auth

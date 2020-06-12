@@ -1,9 +1,9 @@
-import { LoginForm } from 'Component/LoginForm';
+import { LoginForm } from 'Container/Login/LoginForm';
 import { connect } from 'react-redux';
 import { thunkUpdateSession } from 'Store/system/thunks';
 import { ILoginData } from 'Model/Authenticate';
 import React from 'react';
-import { throttle } from '../Utils/common';
+import { throttle } from '../../Utils/common';
 import style from 'Style/Login/LoginPage.less';
 import { RouteComponentProps } from 'react-router-dom';
 import { MenuRoute } from 'Constants/Routes';
