@@ -3,7 +3,7 @@ import * as React from 'react';
 import { ILoginData } from 'Model/Authenticate';
 import * as renderer from 'react-test-renderer';
 // import { JSDOM } from 'jsdom';
-import { LoginForm } from 'Component/LoginForm';
+import { LoginForm } from 'Container/Login/LoginForm';
 
 // const jsdom = new JSDOM('<!doctype html><html><body></body></html>');
 // const { window } = jsdom;

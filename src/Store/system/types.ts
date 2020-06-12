@@ -1,6 +1,7 @@
 import { ISystemState } from 'Model/Authenticate';
 
 export const UPDATE_SESSION = 'UPDATE_SESSION';
+export const CLEAN_SESSION = 'CLEAN_SESSION';
 
 /**
  * Session update model
@@ -10,4 +11,11 @@ interface IUpdateSessionAction {
   payload: ISystemState;
 }
 
-export type SystemActionTypes = IUpdateSessionAction;
+/**
+ * Session clean model
+ */
+interface ICleanSessionAction {
+  type: typeof CLEAN_SESSION;
+}
+
+export type SystemActionTypes = IUpdateSessionAction | ICleanSessionAction;

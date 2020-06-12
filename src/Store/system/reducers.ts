@@ -1,5 +1,5 @@
 import { ISystemState } from 'Model/Authenticate';
-import { SystemActionTypes, UPDATE_SESSION } from './types';
+import { SystemActionTypes, UPDATE_SESSION, CLEAN_SESSION } from './types';
 
 /**
  * Initial data of system state
@@ -22,6 +22,13 @@ export const systemReducer = (state: ISystemState = initialState, actions: Syste
         ...state,
         ...actions.payload
       };
+    case CLEAN_SESSION: {
+      return {
+        authenticated: false,
+        session: '',
+        userName: ''
+      };
+    }
     default:
       return {
         ...state

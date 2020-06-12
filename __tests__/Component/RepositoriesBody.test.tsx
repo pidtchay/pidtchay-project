@@ -30,8 +30,9 @@ describe('render success',() => {
             watchers: 35
         }];
         const columns = convertRepositoryDataToColumns(convertRepositoryDataToSchema(repositoryData[0]));
+        const handleFetchData = () => jest.fn();
 
-        const component = renderer.create(<RepositoriesBody columns={columns} data={repositoryData} />);
+        const component = renderer.create(<RepositoriesBody columns={columns} data={repositoryData} onFetchRepositories={handleFetchData} />);
         expect(component.toJSON()).toMatchSnapshot();
     });
 });
