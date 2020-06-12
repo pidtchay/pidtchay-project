@@ -15,10 +15,10 @@
   background: #fff;
   margin: 24px 16px;
   padding: 24px;
-  min-height: 600px;
+  min-height: 80vh;
 }
 
-.loginForm__FJxE7 {
+.loginForm__10LHj {
   max-width: 500px;
   width: 100%;
   margin: 0 auto;
@@ -41,6 +41,29 @@
   align-items: center;
   justify-content: center;
   height: 100%;
+  width: 100%;
+}
+
+.header_layout__2Moob {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding: 10px 0px;
+}
+.header_layout__2Moob .header_layout_avatar__2E88S {
+  margin-right: 15px;
+}
+.header_layout__2Moob .header_layout_button__1o-ol {
+  margin-right: 15px;
+}
+
+.home_title__-Nas_ {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 25px 15px;
+  margin-bottom: 25px;
   width: 100%;
 }
 
