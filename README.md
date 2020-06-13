@@ -11,7 +11,7 @@ TODO:
 6. ~~Add a repository card. In which detailed information about the repository will be displayed.~~
 7. About page.
 8. Add breadcrumbs to sections.
-9. Add translation module.
+9. ~~Add translation module.~~
 10. Add Notifications: Login, Logout, Request Error, Render Error.
 11. ~~Add Logout button.~~
 12. ~~Add Home Page.~~
