@@ -1,40 +1,30 @@
 import { LoginForm } from 'Container/Login/LoginForm';
-import { connect } from 'react-redux';
 import { thunkUpdateSession } from 'Store/system/thunks';
 import { ILoginData } from 'Model/Authenticate';
 import React from 'react';
-import { throttle } from '../../Utils/common';
+import { throttle, get } from '../../Utils/common';
 import style from 'Style/Login/LoginPage.less';
 import { RouteComponentProps } from 'react-router-dom';
 import { MenuRoute } from 'Constants/Routes';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'Store';
+import { InitializationLoginData } from 'Constants/Common';
+import { Alert } from 'antd';
 
-const loginData: ILoginData = {
-  nickName: 'Tom',
-  email: 'tom@test.com',
-  password: '111'
-};
-
-interface IProps {
-  logInSubmit: (data: ILoginData) => void;
-}
-
-type TLoginPageProps = IProps & RouteComponentProps;
-const LogInContainer:React.FC<TLoginPageProps> = ({ logInSubmit, ...rest }) => {
+export const LogInPage:React.FC<RouteComponentProps> = (props) => {
+  const literals = useSelector((state: RootState) => (state.literals));
+  const dispatch = useDispatch();
+  
   const handleSubmit = (data: ILoginData) => {
     throttle(() => {
-      logInSubmit(data);
+      dispatch(thunkUpdateSession(data));
     }, 1000);
-    setTimeout(() => rest.history.push(MenuRoute.HOME), 1000);
+    setTimeout(() => props.history.push(MenuRoute.HOME), 1000);
   };
   return(
         <div className={style.login_form}>
-            <LoginForm initialData={loginData} onSubmit={handleSubmit} />
+            <Alert className={style.login_form_info} message={get(literals, 'Forms.Login.Info.title')} description={get(literals, 'Forms.Login.Info.note')} type="info" showIcon />
+            <LoginForm initialData={InitializationLoginData} onSubmit={handleSubmit} literals={literals} />
         </div>
   );
 };
-
-const mapPropsToDispatch = {
-  logInSubmit: thunkUpdateSession
-};
-
-export const LogInPage = connect(null, mapPropsToDispatch)(LogInContainer);

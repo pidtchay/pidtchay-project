@@ -1,9 +1,13 @@
 import React, { useState, createElement } from 'react';
-import { Col, Row, Timeline, Comment, Avatar, Tooltip, Typography, Divider } from 'antd';
-import { ClockCircleOutlined, UserOutlined, LikeFilled, LikeOutlined, DislikeFilled, DislikeOutlined } from '@ant-design/icons';
+import { Col, Row, Comment, Avatar, Tooltip, Typography, Divider } from 'antd';
+import { UserOutlined, LikeFilled, LikeOutlined, DislikeFilled, DislikeOutlined } from '@ant-design/icons';
 import style from 'Style/Home.less';
 
 import moment from 'moment';
+import { get } from 'Utils/common';
+import { useSelector } from 'react-redux';
+import { RootState } from 'Store';
+import { RoadMap } from './RoadMap';
 const { Title } = Typography;
 
 /**
@@ -13,7 +17,8 @@ export const HomePage = () => {
     const [likes, setLikes] = useState(0);
     const [dislikes, setDislikes] = useState(0);
     const [action, setAction] = useState(null);
-  
+    const literals = useSelector((state: RootState) => (state.literals));
+
     const like = () => {
       setLikes(1);
       setDislikes(0);
@@ -28,7 +33,7 @@ export const HomePage = () => {
 
     const commentActions = [
         <span key="comment-basic-like">
-            <Tooltip title="Like">
+            <Tooltip title={get(literals, 'Paget.Home.comment.footer.like')}>
                 {createElement(action === 'liked' ? LikeFilled : LikeOutlined, {
                 onClick: like,
                 })}
@@ -36,7 +41,7 @@ export const HomePage = () => {
             <span className="comment-action">{likes}</span>
         </span>,
         <span key="comment-basic-dislike">
-            <Tooltip title="Dislike">
+            <Tooltip title={get(literals, 'Paget.Home.comment.footer.dislike')}>
                 {React.createElement(action === 'disliked' ? DislikeFilled : DislikeOutlined, {
                 onClick: dislike,
                 })}
@@ -49,8 +54,8 @@ export const HomePage = () => {
         <>
             <Row>
                 <div className={style.home_title}>
-                    <Title>Welcome to my web app fully focused on the React</Title>
-                    <Title level={2}>Thank you for visiting <a href="https://pidtchay.github.io/pidtchay-project/" target="_blank">pidtchay.github.io</a></Title>
+                    <Title>{get(literals, 'Pages.Home.welcome.title')}</Title>
+                    <Title level={2}>{get(literals, 'Pages.Home.welcome.title2')}<a href="https://pidtchay.github.io/pidtchay-project/" target="_blank">pidtchay.github.io</a></Title>
                 </div>
             </Row>
             
@@ -58,14 +63,7 @@ export const HomePage = () => {
             
             <Row>
                 <Col span={8}>
-                    <Timeline pending="Comming soon..." mode="alternate">
-                        <Timeline.Item color="green">Create this a web app</Timeline.Item>
-                        <Timeline.Item color="green">Add authorization to the web application</Timeline.Item>
-                        <Timeline.Item color="green">Add tests to the web application</Timeline.Item>
-                        <Timeline.Item color="green">Add search and display results for Github repositories</Timeline.Item>
-                        <Timeline.Item color="red">Break test with authorization in web application</Timeline.Item>
-                        <Timeline.Item dot={<ClockCircleOutlined style={{ fontSize: '16px' }} />}>Repair an authorization test in a web application</Timeline.Item>
-                    </Timeline>
+                   <RoadMap literals={literals} />
                 </Col>
                 <Col offset={2}>
                     <Comment
@@ -77,11 +75,10 @@ export const HomePage = () => {
                         content={
                             <div>
                                 <p>
-                                Howdy.
+                                {get(literals, 'Pages.Home.comment.howdy')}
                                 </p>
                                 <p>
-                                I hope you enjoy my project. It can be taken as a portfolio.
-                                I have many ideas of what I want to add here.
+                                {get(literals, 'Pages.Home.comment.message')}
                                 </p>
                             </div>
                         }

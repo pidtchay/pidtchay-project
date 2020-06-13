@@ -17,11 +17,15 @@ import { MenuRoute, ContentRoute } from 'Constants/Routes';
 import { AuthRoute } from 'Container/AuthRoute';
 import { HeaderPanel } from 'Component/HeaderPanel';
 import { HomePage } from 'Container/Home/HomePage';
+import { useSelector } from 'react-redux';
+import { RootState } from 'Store';
+import { get } from 'Utils/common';
 const { Header, Content, Footer, Sider } = Layout;
 
 export const App = () => {
   const [isSideMenuToogle, setSideMenuToggled] = useState(true);
   const toggleTrueFalse = () => setSideMenuToggled(!isSideMenuToogle);
+  const literals = useSelector((state: RootState) => state.literals);
 
   return (
     <Router history={history}>
@@ -29,13 +33,13 @@ export const App = () => {
         <Sider trigger={null} collapsible collapsed={isSideMenuToogle}>
           <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
             <Menu.Item key="1" icon={<HomeOutlined />}>
-              <Link to={MenuRoute.HOME}>Home</Link>
+              <Link to={MenuRoute.HOME}>{get(literals, 'SideMenu.home')}</Link>
             </Menu.Item>
             <Menu.Item key="2" icon={<InfoCircleOutlined />}>
-              <Link to={MenuRoute.ABOUT}>About</Link>
+              <Link to={MenuRoute.ABOUT}>{get(literals, 'SideMenu.about')}</Link>
             </Menu.Item>
             <Menu.Item key="3" icon={<GithubOutlined />}>
-              <Link to={MenuRoute.REPOSITORIES.DEFAULT}>Github repositories</Link>
+              <Link to={MenuRoute.REPOSITORIES.DEFAULT}>{get(literals, 'SideMenu.git_repos')}</Link>
             </Menu.Item>
             {/* <Menu.Item key="4" icon={<UserOutlined />}>
               <Link to={MenuRoute.LOGIN}>Login</Link>
@@ -55,7 +59,7 @@ export const App = () => {
               <AuthRoute path={ContentRoute.HOME} component={() => <HomePage />} />
             </Switch>
           </Content>
-          <Footer>Pidtchay Project ©2020 Created by PidtChay</Footer>
+          <Footer>{get(literals, 'Layout.footer')}</Footer>
         </Layout>
       </Layout>
     </Router>

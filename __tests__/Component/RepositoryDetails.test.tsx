@@ -2,9 +2,11 @@ import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import { RepositoryDetails } from 'Container/Repositories/RepositoryDetailsBody';
 import { IRepositoryData } from 'Model/RepositoryData';
+import { loadLang } from 'i18n/i18n';
 
 describe('render success',() => {
-    it('should match the snapshot', () => {
+    it('should match the snapshot', async () => {
+        const literals = await loadLang();
         const handleBackClick = jest.fn();
         const repository: IRepositoryData = {
             avatarImg: 'http://test.com/avatar.jpeg',
@@ -18,7 +20,7 @@ describe('render success',() => {
             type: '',
             watchers: 5
         };
-        const component = renderer.create(<RepositoryDetails onBackClick={handleBackClick} repository={repository} />);
+        const component = renderer.create(<RepositoryDetails literals={literals} onBackClick={handleBackClick} repository={repository} />);
         expect(component.toJSON()).toMatchSnapshot();
     });
 });

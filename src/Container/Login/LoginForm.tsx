@@ -2,6 +2,8 @@ import * as React from 'react';
 import { ILoginData } from 'Model/Authenticate';
 import style from 'Style/Login/LoginForm.less';
 import { Form, Input, Button } from 'antd';
+import { ILiterals } from 'Model/Literals';
+import { get } from 'Utils/common';
 
 const layout = {
   labelCol: { span: 8 },
@@ -13,6 +15,7 @@ const layout = {
  */
 interface ILogInProps {
   initialData: ILoginData;
+  literals: ILiterals;
   onSubmit: (loginData: ILoginData) => void;
 }
 
@@ -21,7 +24,7 @@ interface ILogInProps {
  * @param [ILoginData] initialData - LogIn Data model.
  * @param [Function] onSubmit - submit action.
  */
-export const LoginForm: React.FC<ILogInProps> = ({ initialData, onSubmit }) => {
+export const LoginForm: React.FC<ILogInProps> = ({ initialData, onSubmit, literals }) => {
   const [form] = Form.useForm();
 
   const onFinish = values => {
@@ -39,35 +42,35 @@ export const LoginForm: React.FC<ILogInProps> = ({ initialData, onSubmit }) => {
   return (
     <Form {...layout} className={style.loginForm} form={form} onFinish={onFinish}>
       <Form.Item
-            label='Nickname'
+            label={get(literals, 'Forms.Login.nickname.label')}
             name='nickName'
-            rules={[{ required: true, message: 'Please input your nickname!' }]}
+            rules={[{ required: true, message: <>{get(literals, 'Forms.Login.nickname.message')}</> }]}
         >
         <Input/>
       </Form.Item>
       <Form.Item
-            label='Email'
+            label={get(literals, 'Forms.Login.email.label')}
             name='email'
-            rules={[{ required: true, message: 'Please input your email!', type: 'email' }]}
+            rules={[{ required: true, message: <>{get(literals, 'Forms.Login.email.message')}</>, type: 'email' }]}
         >
         <Input/>
       </Form.Item>
       <Form.Item
-            label='Password'
+            label={get(literals, 'Forms.Login.password.label')}
             name='password'
-            rules={[{ required: true, message: 'Please input your password!' }]}
+            rules={[{ required: true, message: <>{get(literals, 'Forms.Login.password.message')}</> }]}
         >
         <Input.Password/>
       </Form.Item>
       <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
         <Button type='primary' htmlType='submit'>
-            Submit
+          {get(literals, 'ACTIONS.submit')}
         </Button>
         <Button htmlType='button' onClick={onReset}>
-            Reset
+          {get(literals, 'ACTIONS.reset')}
         </Button>
         <Button type='link' htmlType='button' onClick={onFill}>
-            Fill form
+          {get(literals, 'ACTIONS.fill_form')}
         </Button>
       </Form.Item>
     </Form>

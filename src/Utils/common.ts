@@ -19,3 +19,15 @@ export const debounce = (func, limit: number) => {
   clearTimeout(timeout);
   timeout = setTimeout(func, limit);
 };
+
+/**
+ * Deep value search by key in the transferred object.
+ * Usage example: get(literals, 'SideMenu.home')
+ * @param [T] obj - transferred object
+ * @param [string] path - key path
+ */
+export const get = <T extends {}>(obj: T, path: string): [] => {
+  const idx = (p, o) => p.reduce((xs, x) => (xs && xs[x]) ? xs[x] : null, o);
+  const paths = path.split('.');
+  return idx(paths, obj);
+};

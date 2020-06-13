@@ -2,9 +2,10 @@ import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 import { RepositoriesBody } from 'Container/Repositories/RepositoriesBody';
 import { convertRepositoryDataToColumns, convertRepositoryDataToSchema } from 'Utils/TableUtils';
+import { loadLang } from 'i18n/i18n';
 
 describe('render success',() => {
-    it('should match the snapshot', () => {
+    it('should match the snapshot', async () => {
         const repositoryData = [{
             avatarImg: 'http://test.com/avatar.jpeg',
             description: '',
@@ -31,8 +32,9 @@ describe('render success',() => {
         }];
         const columns = convertRepositoryDataToColumns(convertRepositoryDataToSchema(repositoryData[0]));
         const handleFetchData = () => jest.fn();
+        const literals = await loadLang();
 
-        const component = renderer.create(<RepositoriesBody columns={columns} data={repositoryData} onFetchRepositories={handleFetchData} />);
+        const component = renderer.create(<RepositoriesBody literals={literals} columns={columns} data={repositoryData} onFetchRepositories={handleFetchData} />);
         expect(component.toJSON()).toMatchSnapshot();
     });
 });
