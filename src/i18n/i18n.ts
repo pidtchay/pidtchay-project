@@ -1,12 +1,7 @@
-import en from "./en.json";
-import ru from "./ru.json";
-import { ILiterals } from "Model/Literals";
-
-const langs = {
-  en,
-  ru
-};
-
-export const loadLang = (lang = "en"): ILiterals => {
-  return langs[lang];
+/**
+ * Lazy loading literals by using dynamic import.
+ * @param lang current language setting
+ */
+export const loadLang = (lang = "en") => {
+  return import(`./${lang}.json`);
 };

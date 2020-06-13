@@ -4,6 +4,7 @@ import { ILoginData } from 'Model/Authenticate';
 import * as renderer from 'react-test-renderer';
 // import { JSDOM } from 'jsdom';
 import { LoginForm } from 'Container/Login/LoginForm';
+import { loadLang } from 'i18n/i18n';
 
 // const jsdom = new JSDOM('<!doctype html><html><body></body></html>');
 // const { window } = jsdom;
@@ -27,8 +28,9 @@ describe('LogIn form render success', () => {
     console.debug(`Your password: ${data.password}`);
     console.groupEnd();
   };
-  it('should match the snapshot', () => {
-    const component = renderer.create(<LoginForm initialData={initialData} onSubmit={handleSubmit} />);
+  it('should match the snapshot', async () => {
+    const literals = await loadLang();
+    const component = renderer.create(<LoginForm literals={literals} initialData={initialData} onSubmit={handleSubmit} />);
     expect(component).toMatchSnapshot();
   });
 });

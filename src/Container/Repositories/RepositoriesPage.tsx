@@ -5,6 +5,7 @@ import { RootState } from 'Store';
 import { IRepositoryData } from 'Model/RepositoryData';
 import { convertRepositoryDataToSchema, convertRepositoryDataToColumns } from 'Utils/TableUtils';
 import { RepositoriesBody } from './RepositoriesBody';
+import { ILiterals } from 'Model/Literals';
 
 interface IState {
   orgname: string;
@@ -13,10 +14,12 @@ interface IState {
 interface IProps {
   fetchRepositories: (orgName: string) => void;
   repositoryData?: IRepositoryData[];
+  literals?: ILiterals;
 }
 
 /**
- * Repositories page component.
+ * The component displays a page with a list of repositories in Github.
+ * Which belong to the selected organization. Default search value: facebook.
  */
 class RepositoriesPageComponent extends React.Component<IProps, IState> {
   state: IState = {
@@ -32,11 +35,11 @@ class RepositoriesPageComponent extends React.Component<IProps, IState> {
   }
 
   render () {
-    const { repositoryData } = this.props;
+    const { repositoryData, literals } = this.props;
     const columns = convertRepositoryDataToColumns(convertRepositoryDataToSchema(repositoryData[0]));
     return (
       <>
-         <RepositoriesBody columns={columns} data={repositoryData} onFetchRepositories={this.handleFetchRepositories}/>
+         <RepositoriesBody literals={literals} columns={columns} data={repositoryData} onFetchRepositories={this.handleFetchRepositories}/>
       </>
     );
   }
@@ -44,7 +47,8 @@ class RepositoriesPageComponent extends React.Component<IProps, IState> {
 
 const mapStateToProps = (state: RootState) => {
   return {
-    repositoryData: state.repository
+    repositoryData: state.repository,
+    literals: state.literals
   };
 };
 
