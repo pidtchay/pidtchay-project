@@ -29,7 +29,10 @@
 .login_form__3PsLY {
   display: flex;
   align-items: center;
-  justify-content: center;
+  flex-direction: column;
+}
+.login_form__3PsLY .login_form_info__3tu9y {
+  margin-bottom: 25px;
 }
 
 .details_layout__hHfFu {
@@ -49,6 +52,9 @@
   align-items: center;
   justify-content: end;
   padding: 10px 0px;
+}
+.header_layout__2Moob .header_layout_i18n__1oQ9B {
+  margin-right: 15px;
 }
 .header_layout__2Moob .header_layout_avatar__2E88S {
   margin-right: 15px;
