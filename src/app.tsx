@@ -20,6 +20,7 @@ import { HomePage } from 'Container/Home/HomePage';
 import { useSelector } from 'react-redux';
 import { RootState } from 'Store';
 import { get } from 'Utils/common';
+import { AboutPage } from 'Container/AboutPage';
 const { Header, Content, Footer, Sider } = Layout;
 
 export const App = () => {
@@ -53,7 +54,7 @@ export const App = () => {
           <Content className={style.site_layout_content}>
             <Switch>
               <Route path={ContentRoute.LOGIN} render={(props) => <LogInPage {...props} />} />
-              <Route path={ContentRoute.ABOUT} render={() => <div>About</div>} />
+              <Route path={ContentRoute.ABOUT} render={() => <AboutPage />} />
               <AuthRoute path={ContentRoute.REPOSITORIES.DETAILS} component={RepositoryDetailsPage} />
               <AuthRoute path={ContentRoute.REPOSITORIES.DEFAULT} component={RepositoriesPage} />
               <AuthRoute path={ContentRoute.HOME} component={() => <HomePage />} />
