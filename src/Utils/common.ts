@@ -46,3 +46,7 @@ export const openNotificationWithIcon = (config: INotificationProps) => {
     description,
   });
 };
+
+export const convertStringArrayToString = (value: string[] | string): string => {
+  return Array.isArray(value) ? value.join('') : value;
+};

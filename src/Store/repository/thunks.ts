@@ -1,29 +1,26 @@
 import { IRepositoryData } from 'Model/RepositoryData';
-import { ThunkAction } from 'redux-thunk';
-import { RootState } from 'Store';
-import { Action } from 'redux';
 import { GITHUB_API } from 'Constants/Api';
 import { fetchRepositoryData, clearRepositoryData } from './actions';
-import { openNotificationWithIcon } from 'Utils/common';
+import { openNotificationWithIcon, convertStringArrayToString, get } from 'Utils/common';
+import { ILiterals } from 'Model/Literals';
+import { TThunkResult } from 'Store/constants';
 
-export const thunkFetchRepositoryData = (orgName: string): ThunkAction<void, RootState, unknown, Action<string>> => async dispatch => {
+export const thunkFetchRepositoryData = (orgName: string, literals: ILiterals): TThunkResult<void> => async dispatch => {
   await fetchRepositoryApi(orgName).then((resp) => {
     dispatch(fetchRepositoryData(resp));
   })
   .catch((e) => {
     console.error(e);
-    dispatch(
-           clearRepositoryData()
-       );
+    dispatch(clearRepositoryData());
     openNotificationWithIcon({
-      description: 'We apologize. Please try again after a while.',
-      title: 'An error occurred while processing the request!',
+      description: convertStringArrayToString(get(literals, 'Notification.request.error.description')),
+      title: convertStringArrayToString(get(literals, 'Notification.request.error.title')),
       type: 'error'
     });
   });
 };
 
-const fetchRepositoryApi = async (orgName: string) => {
+const fetchRepositoryApi = async (orgName: string): Promise<IRepositoryData[]> => {
   const response = await fetch(GITHUB_API.REPOS.LIST_BY_ORGNAME(orgName));
   const body = await response.json();
   return body.map((item: any) => {

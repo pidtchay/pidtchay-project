@@ -12,7 +12,7 @@ interface IState {
 }
 
 interface IProps {
-  fetchRepositories: (orgName: string) => void;
+  fetchRepositories: (orgName: string, literals: ILiterals) => void;
   repositoryData?: IRepositoryData[];
   literals?: ILiterals;
 }
@@ -27,11 +27,12 @@ class RepositoriesPageComponent extends React.Component<IProps, IState> {
   };
 
   componentDidMount () {
-    this.props.fetchRepositories(this.state.orgname);
+    const {literals} = this.props;
+    this.props.fetchRepositories(this.state.orgname, literals);
   }
 
   handleFetchRepositories = (value) => {
-    this.setState({ orgname: value }, () => this.props.fetchRepositories(this.state.orgname));
+    this.setState({ orgname: value }, () => this.props.fetchRepositories(this.state.orgname, this.props.literals));
   }
 
   render () {
@@ -53,7 +54,7 @@ const mapStateToProps = (state: RootState) => {
 };
 
 const mapPropsToDispatch = {
-  fetchRepositories: (orgName: string) => thunkFetchRepositoryData(orgName)
+  fetchRepositories: (orgName: string, literals: ILiterals) => thunkFetchRepositoryData(orgName, literals)
 };
 
 export const RepositoriesPage = connect(mapStateToProps, mapPropsToDispatch)(RepositoriesPageComponent);

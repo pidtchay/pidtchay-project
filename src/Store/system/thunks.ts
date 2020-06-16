@@ -1,26 +1,28 @@
 import { ILoginData, ISystemState } from 'Model/Authenticate';
-import { ThunkAction } from 'redux-thunk';
-import { RootState } from 'Store';
-import { Action } from 'redux';
 import { updateSession } from './actions';
-import { openNotificationWithIcon } from 'Utils/common';
+import { openNotificationWithIcon, get, convertStringArrayToString } from 'Utils/common';
+import { ILiterals } from 'Model/Literals';
+import { TThunkResult } from 'Store/constants';
 
-export const thunkUpdateSession = (loginData: ILoginData): ThunkAction<void, RootState, unknown, Action<string>> => async dispatch => {
-  await updateSessionAPI(loginData).then(resp => {
-    dispatch(updateSession(resp));
-    openNotificationWithIcon({
-      description: 'Welcome! Have a nice day and mood.',
-      title: 'Authorization was successful',
-      type: 'success'
+export const thunkUpdateSession = (loginData: ILoginData, literals: ILiterals): TThunkResult<void> => {
+  return async (dispatch) => {
+    await updateSessionAPI(loginData).then(resp => {
+      dispatch(updateSession(resp));
+
+      openNotificationWithIcon({
+        description: convertStringArrayToString(get(literals, 'Notification.login.description')),
+        title: convertStringArrayToString(get(literals, 'Notification.login.title')),
+        type: 'success'
+      });
+    }).catch((e) => {
+      console.error(e);
+      openNotificationWithIcon({
+        description: convertStringArrayToString(get(literals, 'Notification.request.error.description')),
+        title: convertStringArrayToString(get(literals, 'Notification.request.error.title')),
+        type: 'error'
+      });
     });
-  }).catch((e) => {
-    console.error(e);
-    openNotificationWithIcon({
-      description: 'We apologize. Please try again after a while.',
-      title: 'An error occurred during authorization!',
-      type: 'error'
-    });
-  });
+  };
 };
 
 const updateSessionAPI = (loginData: ILoginData) => {
