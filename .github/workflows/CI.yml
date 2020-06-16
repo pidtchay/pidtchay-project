@@ -43,7 +43,8 @@ jobs:
     - name: Build page
       run: npm run build
     - name: Deploy to gh-pages
-      uses: peaceiris/actions-github-pages@v3.1.1
+      uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
-        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        publish_dir: ./out
+        ACCESS_TOKEN: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        BRANCH: gh-pages
+        FOLDER: ./out
