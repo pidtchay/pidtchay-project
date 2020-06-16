@@ -1,3 +1,6 @@
+import { notification } from 'antd';
+import { INotificationProps } from 'Model/common';
+
 /**
  * Pattern that we can limit the times it fires an event.
  * No matter how many times the user can trigger this, it executes only once in specific time interval.
@@ -30,4 +33,16 @@ export const get = <T extends {}>(obj: T, path: string): [] => {
   const idx = (p, o) => p.reduce((xs, x) => (xs && xs[x]) ? xs[x] : null, o);
   const paths = path.split('.');
   return idx(paths, obj);
+};
+
+/**
+ * A notification box with a icon at the left side.
+ * @param {INotificationProps} [config] Necessary parameters to call a notification.
+ */
+export const openNotificationWithIcon = (config: INotificationProps) => {
+  const {description, type, title} = config;
+  notification[type]({
+    message: title,
+    description,
+  });
 };
