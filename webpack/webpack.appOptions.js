@@ -7,7 +7,10 @@ const outputPath = path.join(__dirname, '../out')
 
 const appOptions = {
     entry: {
-        app: path.resolve(srcPath, './index.tsx')
+        app: path.resolve(srcPath, './index.tsx'),
+        home: path.resolve(srcPath, './Container/Home/HomePage.tsx'),
+        about: path.resolve(srcPath, './Container/AboutPage.tsx'),
+        repos: path.resolve(srcPath, './Container/Repositories/RepositoriesPage.tsx')
     },
    output: {
        path: outputPath,
