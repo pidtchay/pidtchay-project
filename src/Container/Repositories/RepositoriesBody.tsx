@@ -15,23 +15,28 @@ const { Search } = Input;
  * @property [onFetchRepositories] The function queries the list of repositories for the selected organization name.
  */
 interface IRepositoriesBodyProps {
-    literals: ILiterals;
-    columns: IColumnField[];
-    data: IRepositoryData[];
-    onFetchRepositories: (valuse: string) => void;
+  literals: ILiterals;
+  columns: IColumnField[];
+  data: IRepositoryData[];
+  onFetchRepositories: (valuse: string) => void;
 }
 
 /**
  * Repositories Body Component
  */
-export const RepositoriesBody:React.FC<IRepositoriesBodyProps> = ({literals, columns, data, onFetchRepositories}) => {
-    const placeholder = convertStringArrayToString(get(literals, 'Pages.GithubRepositories.search_placeholder'));
-    return (
-        <>
-            <div>
-                <Search placeholder={placeholder} enterButton='Search' size='large' onSearch={onFetchRepositories} />
-            </div>
-            <TableComponent columns={columns} dataSource={data || []} />
-        </>
-      );
+export const RepositoriesBody: React.FC<IRepositoriesBodyProps> = ({
+  literals,
+  columns,
+  data,
+  onFetchRepositories
+}) => {
+  const placeholder = convertStringArrayToString(get(literals, 'Pages.GithubRepositories.search_placeholder'));
+  return (
+    <>
+      <div>
+        <Search placeholder={placeholder} enterButton="Search" size="large" onSearch={onFetchRepositories} />
+      </div>
+      <TableComponent columns={columns} dataSource={data || []} />
+    </>
+  );
 };

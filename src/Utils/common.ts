@@ -30,7 +30,7 @@ export const debounce = (func, limit: number) => {
  * @param [string] path - key path
  */
 export const get = <T extends {}>(obj: T, path: string): [] => {
-  const idx = (p, o) => p.reduce((xs, x) => (xs && xs[x]) ? xs[x] : null, o);
+  const idx = (p, o) => p.reduce((xs, x) => (xs && xs[x] ? xs[x] : null), o);
   const paths = path.split('.');
   return idx(paths, obj);
 };
@@ -40,10 +40,10 @@ export const get = <T extends {}>(obj: T, path: string): [] => {
  * @param {INotificationProps} [config] Necessary parameters to call a notification.
  */
 export const openNotificationWithIcon = (config: INotificationProps) => {
-  const {description, type, title} = config;
+  const { description, type, title } = config;
   notification[type]({
     message: title,
-    description,
+    description
   });
 };
 

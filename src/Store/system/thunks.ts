@@ -6,22 +6,24 @@ import { TThunkResult } from 'Store/constants';
 
 export const thunkUpdateSession = (loginData: ILoginData, literals: ILiterals): TThunkResult<void> => {
   return async (dispatch) => {
-    await updateSessionAPI(loginData).then(resp => {
-      dispatch(updateSession(resp));
+    await updateSessionAPI(loginData)
+      .then((resp) => {
+        dispatch(updateSession(resp));
 
-      openNotificationWithIcon({
-        description: convertStringArrayToString(get(literals, 'Notification.login.description')),
-        title: convertStringArrayToString(get(literals, 'Notification.login.title')),
-        type: 'success'
+        openNotificationWithIcon({
+          description: convertStringArrayToString(get(literals, 'Notification.login.description')),
+          title: convertStringArrayToString(get(literals, 'Notification.login.title')),
+          type: 'success'
+        });
+      })
+      .catch((e) => {
+        console.error(e);
+        openNotificationWithIcon({
+          description: convertStringArrayToString(get(literals, 'Notification.request.error.description')),
+          title: convertStringArrayToString(get(literals, 'Notification.request.error.title')),
+          type: 'error'
+        });
       });
-    }).catch((e) => {
-      console.error(e);
-      openNotificationWithIcon({
-        description: convertStringArrayToString(get(literals, 'Notification.request.error.description')),
-        title: convertStringArrayToString(get(literals, 'Notification.request.error.title')),
-        type: 'error'
-      });
-    });
   };
 };
 

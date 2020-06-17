@@ -15,7 +15,5 @@ interface ITableProps {
  * Wrapper for component table.
  */
 export const TableComponent: React.FC<ITableProps> = ({ columns, dataSource }) => {
-  return(
-        <Table dataSource={dataSource} columns={columns} />
-  );
+  return <Table dataSource={dataSource} columns={columns} />;
 };

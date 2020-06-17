@@ -27,7 +27,7 @@ interface ILogInProps {
 export const LoginForm: React.FC<ILogInProps> = ({ initialData, onSubmit, literals }) => {
   const [form] = Form.useForm();
 
-  const onFinish = values => {
+  const onFinish = (values) => {
     onSubmit({ ...values });
   };
 
@@ -42,34 +42,34 @@ export const LoginForm: React.FC<ILogInProps> = ({ initialData, onSubmit, litera
   return (
     <Form {...layout} className={style.loginForm} form={form} onFinish={onFinish}>
       <Form.Item
-            label={get(literals, 'Forms.Login.nickname.label')}
-            name='nickName'
-            rules={[{ required: true, message: <>{get(literals, 'Forms.Login.nickname.message')}</> }]}
-        >
-        <Input/>
+        label={get(literals, 'Forms.Login.nickname.label')}
+        name="nickName"
+        rules={[{ required: true, message: <>{get(literals, 'Forms.Login.nickname.message')}</> }]}
+      >
+        <Input />
       </Form.Item>
       <Form.Item
-            label={get(literals, 'Forms.Login.email.label')}
-            name='email'
-            rules={[{ required: true, message: <>{get(literals, 'Forms.Login.email.message')}</>, type: 'email' }]}
-        >
-        <Input/>
+        label={get(literals, 'Forms.Login.email.label')}
+        name="email"
+        rules={[{ required: true, message: <>{get(literals, 'Forms.Login.email.message')}</>, type: 'email' }]}
+      >
+        <Input />
       </Form.Item>
       <Form.Item
-            label={get(literals, 'Forms.Login.password.label')}
-            name='password'
-            rules={[{ required: true, message: <>{get(literals, 'Forms.Login.password.message')}</> }]}
-        >
-        <Input.Password/>
+        label={get(literals, 'Forms.Login.password.label')}
+        name="password"
+        rules={[{ required: true, message: <>{get(literals, 'Forms.Login.password.message')}</> }]}
+      >
+        <Input.Password />
       </Form.Item>
       <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-        <Button type='primary' htmlType='submit'>
+        <Button type="primary" htmlType="submit">
           {get(literals, 'ACTIONS.submit')}
         </Button>
-        <Button htmlType='button' onClick={onReset}>
+        <Button htmlType="button" onClick={onReset}>
           {get(literals, 'ACTIONS.reset')}
         </Button>
-        <Button type='link' htmlType='button' onClick={onFill}>
+        <Button type="link" htmlType="button" onClick={onFill}>
           {get(literals, 'ACTIONS.fill_form')}
         </Button>
       </Form.Item>

@@ -5,19 +5,22 @@ import { openNotificationWithIcon, convertStringArrayToString, get } from 'Utils
 import { ILiterals } from 'Model/Literals';
 import { TThunkResult } from 'Store/constants';
 
-export const thunkFetchRepositoryData = (orgName: string, literals: ILiterals): TThunkResult<void> => async dispatch => {
-  await fetchRepositoryApi(orgName).then((resp) => {
-    dispatch(fetchRepositoryData(resp));
-  })
-  .catch((e) => {
-    console.error(e);
-    dispatch(clearRepositoryData());
-    openNotificationWithIcon({
-      description: convertStringArrayToString(get(literals, 'Notification.request.error.description')),
-      title: convertStringArrayToString(get(literals, 'Notification.request.error.title')),
-      type: 'error'
+export const thunkFetchRepositoryData = (orgName: string, literals: ILiterals): TThunkResult<void> => async (
+  dispatch
+) => {
+  await fetchRepositoryApi(orgName)
+    .then((resp) => {
+      dispatch(fetchRepositoryData(resp));
+    })
+    .catch((e) => {
+      console.error(e);
+      dispatch(clearRepositoryData());
+      openNotificationWithIcon({
+        description: convertStringArrayToString(get(literals, 'Notification.request.error.description')),
+        title: convertStringArrayToString(get(literals, 'Notification.request.error.title')),
+        type: 'error'
+      });
     });
-  });
 };
 
 const fetchRepositoryApi = async (orgName: string): Promise<IRepositoryData[]> => {

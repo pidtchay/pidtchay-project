@@ -23,10 +23,10 @@ interface InputFieldProps {
  * @param [Function] onChange - handle change event
  */
 export const InputField: React.FC<InputFieldProps> = ({ label, type, value, onChange }) => {
-  return(
-        <label className={style.inputField}>
-            {label}
-            <input className={style.field} type={type} value={value} onChange={(e) => onChange(e.target.value)} />
-        </label>
+  return (
+    <label className={style.inputField}>
+      {label}
+      <input className={style.field} type={type} value={value} onChange={(e) => onChange(e.target.value)} />
+    </label>
   );
 };

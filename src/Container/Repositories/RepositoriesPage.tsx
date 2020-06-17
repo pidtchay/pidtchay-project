@@ -26,21 +26,26 @@ class RepositoriesPageComponent extends React.Component<IProps, IState> {
     orgname: 'facebook'
   };
 
-  componentDidMount () {
-    const {literals} = this.props;
+  componentDidMount() {
+    const { literals } = this.props;
     this.props.fetchRepositories(this.state.orgname, literals);
   }
 
   handleFetchRepositories = (value) => {
     this.setState({ orgname: value }, () => this.props.fetchRepositories(this.state.orgname, this.props.literals));
-  }
+  };
 
-  render () {
+  render() {
     const { repositoryData, literals } = this.props;
     const columns = convertRepositoryDataToColumns(convertRepositoryDataToSchema(repositoryData[0]));
     return (
       <>
-         <RepositoriesBody literals={literals} columns={columns} data={repositoryData} onFetchRepositories={this.handleFetchRepositories}/>
+        <RepositoriesBody
+          literals={literals}
+          columns={columns}
+          data={repositoryData}
+          onFetchRepositories={this.handleFetchRepositories}
+        />
       </>
     );
   }

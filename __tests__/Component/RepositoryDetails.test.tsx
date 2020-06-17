@@ -20,7 +20,9 @@ describe('render success',() => {
             type: '',
             watchers: 5
         };
-        const component = renderer.create(<RepositoryDetails literals={literals} onBackClick={handleBackClick} repository={repository} />);
+        const component =
+            renderer.create(
+                <RepositoryDetails literals={literals} onBackClick={handleBackClick} repository={repository} />);
         expect(component.toJSON()).toMatchSnapshot();
     });
 });

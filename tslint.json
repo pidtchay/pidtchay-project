@@ -1,6 +1,26 @@
 {
-    "extends": ["tslint-config-standard", "tslint-config-prettier"],
+    "extends": [
+        "tslint-config-standard",
+        "tslint-config-prettier"
+    ],
     "rules": {
-        "semicolon": [true, "always"]
+        "indent": [
+            true,
+            "spaces",
+            4
+        ],
+        "max-file-line-count": [
+            true,
+            500
+        ],
+        "max-line-length": [
+            true,
+            {
+                "limit": 120,
+                "ignore-pattern": "^import |^export {(.*?)}",
+                "check-strings": true,
+                "check-regex": true
+            }
+        ]
     }
 }
