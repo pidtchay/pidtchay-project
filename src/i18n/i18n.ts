@@ -3,5 +3,5 @@
  * @param lang current language setting
  */
 export const loadLang = (lang = 'en') => {
-  return import(`./${lang}.json`);
+    return import(`./${lang}.json`);
 };

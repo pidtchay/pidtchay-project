@@ -7,9 +7,9 @@ import { ILoginData } from 'Model/Authenticate';
  * !easter egg
  */
 export const InitializationLoginData: ILoginData = {
-  nickName: 'T0mas3dison',
-  email: 'tom_lightbulb@edison.com',
-  password: 'l1ght6ul6'
+    nickName: 'T0mas3dison',
+    email: 'tom_lightbulb@edison.com',
+    password: 'l1ght6ul6'
 };
 
 /**
@@ -18,6 +18,6 @@ export const InitializationLoginData: ILoginData = {
  * @property RU - Russian
  */
 export enum ESupportedLanguages {
-  EN = 'en',
-  RU = 'ru'
+    EN = 'en',
+    RU = 'ru'
 }

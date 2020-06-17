@@ -5,7 +5,7 @@
  * @property type Type of notification displayed.
  */
 export interface INotificationProps {
-  description: string;
-  title: string;
-  type: 'success' | 'info' | 'warning' | 'error';
+    description: string;
+    title: string;
+    type: 'success' | 'info' | 'warning' | 'error';
 }
