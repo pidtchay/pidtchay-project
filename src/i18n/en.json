@@ -65,14 +65,36 @@
           "owner": "Owner",
           "details": "Details"
         },
-        "owner": "Owner",
-        "home_page": "Home page",
-        "forks": "Forks",
-        "watchers": "Watchers",
-        "name": "Name",
-        "language": "Language",
-        "info": "Info",
-        "description": "Descriptions"
+        "GithubRepositories": {
+          "search_placeholder": "Input organization name: facebook...",
+          "back": "Back to repositories",
+          "Details": {
+            "Divider": {
+              "owner": "Owner",
+              "details": "Details"
+            },
+            "owner": "Owner",
+            "home_page": "Home page",
+            "forks": "Forks",
+            "watchers": "Watchers",
+            "name": "Name",
+            "language": "Language",
+            "info": "Info",
+            "description": "Descriptions"
+          }
+        }
+      },
+      "Notification": {
+        "request": {
+          "error": {
+            "title": "An error occurred while processing the request!",
+            "description": "We apologize. Please try again after a while."
+          }
+        },
+        "login": {
+          "title": "Authorization was successful.",
+          "description": "Welcome! Have a nice day and mood."
+        }
       }
     }
   }

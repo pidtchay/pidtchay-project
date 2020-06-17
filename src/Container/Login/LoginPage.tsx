@@ -17,7 +17,7 @@ export const LogInPage: React.FC<RouteComponentProps> = (props) => {
 
   const handleSubmit = (data: ILoginData) => {
     throttle(() => {
-      dispatch(thunkUpdateSession(data));
+      dispatch(thunkUpdateSession(data, literals));
     }, 1000);
     setTimeout(() => props.history.push(MenuRoute.HOME), 1000);
   };

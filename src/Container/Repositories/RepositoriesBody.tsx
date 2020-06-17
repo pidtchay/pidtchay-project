@@ -4,7 +4,7 @@ import { Input } from 'antd';
 import { IColumnField } from 'Model/Table';
 import { IRepositoryData } from 'Model/RepositoryData';
 import { ILiterals } from 'Model/Literals';
-import { get } from 'Utils/common';
+import { get, convertStringArrayToString } from 'Utils/common';
 
 const { Search } = Input;
 
@@ -30,8 +30,7 @@ export const RepositoriesBody: React.FC<IRepositoriesBodyProps> = ({
   data,
   onFetchRepositories
 }) => {
-  const searchPlaceholder = get(literals, 'Pages.GithubRepositories.search_placeholder');
-  const placeholder = Array.isArray(searchPlaceholder) ? searchPlaceholder.join('') : searchPlaceholder;
+  const placeholder = convertStringArrayToString(get(literals, 'Pages.GithubRepositories.search_placeholder'));
   return (
     <>
       <div>
