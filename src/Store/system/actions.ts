@@ -1,7 +1,7 @@
 import { UPDATE_SESSION, SystemActionTypes, CLEAN_SESSION } from './types';
 import { ISystemState } from 'Model/Authenticate';
 
-export function updateSession (newSession: ISystemState): SystemActionTypes {
+export function updateSession(newSession: ISystemState): SystemActionTypes {
   return {
     type: UPDATE_SESSION,
     payload: newSession

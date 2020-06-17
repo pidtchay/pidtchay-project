@@ -18,7 +18,7 @@ const initialState: ISystemState = {
 export const systemReducer = (state: ISystemState = initialState, actions: SystemActionTypes) => {
   switch (actions.type) {
     case UPDATE_SESSION:
-      return{
+      return {
         ...state,
         ...actions.payload
       };

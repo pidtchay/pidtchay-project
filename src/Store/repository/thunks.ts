@@ -5,17 +5,15 @@ import { Action } from 'redux';
 import { GITHUB_API } from 'Constants/Api';
 import { fetchRepositoryData, clearRepositoryData } from './actions';
 
-export const thunkFetchRepositoryData = (orgName: string): ThunkAction<void, RootState, unknown, Action<string>> => async dispatch => {
+export const thunkFetchRepositoryData = (
+  orgName: string
+): ThunkAction<void, RootState, unknown, Action<string>> => async (dispatch) => {
   try {
-    const data = await fetchRepositoryApi(orgName) as IRepositoryData[];
-    dispatch(
-           fetchRepositoryData(data)
-       );
+    const data = (await fetchRepositoryApi(orgName)) as IRepositoryData[];
+    dispatch(fetchRepositoryData(data));
   } catch (e) {
     console.error(e);
-    dispatch(
-           clearRepositoryData()
-       );
+    dispatch(clearRepositoryData());
   }
 };
 

@@ -30,7 +30,8 @@ describe('LogIn form render success', () => {
   };
   it('should match the snapshot', async () => {
     const literals = await loadLang();
-    const component = renderer.create(<LoginForm literals={literals} initialData={initialData} onSubmit={handleSubmit} />);
+    const component =
+      renderer.create(<LoginForm literals={literals} initialData={initialData} onSubmit={handleSubmit} />);
     expect(component).toMatchSnapshot();
   });
 });

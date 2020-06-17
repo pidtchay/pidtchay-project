@@ -34,7 +34,15 @@ describe('render success',() => {
         const handleFetchData = () => jest.fn();
         const literals = await loadLang();
 
-        const component = renderer.create(<RepositoriesBody literals={literals} columns={columns} data={repositoryData} onFetchRepositories={handleFetchData} />);
+        const component =
+            renderer.create(
+                <RepositoriesBody
+                    literals={literals}
+                    columns={columns}
+                    data={repositoryData}
+                    onFetchRepositories={handleFetchData}
+                />
+            );
         expect(component.toJSON()).toMatchSnapshot();
     });
 });
