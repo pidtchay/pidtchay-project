@@ -1,22 +1,43 @@
-# About Pidtchay Project
+# About project
 
-The purpose of this web application is to demonstrate my skills and knowledge.
+This is a project in which I can learn many professional methods that are used in the "real world".
+
+I am going to make a demo application. Where in different modules will be implemented with which the user can interact.
 
 TODO:
-1. ~~Create login form and home page.~~
-2. ~~Add a table to the home page listing the Github repositories.~~
-3. ~~Add tests.~~
-4. ~~Add Ant Design. Redo the design of all pages using Ant Design. Add tslint.~~
-5. Repair tests.
-6. ~~Add a repository card. In which detailed information about the repository will be displayed.~~
-7. About page.
-8. Add breadcrumbs to sections.
-9. ~~Add translation module.~~
-10. Add Notifications: Login, Logout, Request Error, Render Error.
-11. ~~Add Logout button.~~
-12. ~~Add Home Page.~~
+* Use Ant Design components to reduce page layout time. In the future, I am going to develop my components.
+* Make an authorization page. For starters, it will be just a form with fields to fill out and a simple authorization mechanism. The display of other sections of the application will depend on whether the user is authorized.
+* Welcome homepage. On the left there will be a component "thermometer" with an arbitrary list. Help block with free text.
+* Make a module for viewing information on Github repositories. On one page there will be a table with a list of repositories belonging to the selected company. By clicking on the repository ID, a detailed view form will open.
+* Own implementation of internationalization.
+* Add tests for components.
+* Make the module "Shopping Cart". Information about the goods in the basket, total amount, details.
 
-# Available Scripts
+The list will expand as new ideas emerge.
+
+## Demo
+
+Project depoloy page [pidtchay-project](https://pidtchay.github.io/)
+
+# Getting started
+
+* Clone the repo
+
+    ```git clone https://github.com/pidtchay/pidtchay-project.git``` 
+
+* npm
+
+    ```npm install npm@latest -g```
+
+* Install NPM packages
+
+    ```npm install```
+
+* Start
+
+    ```npm start```
+
+## Available Scripts
 
 In the project directory, you can run:
 

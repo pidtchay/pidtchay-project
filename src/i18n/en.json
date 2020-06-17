@@ -75,5 +75,17 @@
                 "description":"Descriptions"
             }
         }
+    },
+    "Notification": {
+        "request": {
+            "error": {
+                "title":"An error occurred while processing the request!",
+                "description": "We apologize. Please try again after a while."
+            }
+        },
+        "login": {
+            "title": "Authorization was successful.",
+            "description": "Welcome! Have a nice day and mood."
+        }
     }
 }

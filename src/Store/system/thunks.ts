@@ -1,14 +1,28 @@
 import { ILoginData, ISystemState } from 'Model/Authenticate';
-import { ThunkAction } from 'redux-thunk';
-import { RootState } from 'Store';
-import { Action } from 'redux';
 import { updateSession } from './actions';
+import { openNotificationWithIcon, get, convertStringArrayToString } from 'Utils/common';
+import { ILiterals } from 'Model/Literals';
+import { TThunkResult } from 'Store/constants';
 
-export const thunkUpdateSession = (loginData: ILoginData): ThunkAction<void, RootState, unknown, Action<string>> => async dispatch => {
-  const updateSessionResp = await updateSessionAPI(loginData);
-  dispatch(
-        updateSession(updateSessionResp)
-    );
+export const thunkUpdateSession = (loginData: ILoginData, literals: ILiterals): TThunkResult<void> => {
+  return async (dispatch) => {
+    await updateSessionAPI(loginData).then(resp => {
+      dispatch(updateSession(resp));
+
+      openNotificationWithIcon({
+        description: convertStringArrayToString(get(literals, 'Notification.login.description')),
+        title: convertStringArrayToString(get(literals, 'Notification.login.title')),
+        type: 'success'
+      });
+    }).catch((e) => {
+      console.error(e);
+      openNotificationWithIcon({
+        description: convertStringArrayToString(get(literals, 'Notification.request.error.description')),
+        title: convertStringArrayToString(get(literals, 'Notification.request.error.title')),
+        type: 'error'
+      });
+    });
+  };
 };
 
 const updateSessionAPI = (loginData: ILoginData) => {
