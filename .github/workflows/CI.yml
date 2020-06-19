@@ -44,7 +44,7 @@ jobs:
     - name: Install Packages
       run: npm install
     - name: Jest Tests
-      run: npm run jest     
+      run: npm run test     
   
   deploy:
     needs: jestTests
