@@ -28,8 +28,26 @@ jobs:
       run: npm run jest
       env:
           CI: true
+          
+  jestTests:
+    needs: [build]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Install Packages
+      run: npm install
+    - name: Jest Tests
+      run: npm run jest     
+  
   deploy:
-    needs: build
+    needs: jestTests
     runs-on: ubuntu-latest
     strategy:
       matrix:
