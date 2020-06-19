@@ -12,8 +12,8 @@
     "preversion:minor": "git-branch-is -r \"^feature/\" && npm version minor",
     "preversion:patch": "git-branch-is -r \"^(bugfix|hotfix)/\" && npm version patch",
     "start": "node node_modules/webpack-dev-server/bin/webpack-dev-server.js --host localhost --port 5454 --open --hot --config webpack/webpack.dev.js",
-    "test": "jest --colors --testPathIgnorePatterns Login.test.tsx",
-    "test:updateShapshots": "jest --updateSnapshot --colors --testPathIgnorePatterns Login.test.tsx",
+    "test": "jest --colors",
+    "test:updateShapshots": "jest --updateSnapshot --colors",
     "tsc": "node max-old-space-size=4096 node_modules/typescript/bin/tsc --noEmit"
   },
   "husky": {
