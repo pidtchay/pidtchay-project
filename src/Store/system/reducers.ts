@@ -5,9 +5,9 @@ import { SystemActionTypes, UPDATE_SESSION, CLEAN_SESSION } from './types';
  * Initial data of system state
  */
 const initialState: ISystemState = {
-  authenticated: false,
-  session: '',
-  userName: ''
+    authenticated: false,
+    session: '',
+    userName: ''
 };
 
 /**
@@ -15,23 +15,26 @@ const initialState: ISystemState = {
  * @param state initial state
  * @param actions system action types
  */
-export const systemReducer = (state: ISystemState = initialState, actions: SystemActionTypes) => {
-  switch (actions.type) {
-    case UPDATE_SESSION:
-      return {
-        ...state,
-        ...actions.payload
-      };
-    case CLEAN_SESSION: {
-      return {
-        authenticated: false,
-        session: '',
-        userName: ''
-      };
+export const systemReducer = (
+    state: ISystemState = initialState,
+    actions: SystemActionTypes
+) => {
+    switch (actions.type) {
+        case UPDATE_SESSION:
+            return {
+                ...state,
+                ...actions.payload
+            };
+        case CLEAN_SESSION: {
+            return {
+                authenticated: false,
+                session: '',
+                userName: ''
+            };
+        }
+        default:
+            return {
+                ...state
+            };
     }
-    default:
-      return {
-        ...state
-      };
-  }
 };

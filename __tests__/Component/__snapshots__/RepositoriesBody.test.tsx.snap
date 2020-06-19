@@ -156,6 +156,7 @@ Array [
                 >
                   <tr
                     className="ant-table-row ant-table-row-level-0"
+                    data-row-key={1}
                     onClick={[Function]}
                     style={Object {}}
                   >
@@ -274,6 +275,7 @@ Array [
                   </tr>
                   <tr
                     className="ant-table-row ant-table-row-level-0"
+                    data-row-key={2}
                     onClick={[Function]}
                     style={Object {}}
                   >
@@ -483,5 +485,11 @@ Array [
       </div>
     </div>
   </div>,
+  <div
+    className="ant-back-top"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  />,
 ]
 `;

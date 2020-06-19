@@ -5,4 +5,9 @@ import { Action } from 'redux';
 /**
  *
  */
-export type TThunkResult<T> = ThunkAction<T, RootState, unknown, Action<string>>;
+export type TThunkResult<T> = ThunkAction<
+    T,
+    RootState,
+    unknown,
+    Action<string>
+>;

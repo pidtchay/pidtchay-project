@@ -4,14 +4,15 @@
   },
   "SideMenu": {
     "home": "Home",
-    "about": "About",
+    "about": "About me",
     "git_repos": "Github repositories"
   },
   "ACTIONS": {
     "logout": "Logout",
     "submit": "Submit",
     "reset": "Reset",
-    "fill_form": "Fill form"
+    "fill_form": "Fill form",
+    "up": "UP"
   },
   "Forms": {
     "Login": {
@@ -83,19 +84,25 @@
             "description": "Descriptions"
           }
         }
-      },
-      "Notification": {
-        "request": {
-          "error": {
-            "title": "An error occurred while processing the request!",
-            "description": "We apologize. Please try again after a while."
-          }
-        },
-        "login": {
-          "title": "Authorization was successful.",
-          "description": "Welcome! Have a nice day and mood."
-        }
       }
+    },
+    "About": {
+      "title": "About me",
+      "greeting": "Howdy. Thank you for visiting my web site.",
+      "paragraph1": "My nickname is Pidtchay, I am a web developer.\nAt the beginning of my career, I participated in the development of terminal applications. The last few years I have been doing web development.",
+      "paragraph2": "I started this project to help myself in consolidating my knowledge. And acquire new knowledge.\nThis will help me do my job better. I hope you will also benefit from my knowledge."
+    }
+  },
+  "Notification": {
+    "request": {
+      "error": {
+        "title": "An error occurred while processing the request!",
+        "description": "We apologize. Please try again after a while."
+      }
+    },
+    "login": {
+      "title": "Authorization was successful.",
+      "description": "Welcome! Have a nice day and mood."
     }
   }
 }

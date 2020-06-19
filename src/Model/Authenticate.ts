@@ -5,9 +5,9 @@
  * @property [string] password - user password
  */
 export interface ILoginData {
-  nickName: string;
-  email: string;
-  password: string;
+    nickName: string;
+    email: string;
+    password: string;
 }
 
 /**
@@ -16,7 +16,7 @@ export interface ILoginData {
  * @property [string] userName
  */
 export interface ISystemState {
-  authenticated: boolean;
-  session: string;
-  userName: string;
+    authenticated: boolean;
+    session: string;
+    userName: string;
 }

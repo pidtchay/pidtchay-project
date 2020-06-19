@@ -12,25 +12,29 @@ import { InitializationLoginData } from 'Constants/Common';
 import { Alert } from 'antd';
 
 export const LogInPage: React.FC<RouteComponentProps> = (props) => {
-  const literals = useSelector((state: RootState) => state.literals);
-  const dispatch = useDispatch();
+    const literals = useSelector((state: RootState) => state.literals);
+    const dispatch = useDispatch();
 
-  const handleSubmit = (data: ILoginData) => {
-    throttle(() => {
-      dispatch(thunkUpdateSession(data, literals));
-    }, 1000);
-    setTimeout(() => props.history.push(MenuRoute.HOME), 1000);
-  };
-  return (
-    <div className={style.login_form}>
-      <Alert
-        className={style.login_form_info}
-        message={get(literals, 'Forms.Login.Info.title')}
-        description={get(literals, 'Forms.Login.Info.note')}
-        type="info"
-        showIcon
-      />
-      <LoginForm initialData={InitializationLoginData} onSubmit={handleSubmit} literals={literals} />
-    </div>
-  );
+    const handleSubmit = (data: ILoginData) => {
+        throttle(() => {
+            dispatch(thunkUpdateSession(data, literals));
+        }, 1000);
+        setTimeout(() => props.history.push(MenuRoute.HOME), 1000);
+    };
+    return (
+        <div className={style.login_form}>
+            <Alert
+                className={style.login_form_info}
+                message={get(literals, 'Forms.Login.Info.title')}
+                description={get(literals, 'Forms.Login.Info.note')}
+                type="info"
+                showIcon={true}
+            />
+            <LoginForm
+                initialData={InitializationLoginData}
+                onSubmit={handleSubmit}
+                literals={literals}
+            />
+        </div>
+    );
 };

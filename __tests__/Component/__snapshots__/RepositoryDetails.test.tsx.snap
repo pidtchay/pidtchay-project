@@ -108,11 +108,6 @@ exports[`render success should match the snapshot 1`] = `
         className="ant-descriptions"
       >
         <div
-          className="ant-descriptions-title"
-        >
-          Info
-        </div>
-        <div
           className="ant-descriptions-view"
         >
           <table>
@@ -125,11 +120,6 @@ exports[`render success should match the snapshot 1`] = `
                   colSpan={1}
                 >
                   <span
-                    className="ant-descriptions-item-label ant-descriptions-item-colon"
-                  >
-                    Owner
-                  </span>
-                  <span
                     className="ant-descriptions-item-content"
                   >
                     Monster corp
@@ -139,11 +129,6 @@ exports[`render success should match the snapshot 1`] = `
                   className="ant-descriptions-item"
                   colSpan={1}
                 >
-                  <span
-                    className="ant-descriptions-item-label ant-descriptions-item-colon"
-                  >
-                    Home page
-                  </span>
                   <span
                     className="ant-descriptions-item-content"
                   >
@@ -163,11 +148,6 @@ exports[`render success should match the snapshot 1`] = `
                   colSpan={1}
                 >
                   <span
-                    className="ant-descriptions-item-label ant-descriptions-item-colon"
-                  >
-                    Forks
-                  </span>
-                  <span
                     className="ant-descriptions-item-content"
                   >
                     1
@@ -181,11 +161,6 @@ exports[`render success should match the snapshot 1`] = `
                   className="ant-descriptions-item"
                   colSpan={3}
                 >
-                  <span
-                    className="ant-descriptions-item-label ant-descriptions-item-colon"
-                  >
-                    Watchers
-                  </span>
                   <span
                     className="ant-descriptions-item-content"
                   >
@@ -215,11 +190,6 @@ exports[`render success should match the snapshot 1`] = `
         className="ant-descriptions"
       >
         <div
-          className="ant-descriptions-title"
-        >
-          Descriptions
-        </div>
-        <div
           className="ant-descriptions-view"
         >
           <table>
@@ -232,11 +202,6 @@ exports[`render success should match the snapshot 1`] = `
                   colSpan={1}
                 >
                   <span
-                    className="ant-descriptions-item-label ant-descriptions-item-colon"
-                  >
-                    Name
-                  </span>
-                  <span
                     className="ant-descriptions-item-content"
                   >
                     ReactJS Todo list
@@ -246,22 +211,12 @@ exports[`render success should match the snapshot 1`] = `
                   className="ant-descriptions-item"
                   colSpan={1}
                 >
-                  <span
-                    className="ant-descriptions-item-label ant-descriptions-item-colon"
-                  >
-                    Descriptions
-                  </span>
                   
                 </td>
                 <td
                   className="ant-descriptions-item"
                   colSpan={1}
                 >
-                  <span
-                    className="ant-descriptions-item-label ant-descriptions-item-colon"
-                  >
-                    Language
-                  </span>
                   <span
                     className="ant-descriptions-item-content"
                   >
