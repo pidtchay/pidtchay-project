@@ -64,3 +64,7 @@ Your app is ready to be deployed!
 # License
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
+# Workflow CI
+
+![Node CI](https://github.com/pidtchay/pidtchay-project/workflows/Node%20CI/badge.svg?branch=master)
