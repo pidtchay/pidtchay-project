@@ -15,7 +15,7 @@ jobs:
         node-version: [8.x, 10.x, 12.x]
         
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
@@ -27,7 +27,7 @@ jobs:
     - name: Jest Tests
       run: npm run jest
       env:
-          CI: true   
+          CI: true
   
   deploy:
     needs: [build]
@@ -36,18 +36,21 @@ jobs:
       matrix:
         node-version: [12.x]
     steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Install Packages
-      run: npm install
-    - name: Build page
-      run: npm run build
-    - name: Deploy to gh-pages
-      uses: JamesIves/github-pages-deploy-action@releases/v3
-      with:
-        ACCESS_TOKEN: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        BRANCH: gh-pages
-        FOLDER: ./out
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install Packages
+        run: npm install
+      - name: Build page
+        run: npm run build
+      - name: Pushes to another repository
+        uses: pidtchay/pidtchay-project@master
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        with:
+          source-directory: 'out'
+          destination-github-username: 'pidtchay'
+          destination-repository-name: 'pidtchay.github.io'
+          user-email: pidtchay@gmail.com
