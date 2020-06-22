@@ -1,4 +1,4 @@
-name: Puth content to the user's Github pages repository
+name: Push content to the user's Github pages repository
 
 on:
   push:
