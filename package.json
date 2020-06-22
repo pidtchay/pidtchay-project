@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "build": "node node_modules/webpack/bin/webpack.js --config webpack/webpack.prod.js",
-    "codestyle":"npm run prettier && npm run lint:fix",
+    "codestyle": "npm run prettier && npm run lint:fix",
     "lint:fix": "node node_modules/eslint/bin/eslint src/**/*.{ts,tsx} --quiet --fix --color",
     "prettier": "node node_modules/prettier/bin-prettier.js  --write --config ./.prettierrc.js  src/**/*.{ts,tsx}",
     "preversion:minor": "git-branch-is -r \"^feature/\" && npm version minor",

@@ -1,13 +1,12 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const {CleanWebpackPlugin} = require('clean-webpack-plugin')
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
-const HappyPack = require('happypack')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const HappyPack = require('happypack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const os = require('os');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
-const os = require('os')
-
-const threadPool = HappyPack.ThreadPool({size: os.cpus().length - 1})
+const threadPool = HappyPack.ThreadPool({ size: os.cpus().length - 1 });
 
 const webpackPlugins = {
     plugins: {
@@ -21,8 +20,9 @@ const webpackPlugins = {
         }),
         cleanWebpack: new CleanWebpackPlugin(),
         forkTsChecker: new ForkTsCheckerWebpackPlugin({
-            checkSyntacErrors: true,
-            silent: true,
+            eslint: {
+                files: './src/**/*.{ts,tsx,js,jsx}' // required - same as command `eslint ./src/**/*.{ts,tsx,js,jsx} --ext .ts,.tsx,.js,.jsx`
+            },
             memoryLimit: 4096
         }),
         happyPack: new HappyPack({
@@ -42,6 +42,6 @@ const webpackPlugins = {
             ]
         })
     }
-}
+};
 
-module.exports = webpackPlugins
+module.exports = webpackPlugins;
