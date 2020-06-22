@@ -1,8 +1,9 @@
 /**
  * Login data model.
- * @property [string] nickName - user nickName
- * @property [string] email - user email
- * @property [string] password - user password
+ *
+ * @property {string} [nickName] - User nickName.
+ * @property {string} [email] - User email.
+ * @property {string} [password] - User password.
  */
 export interface ILoginData {
     nickName: string;
@@ -11,9 +12,9 @@ export interface ILoginData {
 }
 
 /**
- * @property [boolean] authenticated
- * @property [string] session
- * @property [string] userName
+ * @property {boolean} {} Authenticated flag.
+ * @property {string} {session} Session token.
+ * @property {string} {username} UserName.
  */
 export interface ISystemState {
     authenticated: boolean;

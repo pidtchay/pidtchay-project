@@ -1,8 +1,8 @@
+import { Form, Input, Button } from 'antd';
 import * as React from 'react';
 import { ILoginData } from 'Model/Authenticate';
-import style from 'Style/Login/LoginForm.less';
-import { Form, Input, Button } from 'antd';
 import { ILiterals } from 'Model/Literals';
+import style from 'Style/Login/LoginForm.less';
 import { get } from 'Utils/common';
 
 const layout = {
@@ -11,7 +11,7 @@ const layout = {
 };
 
 /**
- * LogIn Form props
+ * LogIn Form props.
  */
 interface ILogInProps {
     initialData: ILoginData;
@@ -20,9 +20,13 @@ interface ILogInProps {
 }
 
 /**
- * LogIn Form
- * @param [ILoginData] initialData - LogIn Data model.
- * @param [Function] onSubmit - submit action.
+ * LogIn Form.
+ *
+ * @param [ILoginData] - InitialData - LogIn Data model.
+ * @param [Function] - OnSubmit - submit action.
+ * @param ILoginData.initialData
+ * @param ILoginData.onSubmit
+ * @param ILoginData.literals
  */
 export const LoginForm: React.FC<ILogInProps> = ({
     initialData,

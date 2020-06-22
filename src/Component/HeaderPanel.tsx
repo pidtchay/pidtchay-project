@@ -1,4 +1,7 @@
+import { Row, Col, Avatar, Button } from 'antd';
+import { loadLang } from 'i18n/i18n';
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import {
     MenuUnfoldOutlined,
     LoginOutlined,
@@ -6,17 +9,14 @@ import {
     UserOutlined,
     HomeOutlined
 } from '@ant-design/icons';
-import style from 'Style/HeaderPanel.less';
-import { Row, Col, Avatar, Button } from 'antd';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from 'Store';
-import { cleanSession } from 'Store/system/actions';
-import history from 'Utils/history';
-import { MenuRoute } from 'Constants/Routes';
-import { loadLang } from 'i18n/i18n';
-import { loadLiterals } from 'Store/literals/actions';
-import { get } from 'Utils/common';
 import { ESupportedLanguages } from 'Constants/Common';
+import { MenuRoute } from 'Constants/Routes';
+import { RootState } from 'Store';
+import { loadLiterals } from 'Store/literals/actions';
+import { cleanSession } from 'Store/system/actions';
+import style from 'Style/HeaderPanel.less';
+import { get } from 'Utils/common';
+import history from 'Utils/history';
 
 interface IHeaderPanel {
     isSideMenuToogle: boolean;

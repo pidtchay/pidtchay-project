@@ -3,8 +3,9 @@ import { LiteralActionTypes, LOAD_LITERALS } from './types';
 
 /**
  * Literals reducer.
- * @param state initial state
- * @param actions literals action types
+ *
+ * @param {ILiterals} [state] - Initial state.
+ * @param {LiteralActionTypes} [actions] - Literals action types.
  */
 export const literalsReducer = (
     state: ILiterals = {},

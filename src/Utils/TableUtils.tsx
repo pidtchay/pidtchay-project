@@ -1,9 +1,9 @@
-import * as React from 'react';
-import { IColumnField } from 'Model/Table';
-import { IRepositoryData } from 'Model/RepositoryData';
 import { Avatar, Tag, Button } from 'antd';
-import history from 'Utils/history';
+import * as React from 'react';
 import { MenuRoute } from 'Constants/Routes';
+import { IRepositoryData } from 'Model/RepositoryData';
+import { IColumnField } from 'Model/Table';
+import history from 'Utils/history';
 
 enum ERenderType {
     TEXT = 'TEXT',

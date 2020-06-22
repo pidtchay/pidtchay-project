@@ -1,13 +1,13 @@
-import { IRepositoryData } from 'Model/RepositoryData';
 import { GITHUB_API } from 'Constants/Api';
-import { fetchRepositoryData, clearRepositoryData } from './actions';
+import { ILiterals } from 'Model/Literals';
+import { IRepositoryData } from 'Model/RepositoryData';
+import { TThunkResult } from 'Store/constants';
 import {
     openNotificationWithIcon,
     convertStringArrayToString,
     get
 } from 'Utils/common';
-import { ILiterals } from 'Model/Literals';
-import { TThunkResult } from 'Store/constants';
+import { fetchRepositoryData, clearRepositoryData } from './actions';
 
 export const thunkFetchRepositoryData = (
     orgName: string,

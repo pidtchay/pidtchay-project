@@ -2,7 +2,7 @@ import { ISystemState } from 'Model/Authenticate';
 import { SystemActionTypes, UPDATE_SESSION, CLEAN_SESSION } from './types';
 
 /**
- * Initial data of system state
+ * Initial data of system state.
  */
 const initialState: ISystemState = {
     authenticated: false,
@@ -11,9 +11,10 @@ const initialState: ISystemState = {
 };
 
 /**
- * System state reducer
- * @param state initial state
- * @param actions system action types
+ * System state reducer.
+ *
+ * @param {ISystemState} [state] - Initial state.
+ * @param {SystemActionTypes} [actions] - System action types.
  */
 export const systemReducer = (
     state: ISystemState = initialState,

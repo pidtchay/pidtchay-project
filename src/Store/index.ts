@@ -1,7 +1,7 @@
-import { systemReducer } from './system/reducers';
 import { combineReducers } from 'redux';
-import { repositoryReducer } from './repository/reducers';
 import { literalsReducer } from './literals/reducers';
+import { repositoryReducer } from './repository/reducers';
+import { systemReducer } from './system/reducers';
 
 export const rootReducer = combineReducers({
     system: systemReducer,

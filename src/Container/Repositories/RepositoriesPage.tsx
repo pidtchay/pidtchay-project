@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { thunkFetchRepositoryData } from 'Store/repository/thunks';
-import { RootState } from 'Store';
+import { ILiterals } from 'Model/Literals';
 import { IRepositoryData } from 'Model/RepositoryData';
+import { RootState } from 'Store';
+import { thunkFetchRepositoryData } from 'Store/repository/thunks';
 import {
     convertRepositoryDataToSchema,
     convertRepositoryDataToColumns
 } from 'Utils/TableUtils';
 import { RepositoriesBody } from './RepositoriesBody';
-import { ILiterals } from 'Model/Literals';
 
 interface IState {
     orgname: string;
@@ -23,6 +23,8 @@ interface IProps {
 /**
  * The component displays a page with a list of repositories in Github.
  * Which belong to the selected organization. Default search value: facebook.
+ *
+ * @param {string} [value] - Organisation name.
  */
 class RepositoriesPageComponent extends React.Component<IProps, IState> {
     state: IState = {
@@ -34,7 +36,7 @@ class RepositoriesPageComponent extends React.Component<IProps, IState> {
         this.props.fetchRepositories(this.state.orgname, literals);
     }
 
-    handleFetchRepositories = (value) => {
+    handleFetchRepositories = (value: string) => {
         this.setState({ orgname: value }, () =>
             this.props.fetchRepositories(
                 this.state.orgname,

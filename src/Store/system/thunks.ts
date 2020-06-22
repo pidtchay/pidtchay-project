@@ -1,12 +1,12 @@
 import { ILoginData, ISystemState } from 'Model/Authenticate';
-import { updateSession } from './actions';
+import { ILiterals } from 'Model/Literals';
+import { TThunkResult } from 'Store/constants';
 import {
     openNotificationWithIcon,
     get,
     convertStringArrayToString
 } from 'Utils/common';
-import { ILiterals } from 'Model/Literals';
-import { TThunkResult } from 'Store/constants';
+import { updateSession } from './actions';
 
 export const thunkUpdateSession = (
     loginData: ILoginData,
