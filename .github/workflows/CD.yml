@@ -14,7 +14,7 @@ jobs:
       - name: Make out folder
         run: mkdir out
       - name: Clone master branch
-        run: git clone "https://${{secrets.ACTIONS_DEPLOY_KEY}}@github.com/${{GITHUB_ACTOR}}/${{GITHUB_ACTOR}}.github.io.git" --branch master --single-branch ./out
+        run: git clone "https://${{secrets.ACTIONS_DEPLOY_KEY}}@github.com/${GITHUB_ACTOR}/${GITHUB_ACTOR}.github.io.git" --branch master --single-branch ./out
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
@@ -35,4 +35,4 @@ jobs:
           COMMIT_MESSAGE="Update pages on $(data + '%Y-%m-%d %H:%M:%S')"
           git diff-index --quiet --cached HEAD -- && echo "No changes!" && exit 0 || echo $COMMIT_MESSAGE
           git commit -m "${COMMIT_MESSAGE}"
-          git push https://{{secrets.ACTIONS_DEPLOY_KEY}}@github.com/${{GITHUB_ACTOR}}/${{GITHUB_ACTOR}}.github.io.git master
+          git push https://{{secrets.ACTIONS_DEPLOY_KEY}}@github.com/${GITHUB_ACTOR}/${GITHUB_ACTOR}.github.io.git master
