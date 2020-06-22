@@ -68,3 +68,4 @@ Your app is ready to be deployed!
 # Workflow CI
 
 ![Node CI](https://github.com/pidtchay/pidtchay-project/workflows/Node%20CI/badge.svg?branch=master)
+![Push content to the user's Github pages repository](https://github.com/pidtchay/pidtchay-project/workflows/Push%20content%20to%20the%20user's%20Github%20pages%20repository/badge.svg)
