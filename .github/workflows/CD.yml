@@ -1,8 +1,7 @@
 name: Push content to the user's Github pages repository
 
 on:
-  push:
-    branches: [ master ]
+  push
 
 jobs:
   build:
