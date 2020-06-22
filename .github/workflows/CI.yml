@@ -61,7 +61,7 @@ jobs:
       - name: Build page
         run: npm run build
       - name: Pushes to another repository
-        uses: pidtchay/pidtchay-project@master
+        uses: cpina/github-action-push-to-another-repository@master
         env:
           API_TOKEN_GITHUB: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         with:
