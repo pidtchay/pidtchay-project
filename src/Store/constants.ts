@@ -1,6 +1,6 @@
+import { Action } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 import { RootState } from 'Store';
-import { Action } from 'redux';
 
 /**
  *

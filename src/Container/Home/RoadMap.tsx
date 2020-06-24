@@ -1,16 +1,18 @@
+import { Timeline } from 'antd';
 import React from 'react';
+import { ClockCircleOutlined } from '@ant-design/icons';
 import { ILiterals } from 'Model/Literals';
 import { get } from 'Utils/common';
-import { ClockCircleOutlined } from '@ant-design/icons';
-import { Timeline } from 'antd';
 
 interface IProps {
     literals: ILiterals;
 }
 
 /**
- * Component displays a kind of roadmap
- * @param literals Language settings in the form of key-value. The text depends on the selected language.
+ * Component displays a kind of roadmap.
+ *
+ * @param literals.literals
+ * @param literals - Language settings in the form of key-value. The text depends on the selected language.
  */
 export const RoadMap: React.FC<IProps> = ({ literals }) => {
     return (

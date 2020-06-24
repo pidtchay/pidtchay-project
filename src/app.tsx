@@ -1,26 +1,25 @@
-import React, { useState } from 'react';
-import { Router, Switch, Route, Link } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Router, Switch, Route, Link } from 'react-router-dom';
 import {
     GithubOutlined,
     HomeOutlined,
     InfoCircleOutlined
-    // UserOutlined
 } from '@ant-design/icons';
-import style from 'Style/App.less';
-import 'antd/dist/antd.css';
+import { HeaderPanel } from 'Component/HeaderPanel';
+import { MenuRoute, ContentRoute } from 'Constants/Routes';
+import { AboutPage } from 'Container/AboutPage';
+import { AuthRoute } from 'Container/AuthRoute';
+import { HomePage } from 'Container/Home/HomePage';
 import { LogInPage } from 'Container/Login/LoginPage';
 import { RepositoriesPage } from 'Container/Repositories/RepositoriesPage';
 import { RepositoryDetailsPage } from 'Container/Repositories/RepositoryDetailsPage';
-import history from 'Utils/history';
-import { MenuRoute, ContentRoute } from 'Constants/Routes';
-import { AuthRoute } from 'Container/AuthRoute';
-import { HeaderPanel } from 'Component/HeaderPanel';
-import { HomePage } from 'Container/Home/HomePage';
-import { useSelector } from 'react-redux';
 import { RootState } from 'Store';
+import style from 'Style/App.less';
 import { get } from 'Utils/common';
-import { AboutPage } from 'Container/AboutPage';
+import 'antd/dist/antd.css';
+import history from 'Utils/history';
 const { Header, Content, Footer, Sider } = Layout;
 
 export const App = () => {
@@ -56,9 +55,6 @@ export const App = () => {
                                 {get(literals, 'SideMenu.git_repos')}
                             </Link>
                         </Menu.Item>
-                        {/* <Menu.Item key="4" icon={<UserOutlined />}>
-              <Link to={MenuRoute.LOGIN}>Login</Link>
-            </Menu.Item> */}
                     </Menu>
                 </Sider>
                 <Layout className={style.site_layout}>

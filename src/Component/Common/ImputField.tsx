@@ -2,11 +2,12 @@ import * as React from 'react';
 import style from 'Style/InputField.less';
 
 /**
- * Input field props
- * @property [string] label - Label text
- * @property [string] type - current input type
- * @property [string] value - changed value
- * @property [Function] onChange - handle change event
+ * Input field props.
+ *
+ * @property [string] Label - Label text.
+ * @property [string] Type - current input type.
+ * @property [string] Value - changed value.
+ * @property [Function] OnChange - handle change event.
  */
 interface InputFieldProps {
     label: string;
@@ -17,10 +18,27 @@ interface InputFieldProps {
 
 /**
  * InputField component.
- * @param [string] label - Label text
- * @param [string] type - current input type
- * @param [string] value - changed value
- * @param [Function] onChange - handle change event
+ *
+ * @param [string] - Label - Label text.
+ * @param [string] - Type - current input type.
+ * @param [string] - Value - changed value.
+ * @param [Function] - OnChange - handle change event.
+ * @param string.label
+ * @param string.type
+ * @param string.value
+ * @param string.onChange
+ * @param string.label
+ * @param string.type
+ * @param string.value
+ * @param string.onChange
+ * @param string.label
+ * @param string.type
+ * @param string.value
+ * @param string.onChange
+ * @param string.label
+ * @param string.type
+ * @param string.value
+ * @param string.onChange
  */
 export const InputField: React.FC<InputFieldProps> = ({
     label,

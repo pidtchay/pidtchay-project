@@ -3,8 +3,7 @@ import { ILoginData } from 'Model/Authenticate';
 /**
  * Initialization login data.
  * Used to fill in the authorization form with default data.
- *
- * !easter egg
+ * !easter egg.
  */
 export const InitializationLoginData: ILoginData = {
     nickName: 'T0mas3dison',
@@ -14,8 +13,9 @@ export const InitializationLoginData: ILoginData = {
 
 /**
  * Supported languages model for translating texts in a web application.
- * @property EN - English
- * @property RU - Russian
+ *
+ * @property {string} [EN] - English.
+ * @property {string} [RU] - Russian.
  */
 export enum ESupportedLanguages {
     EN = 'en',

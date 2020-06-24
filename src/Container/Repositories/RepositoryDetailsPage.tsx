@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { RouteComponentProps } from 'react-router-dom';
+import { MenuRoute } from 'Constants/Routes';
 import { RootState } from 'Store';
 import { RepositoryDetails } from './RepositoryDetailsBody';
-import { MenuRoute } from 'Constants/Routes';
 
 export const RepositoryDetailsPage: React.FC<RouteComponentProps> = (props) => {
     const literals = useSelector((state: RootState) => state.literals);

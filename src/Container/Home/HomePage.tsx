@@ -1,5 +1,7 @@
-import React, { useState, createElement } from 'react';
 import { Col, Row, Comment, Avatar, Tooltip, Typography, Divider } from 'antd';
+import moment from 'moment';
+import React, { useState, createElement } from 'react';
+import { useSelector } from 'react-redux';
 import {
     UserOutlined,
     LikeFilled,
@@ -7,17 +9,14 @@ import {
     DislikeFilled,
     DislikeOutlined
 } from '@ant-design/icons';
-import style from 'Style/Home.less';
-
-import moment from 'moment';
-import { get } from 'Utils/common';
-import { useSelector } from 'react-redux';
 import { RootState } from 'Store';
+import style from 'Style/Home.less';
+import { get } from 'Utils/common';
 import { RoadMap } from './RoadMap';
 const { Title } = Typography;
 
 /**
- * Home page component
+ * Home page component.
  */
 export const HomePage = () => {
     const [likes, setLikes] = useState(0);

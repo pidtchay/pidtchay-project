@@ -1,10 +1,10 @@
+import { Row, Col, Typography, Spin, Tooltip, Divider } from 'antd';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from 'Store';
-import { get } from 'Utils/common';
 import { GithubOutlined, MailOutlined } from '@ant-design/icons';
+import { RootState } from 'Store';
 import style from 'Style/App.less';
-import { Row, Col, Typography, Spin, Tooltip, Divider } from 'antd';
+import { get } from 'Utils/common';
 const { Title } = Typography;
 
 const iconStyle = {

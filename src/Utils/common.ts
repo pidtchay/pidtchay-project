@@ -4,8 +4,11 @@ import { INotificationProps } from 'Model/common';
 /**
  * Pattern that we can limit the times it fires an event.
  * No matter how many times the user can trigger this, it executes only once in specific time interval.
- * @param [Function] func - function
- * @param [number] limit - time interval
+ *
+ * @param [Function] - Func - function.
+ * @param [number] - Limit - time interval.
+ * @param func
+ * @param limit
  */
 export const throttle = (func, limit: number) => {
     let timeout = null;
@@ -25,9 +28,12 @@ export const debounce = (func, limit: number) => {
 
 /**
  * Deep value search by key in the transferred object.
- * Usage example: get(literals, 'SideMenu.home')
- * @param [T] obj - transferred object
- * @param [string] path - key path
+ * Usage example: get(literals, 'SideMenu.home').
+ *
+ * @param {T} [obj] - Transferred object.
+ * @param {string} [path] - Key path.
+ *
+ * @returns [].
  */
 export function get<T>(obj: T, path: string): [] {
     const idx = (p, o) => p.reduce((xs, x) => (xs && xs[x] ? xs[x] : null), o);
@@ -37,7 +43,8 @@ export function get<T>(obj: T, path: string): [] {
 
 /**
  * A notification box with a icon at the left side.
- * @param {INotificationProps} [config] Necessary parameters to call a notification.
+ *
+ * @param {INotificationProps} [config] - Necessary parameters to call a notification.
  */
 export const openNotificationWithIcon = (config: INotificationProps) => {
     const { description, type, title } = config;

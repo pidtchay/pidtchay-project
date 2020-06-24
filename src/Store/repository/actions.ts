@@ -5,6 +5,9 @@ import {
     CLEAR_REPOSITORY_DATA
 } from './types';
 
+/**
+ * @param data
+ */
 export function fetchRepositoryData(
     data: IRepositoryData[]
 ): RepositoryDataActionTypes {
@@ -14,6 +17,9 @@ export function fetchRepositoryData(
     };
 }
 
+/**
+ *
+ */
 export function clearRepositoryData(): RepositoryDataActionTypes {
     return {
         type: CLEAR_REPOSITORY_DATA
