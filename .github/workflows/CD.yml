@@ -36,6 +36,7 @@ jobs:
       - name: Push
         run: |
           COMMIT_MESSAGE="Update pages on $(date)"
-          git diff-index --quiet --cached HEAD -- && echo "No changes!" && exit 0 || echo $COMMIT_MESSAGE
+          TEST=$(git status --porcelain|wc -l)
+          if [[ 0 -eq $TEST ]]; then    echo "No changes"; exit 0; else echo $COMMIT_MESSAGE; fi
           git commit -m "${COMMIT_MESSAGE}"
           git push https://{{secrets.ACTIONS_DEPLOY_KEY}}@github.com/${GITHUB_ACTOR}/${GITHUB_ACTOR}.github.io.git master
