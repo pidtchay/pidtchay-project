@@ -12,10 +12,10 @@
     "prettier": "node node_modules/prettier/bin-prettier.js  --write --config ./.prettierrc.js  src/**/*.{ts,tsx}",
     "preversion:minor": "git-branch-is -r \"^feature/\" && npm version minor",
     "preversion:patch": "git-branch-is -r \"^(bugfix|hotfix)/\" && npm version patch",
-    "start": "node node_modules/webpack-dev-server/bin/webpack-dev-server.js --host localhost --port 5454 --open --hot --config webpack/webpack.dev.js",
+    "start": "node --max-old-space-size=3072 node_modules/webpack-dev-server/bin/webpack-dev-server.js --host localhost --port 5454 --open --hot --config webpack/webpack.dev.js",
     "test": "jest --colors",
     "test:updateShapshots": "jest --updateSnapshot --colors",
-    "tsc": "node max-old-space-size=4096 node_modules/typescript/bin/tsc --noEmit"
+    "tsc": "node --max-old-space-size=3072 node_modules/typescript/bin/tsc --noEmit"
   },
   "husky": {
     "hooks": {
@@ -32,9 +32,10 @@
   "dependencies": {
     "antd": "^4.3.5",
     "git-branch-is": "^3.1.0",
-    "history": "^5.0.0",
+    "history": "4.6.3",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-markdown": "^4.3.1",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
