@@ -1,6 +1,6 @@
 {
   "name": "pidtchay-project",
-  "version": "0.2.4",
+  "version": "0.3.0",
   "homepage": "https://pidtchay.github.io/",
   "description": "Personal project on the react framework",
   "main": "index.js",
