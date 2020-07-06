@@ -17,7 +17,7 @@ const appOptions = {
         ),
         markdown: path.resolve(
             srcPath,
-            './Container/MarkdownEditor/MarkdownEditor.tsx'
+            './Container/Markdown/MarkdownEditor.tsx'
         )
     },
     output: {

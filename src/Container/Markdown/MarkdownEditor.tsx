@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from 'Store';
 import { getI18nValue } from 'Utils/common';
 import EditorContext from './Context';
-import { MarkdownInput } from './MarkDownInput';
+import { MarkdownInput } from './MarkdownInput';
 import { MarkdownResult } from './MarkdownResult';
 
 const { Title } = Typography;

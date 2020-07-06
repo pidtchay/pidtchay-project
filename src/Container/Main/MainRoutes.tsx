@@ -5,7 +5,7 @@ import { AboutPage } from 'Container/AboutPage';
 import { AuthRoute } from 'Container/AuthRoute';
 import { HomePage } from 'Container/Home/HomePage';
 import { LogInPage } from 'Container/Login/LoginPage';
-import { MarkdownEditor } from 'Container/MarkdownEditor/MarkdownEditor';
+import { MarkdownEditor } from 'Container/Markdown/MarkdownEditor';
 import { RepositoriesPage } from 'Container/Repositories/RepositoriesPage';
 import { RepositoryDetailsPage } from 'Container/Repositories/RepositoryDetailsPage';
 
