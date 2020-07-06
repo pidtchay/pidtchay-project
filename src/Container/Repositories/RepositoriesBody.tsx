@@ -6,7 +6,7 @@ import { ILiterals } from 'Model/Literals';
 import { IRepositoryData } from 'Model/RepositoryData';
 import { IColumnField } from 'Model/Table';
 import style from 'Style/RepositoriesBody.less';
-import { get, convertStringArrayToString } from 'Utils/common';
+import { getI18nValue, convertStringArrayToString } from 'Utils/common';
 
 const { Search } = Input;
 
@@ -39,7 +39,7 @@ export const RepositoriesBody: React.FC<IRepositoriesBodyProps> = ({
     onFetchRepositories
 }) => {
     const placeholder = convertStringArrayToString(
-        get(literals, 'Pages.GithubRepositories.search_placeholder')
+        getI18nValue(literals, 'Pages.GithubRepositories.search_placeholder')
     );
     return (
         <>
@@ -52,7 +52,7 @@ export const RepositoriesBody: React.FC<IRepositoriesBodyProps> = ({
                 />
             </div>
             <TableComponent columns={columns} dataSource={data || []} />
-            <Tooltip title={get(literals, 'ACTIONS.up')}>
+            <Tooltip title={getI18nValue(literals, 'ACTIONS.up')}>
                 <BackTop className={style.repositories_body}>
                     <div className={style.repositories_body_up_button}>
                         <RocketOutlined />

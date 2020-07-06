@@ -11,7 +11,7 @@ import {
 } from '@ant-design/icons';
 import { RootState } from 'Store';
 import style from 'Style/Home.less';
-import { get } from 'Utils/common';
+import { getI18nValue } from 'Utils/common';
 import { RoadMap } from './RoadMap';
 const { Title } = Typography;
 
@@ -38,7 +38,9 @@ export const HomePage = () => {
 
     const commentActions = [
         <span key="comment-basic-like">
-            <Tooltip title={get(literals, 'Paget.Home.comment.footer.like')}>
+            <Tooltip
+                title={getI18nValue(literals, 'Paget.Home.comment.footer.like')}
+            >
                 {createElement(action === 'liked' ? LikeFilled : LikeOutlined, {
                     onClick: like
                 })}
@@ -46,7 +48,12 @@ export const HomePage = () => {
             <span className="comment-action">{likes}</span>
         </span>,
         <span key="comment-basic-dislike">
-            <Tooltip title={get(literals, 'Paget.Home.comment.footer.dislike')}>
+            <Tooltip
+                title={getI18nValue(
+                    literals,
+                    'Paget.Home.comment.footer.dislike'
+                )}
+            >
                 {React.createElement(
                     action === 'disliked' ? DislikeFilled : DislikeOutlined,
                     {
@@ -62,9 +69,11 @@ export const HomePage = () => {
         <>
             <Row>
                 <div className={style.home_title}>
-                    <Title>{get(literals, 'Pages.Home.welcome.title')}</Title>
+                    <Title>
+                        {getI18nValue(literals, 'Pages.Home.welcome.title')}
+                    </Title>
                     <Title level={2}>
-                        {get(literals, 'Pages.Home.welcome.title2')}
+                        {getI18nValue(literals, 'Pages.Home.welcome.title2')}
                         <a
                             href="https://pidtchay.github.io/pidtchay-project/"
                             target="_blank"
@@ -95,10 +104,13 @@ export const HomePage = () => {
                         content={
                             <div>
                                 <p>
-                                    {get(literals, 'Pages.Home.comment.howdy')}
+                                    {getI18nValue(
+                                        literals,
+                                        'Pages.Home.comment.howdy'
+                                    )}
                                 </p>
                                 <p>
-                                    {get(
+                                    {getI18nValue(
                                         literals,
                                         'Pages.Home.comment.message'
                                     )}

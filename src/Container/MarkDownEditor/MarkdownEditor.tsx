@@ -2,7 +2,7 @@ import { Row, Typography } from 'antd';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from 'Store';
-import { get } from 'Utils/common';
+import { getI18nValue } from 'Utils/common';
 import EditorContext from './Context';
 import { MarkdownInput } from './MarkDownInput';
 import { MarkdownResult } from './MarkdownResult';
@@ -21,7 +21,7 @@ export const MarkdownEditor = () => {
         <EditorContext.Provider value={contextValue}>
             <Row>
                 <Title level={1}>
-                    {get(literals, 'Pages.Markdown.page_title')}
+                    {getI18nValue(literals, 'Pages.Markdown.page_title')}
                 </Title>
             </Row>
             <Row>

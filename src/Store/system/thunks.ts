@@ -3,7 +3,7 @@ import { ILiterals } from 'Model/Literals';
 import { TThunkResult } from 'Store/constants';
 import {
     openNotificationWithIcon,
-    get,
+    getI18nValue,
     convertStringArrayToString
 } from 'Utils/common';
 import { updateSession } from './actions';
@@ -19,10 +19,10 @@ export const thunkUpdateSession = (
 
                 openNotificationWithIcon({
                     description: convertStringArrayToString(
-                        get(literals, 'Notification.login.description')
+                        getI18nValue(literals, 'Notification.login.description')
                     ),
                     title: convertStringArrayToString(
-                        get(literals, 'Notification.login.title')
+                        getI18nValue(literals, 'Notification.login.title')
                     ),
                     type: 'success'
                 });
@@ -31,10 +31,16 @@ export const thunkUpdateSession = (
                 console.error(e);
                 openNotificationWithIcon({
                     description: convertStringArrayToString(
-                        get(literals, 'Notification.request.error.description')
+                        getI18nValue(
+                            literals,
+                            'Notification.request.error.description'
+                        )
                     ),
                     title: convertStringArrayToString(
-                        get(literals, 'Notification.request.error.title')
+                        getI18nValue(
+                            literals,
+                            'Notification.request.error.title'
+                        )
                     ),
                     type: 'error'
                 });

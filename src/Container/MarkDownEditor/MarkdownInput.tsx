@@ -1,7 +1,7 @@
 import { Row, Col, Typography, Input } from 'antd';
 import React, { useContext } from 'react';
 import { ILiterals } from 'Model/Literals';
-import { get } from 'Utils/common';
+import { getI18nValue } from 'Utils/common';
 import editorContext from './Context';
 
 const { Title } = Typography;
@@ -21,7 +21,10 @@ export const MarkdownInput: React.FC<IMarkdownInputProps> = ({ literals }) => {
         <Col span={10}>
             <Row>
                 <Title level={2}>
-                    {get(literals, 'Pages.Markdown.MarkdownInput.title')}
+                    {getI18nValue(
+                        literals,
+                        'Pages.Markdown.MarkdownInput.title'
+                    )}
                 </Title>
             </Row>
             <Row>
