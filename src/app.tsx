@@ -5,7 +5,8 @@ import { Router, Switch, Route, Link } from 'react-router-dom';
 import {
     GithubOutlined,
     HomeOutlined,
-    InfoCircleOutlined
+    InfoCircleOutlined,
+    FileMarkdownOutlined
 } from '@ant-design/icons';
 import { HeaderPanel } from 'Component/HeaderPanel';
 import { MenuRoute, ContentRoute } from 'Constants/Routes';
@@ -13,6 +14,7 @@ import { AboutPage } from 'Container/AboutPage';
 import { AuthRoute } from 'Container/AuthRoute';
 import { HomePage } from 'Container/Home/HomePage';
 import { LogInPage } from 'Container/Login/LoginPage';
+import { MarkdownEditor } from 'Container/MarkdownEditor/MarkdownEditor';
 import { RepositoriesPage } from 'Container/Repositories/RepositoriesPage';
 import { RepositoryDetailsPage } from 'Container/Repositories/RepositoryDetailsPage';
 import { RootState } from 'Store';
@@ -55,6 +57,11 @@ export const App = () => {
                                 {get(literals, 'SideMenu.git_repos')}
                             </Link>
                         </Menu.Item>
+                        <Menu.Item key="4" icon={<FileMarkdownOutlined />}>
+                            <Link to={MenuRoute.MARKDOWN}>
+                                {get(literals, 'SideMenu.markdown')}
+                            </Link>
+                        </Menu.Item>
                     </Menu>
                 </Sider>
                 <Layout className={style.site_layout}>
@@ -81,6 +88,10 @@ export const App = () => {
                             <AuthRoute
                                 path={ContentRoute.REPOSITORIES.DEFAULT}
                                 component={RepositoriesPage}
+                            />
+                            <AuthRoute
+                                path={ContentRoute.MARKDOWN}
+                                component={() => <MarkdownEditor />}
                             />
                             <AuthRoute
                                 path={ContentRoute.HOME}

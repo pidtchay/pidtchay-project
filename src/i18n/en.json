@@ -5,7 +5,8 @@
   "SideMenu": {
     "home": "Home",
     "about": "About me",
-    "git_repos": "Github repositories"
+    "git_repos": "Github repositories",
+    "markdown":"Markdown editor"
   },
   "ACTIONS": {
     "logout": "Logout",
@@ -91,6 +92,15 @@
       "greeting": "Howdy. Thank you for visiting my web site.",
       "paragraph1": "My nickname is Pidtchay, I am a web developer.\nAt the beginning of my career, I participated in the development of terminal applications. The last few years I have been doing web development.",
       "paragraph2": "I started this project to help myself in consolidating my knowledge. And acquire new knowledge.\nThis will help me do my job better. I hope you will also benefit from my knowledge."
+    },
+    "Markdown": {
+      "page_title":"Markdown Editor",
+      "MarkdownInput": {
+        "title":"Rich text"
+      },
+      "MarkdownResult": {
+        "title":"Converted to MarkDown Text"
+      }
     }
   },
   "Notification": {

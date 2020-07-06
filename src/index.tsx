@@ -13,7 +13,6 @@ const store = createStore(
     rootReducer,
     composeWithDevTools(applyMiddleware(thunk))
 );
-// tslint:disable-next-line: no-floating-promises
 loadLang().then((lang) => store.dispatch(loadLiterals(lang)));
 
 ReactDOM.render(
