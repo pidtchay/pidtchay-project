@@ -3,7 +3,7 @@ import * as React from 'react';
 import { ILoginData } from 'Model/Authenticate';
 import { ILiterals } from 'Model/Literals';
 import style from 'Style/Login/LoginForm.less';
-import { get } from 'Utils/common';
+import { getI18nValue } from 'Utils/common';
 
 const layout = {
     labelCol: { span: 8 },
@@ -55,13 +55,18 @@ export const LoginForm: React.FC<ILogInProps> = ({
             onFinish={onFinish}
         >
             <Form.Item
-                label={get(literals, 'Forms.Login.nickname.label')}
+                label={getI18nValue(literals, 'Forms.Login.nickname.label')}
                 name="nickName"
                 rules={[
                     {
                         required: true,
                         message: (
-                            <>{get(literals, 'Forms.Login.nickname.message')}</>
+                            <>
+                                {getI18nValue(
+                                    literals,
+                                    'Forms.Login.nickname.message'
+                                )}
+                            </>
                         )
                     }
                 ]}
@@ -69,13 +74,18 @@ export const LoginForm: React.FC<ILogInProps> = ({
                 <Input />
             </Form.Item>
             <Form.Item
-                label={get(literals, 'Forms.Login.email.label')}
+                label={getI18nValue(literals, 'Forms.Login.email.label')}
                 name="email"
                 rules={[
                     {
                         required: true,
                         message: (
-                            <>{get(literals, 'Forms.Login.email.message')}</>
+                            <>
+                                {getI18nValue(
+                                    literals,
+                                    'Forms.Login.email.message'
+                                )}
+                            </>
                         ),
                         type: 'email'
                     }
@@ -84,13 +94,18 @@ export const LoginForm: React.FC<ILogInProps> = ({
                 <Input />
             </Form.Item>
             <Form.Item
-                label={get(literals, 'Forms.Login.password.label')}
+                label={getI18nValue(literals, 'Forms.Login.password.label')}
                 name="password"
                 rules={[
                     {
                         required: true,
                         message: (
-                            <>{get(literals, 'Forms.Login.password.message')}</>
+                            <>
+                                {getI18nValue(
+                                    literals,
+                                    'Forms.Login.password.message'
+                                )}
+                            </>
                         )
                     }
                 ]}
@@ -99,13 +114,13 @@ export const LoginForm: React.FC<ILogInProps> = ({
             </Form.Item>
             <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
                 <Button type="primary" htmlType="submit">
-                    {get(literals, 'ACTIONS.submit')}
+                    {getI18nValue(literals, 'ACTIONS.submit')}
                 </Button>
                 <Button htmlType="button" onClick={onReset}>
-                    {get(literals, 'ACTIONS.reset')}
+                    {getI18nValue(literals, 'ACTIONS.reset')}
                 </Button>
                 <Button type="link" htmlType="button" onClick={onFill}>
-                    {get(literals, 'ACTIONS.fill_form')}
+                    {getI18nValue(literals, 'ACTIONS.fill_form')}
                 </Button>
             </Form.Item>
         </Form>

@@ -5,7 +5,7 @@ import { TThunkResult } from 'Store/constants';
 import {
     openNotificationWithIcon,
     convertStringArrayToString,
-    get
+    getI18nValue
 } from 'Utils/common';
 import { fetchRepositoryData, clearRepositoryData } from './actions';
 
@@ -22,10 +22,13 @@ export const thunkFetchRepositoryData = (
             dispatch(clearRepositoryData());
             openNotificationWithIcon({
                 description: convertStringArrayToString(
-                    get(literals, 'Notification.request.error.description')
+                    getI18nValue(
+                        literals,
+                        'Notification.request.error.description'
+                    )
                 ),
                 title: convertStringArrayToString(
-                    get(literals, 'Notification.request.error.title')
+                    getI18nValue(literals, 'Notification.request.error.title')
                 ),
                 type: 'error'
             });

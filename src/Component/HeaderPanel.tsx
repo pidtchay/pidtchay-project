@@ -15,7 +15,7 @@ import { RootState } from 'Store';
 import { loadLiterals } from 'Store/literals/actions';
 import { cleanSession } from 'Store/system/actions';
 import style from 'Style/HeaderPanel.less';
-import { get } from 'Utils/common';
+import { getI18nValue } from 'Utils/common';
 import history from 'Utils/history';
 
 interface IHeaderPanel {
@@ -100,7 +100,7 @@ export const HeaderPanel: React.FC<IHeaderPanel> = ({
                                 className={style.header_layout_button}
                                 onClick={() => dispatch(cleanSession())}
                             >
-                                {get(literals, 'ACTIONS.logout')}
+                                {getI18nValue(literals, 'ACTIONS.logout')}
                             </Button>
                         )}
                     </div>

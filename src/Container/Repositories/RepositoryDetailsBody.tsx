@@ -12,7 +12,7 @@ import * as React from 'react';
 import { ILiterals } from 'Model/Literals';
 import { IRepositoryData } from 'Model/RepositoryData';
 import style from 'Style/RepositoryDetails.less';
-import { get } from 'Utils/common';
+import { getI18nValue } from 'Utils/common';
 
 interface IProps {
     literals: ILiterals;
@@ -30,10 +30,13 @@ export const RepositoryDetails: React.FC<IProps> = ({
         <div className={style.details_layout}>
             <PageHeader
                 onBack={handleBackClick}
-                title={get(literals, 'Pages.GithubRepositories.back') || ''}
+                title={
+                    getI18nValue(literals, 'Pages.GithubRepositories.back') ||
+                    ''
+                }
             />
             <Divider orientation="left">
-                {get(
+                {getI18nValue(
                     literals,
                     'Pages.GithubRepositories.Details.Divider.owner'
                 )}
@@ -50,13 +53,13 @@ export const RepositoryDetails: React.FC<IProps> = ({
                 </Col>
                 <Col span={10} offset={2}>
                     <Descriptions
-                        title={get(
+                        title={getI18nValue(
                             literals,
                             'Pages.GithubRepositories.Details.info'
                         )}
                     >
                         <Descriptions.Item
-                            label={get(
+                            label={getI18nValue(
                                 literals,
                                 'Pages.GithubRepositories.Details.owner'
                             )}
@@ -64,7 +67,7 @@ export const RepositoryDetails: React.FC<IProps> = ({
                             {repository.owner}
                         </Descriptions.Item>
                         <Descriptions.Item
-                            label={get(
+                            label={getI18nValue(
                                 literals,
                                 'Pages.GithubRepositories.Details.home_page'
                             )}
@@ -72,7 +75,7 @@ export const RepositoryDetails: React.FC<IProps> = ({
                             <Button type="link">{repository.homepage}</Button>
                         </Descriptions.Item>
                         <Descriptions.Item
-                            label={get(
+                            label={getI18nValue(
                                 literals,
                                 'Pages.GithubRepositories.Details.forks'
                             )}
@@ -80,7 +83,7 @@ export const RepositoryDetails: React.FC<IProps> = ({
                             {repository.forks}
                         </Descriptions.Item>
                         <Descriptions.Item
-                            label={get(
+                            label={getI18nValue(
                                 literals,
                                 'Pages.GithubRepositories.Details.watchers'
                             )}
@@ -91,18 +94,21 @@ export const RepositoryDetails: React.FC<IProps> = ({
                 </Col>
             </Row>
             <Divider orientation="left">
-                {get(literals, 'Pages.GithubRepositories.Divider.details')}
+                {getI18nValue(
+                    literals,
+                    'Pages.GithubRepositories.Divider.details'
+                )}
             </Divider>
             <Row>
                 <Col>
                     <Descriptions
-                        title={get(
+                        title={getI18nValue(
                             literals,
                             'Pages.GithubRepositories.Details.description'
                         )}
                     >
                         <Descriptions.Item
-                            label={get(
+                            label={getI18nValue(
                                 literals,
                                 'Pages.GithubRepositories.Details.name'
                             )}
@@ -110,7 +116,7 @@ export const RepositoryDetails: React.FC<IProps> = ({
                             {repository.name}
                         </Descriptions.Item>
                         <Descriptions.Item
-                            label={get(
+                            label={getI18nValue(
                                 literals,
                                 'Pages.GithubRepositories.Details.description'
                             )}
@@ -118,7 +124,7 @@ export const RepositoryDetails: React.FC<IProps> = ({
                             {repository.description}
                         </Descriptions.Item>
                         <Descriptions.Item
-                            label={get(
+                            label={getI18nValue(
                                 literals,
                                 'Pages.GithubRepositories.Details.language'
                             )}

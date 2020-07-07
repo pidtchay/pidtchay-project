@@ -2,7 +2,7 @@ import { Row, Col, Typography } from 'antd';
 import React, { useContext } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { ILiterals } from 'Model/Literals';
-import { get } from 'Utils/common';
+import { getI18nValue } from 'Utils/common';
 import editorContext from './Context';
 
 const { Title } = Typography;
@@ -18,7 +18,10 @@ export const MarkdownResult: React.FC<IMarkdownResultProps> = ({
         <Col offset={2} span={10}>
             <Row>
                 <Title level={2}>
-                    {get(literals, 'Pages.Markdown.MarkdownInput.title')}
+                    {getI18nValue(
+                        literals,
+                        'Pages.Markdown.MarkdownResult.title'
+                    )}
                 </Title>
             </Row>
             <Row>
