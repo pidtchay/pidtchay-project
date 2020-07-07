@@ -24,13 +24,13 @@ jobs:
       - name: Exist folder
         run: ls -lah
       - name: Make deploy dir
-        run: mkdir deploy
+        run: mkdir -p deploy
       - name: Clone master branch
         run: git clone "https://${{secrets.ACTIONS_DEPLOY_KEY}}@github.com/${GITHUB_ACTOR}/${GITHUB_ACTOR}.github.io.git" --branch master --single-branch ./deploy
       - name: Copy out to deploy
         run: cp -r out/. deploy/
       - name: Set work dir
-        run: cd deploy/
+        run: cd deploy/ && ls -lah
       - name: Set git config and add changes
         run: |
           git config user.email "${GITHUB_ACTOR}@https://users.noreply.github.com"
