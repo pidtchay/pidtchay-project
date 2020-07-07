@@ -1,60 +1,57 @@
+/* eslint-disable jsdoc/require-param */
+/* eslint-disable jsdoc/require-returns */
 import * as React from 'react';
-import style from 'Style/InputField.less';
+import styles from 'Style/Components/InputField/InputField.less';
 
 /**
  * Input field props.
  *
- * @property [string] Label - Label text.
- * @property [string] Type - current input type.
- * @property [string] Value - changed value.
- * @property [Function] OnChange - handle change event.
+ * @property {string} [name] - Input fiels name.
+ * @property {string} [label] - Label text.
+ * @property {string} [type] - Current input type.
+ * @property {string} [value] - Changed value.
+ * @property {Function} [OnChange] - Handle change event.
  */
 interface InputFieldProps {
+    name: string;
     label: string;
     type: string;
     value: string;
-    onChange: (field: string) => void;
+    // onChange: (value: string) => void;
 }
 
 /**
  * InputField component.
- *
- * @param [string] - Label - Label text.
- * @param [string] - Type - current input type.
- * @param [string] - Value - changed value.
- * @param [Function] - OnChange - handle change event.
- * @param string.label
- * @param string.type
- * @param string.value
- * @param string.onChange
- * @param string.label
- * @param string.type
- * @param string.value
- * @param string.onChange
- * @param string.label
- * @param string.type
- * @param string.value
- * @param string.onChange
- * @param string.label
- * @param string.type
- * @param string.value
- * @param string.onChange
  */
 export const InputField: React.FC<InputFieldProps> = ({
+    name,
     label,
     type,
-    value,
-    onChange
+    value
+    // onChange
 }) => {
     return (
-        <label className={style.inputField}>
-            {label}
+        <div className={styles.inputField}>
             <input
-                className={style.field}
+                id={name}
                 type={type}
                 value={value}
-                onChange={(e) => onChange(e.target.value)}
+                // onClick={(e) => onChange(e.target?.value)}
+                placeholder={label}
+                className={styles.field}
             />
-        </label>
+            <label className={styles.label} htmlFor={name}>
+                {label}
+            </label>
+        </div>
+        // <label className={style.inputField}>
+        //     {label}
+        //     <input
+        //         className={style.field}
+        //         type={type}
+        //         value={value}
+        //         onChange={(e) => onChange(e.target.value)}
+        //     />
+        // </label>
     );
 };

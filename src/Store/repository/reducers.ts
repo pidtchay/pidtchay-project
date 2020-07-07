@@ -11,7 +11,8 @@ export const repositoryReducer = (
 ) => {
     switch (actions.type) {
         case FETCH_REPOSITORY_DATA:
-            return [...state, ...actions.payload];
+            console.debug({ state, payload: actions.payload });
+            return [...actions.payload];
         case CLEAR_REPOSITORY_DATA:
             return [];
         default:

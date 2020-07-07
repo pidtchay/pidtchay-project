@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
-import { RepositoryDetails } from 'Container/Repositories/RepositoryDetailsBody';
+import { RepositoryDetails } from 'Modules/Repositories/RepositoryDetailsBody';
 import { IRepositoryData } from 'Model/RepositoryData';
 import { loadLang } from 'i18n/i18n';
 

@@ -1,13 +1,13 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { ContentRoute } from 'Constants/Routes';
-import { AboutPage } from 'Container/AboutPage';
-import { AuthRoute } from 'Container/AuthRoute';
-import { HomePage } from 'Container/Home/HomePage';
-import { LogInPage } from 'Container/Login/LoginPage';
-import { MarkdownEditor } from 'Container/Markdown/MarkdownEditor';
-import { RepositoriesPage } from 'Container/Repositories/RepositoriesPage';
-import { RepositoryDetailsPage } from 'Container/Repositories/RepositoryDetailsPage';
+import { AboutPage } from 'Modules/AboutPage';
+import { AuthRoute } from 'Modules/AuthRoute';
+import { HomePage } from 'Modules/Home/HomePage';
+import { LogInPage } from 'Modules/Login/LoginPage';
+import { MarkdownEditor } from 'Modules/Markdown/MarkdownEditor';
+import { RepositoriesPage } from 'Modules/Repositories/RepositoriesPage';
+import { RepositoryDetailsPage } from 'Modules/Repositories/RepositoryDetailsPage';
 
 export const MainRoutes = () => {
     return (

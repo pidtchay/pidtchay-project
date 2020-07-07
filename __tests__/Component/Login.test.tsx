@@ -3,7 +3,7 @@ import { loadLang } from 'i18n/i18n';
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
 // import { JSDOM } from 'jsdom';
-import { LoginForm } from 'Container/Login/LoginForm';
+import { LoginForm } from 'Modules/Login/LoginForm';
 import { ILoginData } from 'Model/Authenticate';
 
 // const jsdom = new JSDOM('<!doctype html><html><body></body></html>');

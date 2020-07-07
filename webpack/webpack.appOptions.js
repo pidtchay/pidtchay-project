@@ -9,16 +9,13 @@ const outputPath = path.join(__dirname, '../out');
 const appOptions = {
     entry: {
         app: path.resolve(srcPath, './index.tsx'),
-        home: path.resolve(srcPath, './Container/Home/HomePage.tsx'),
-        about: path.resolve(srcPath, './Container/AboutPage.tsx'),
+        home: path.resolve(srcPath, './Modules/Home/HomePage.tsx'),
+        about: path.resolve(srcPath, './Modules/AboutPage.tsx'),
         repos: path.resolve(
             srcPath,
-            './Container/Repositories/RepositoriesPage.tsx'
+            './Modules/Repositories/RepositoriesPage.tsx'
         ),
-        markdown: path.resolve(
-            srcPath,
-            './Container/Markdown/MarkdownEditor.tsx'
-        )
+        markdown: path.resolve(srcPath, './Modules/Markdown/MarkdownEditor.tsx')
     },
     output: {
         path: outputPath,

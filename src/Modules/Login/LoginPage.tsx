@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 import { InitializationLoginData } from 'Constants/Common';
 import { MenuRoute } from 'Constants/Routes';
-import { LoginForm } from 'Container/Login/LoginForm';
+import { LoginForm } from 'Modules/Login/LoginForm';
 import { ILoginData } from 'Model/Authenticate';
 import { RootState } from 'Store';
 import { thunkUpdateSession } from 'Store/system/thunks';

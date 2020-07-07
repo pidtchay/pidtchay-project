@@ -1,7 +1,8 @@
 import { Row, Col, Typography, Input } from 'antd';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { ILiterals } from 'Model/Literals';
 import { getI18nValue } from 'Utils/common';
+import { ButtonsPanel } from './ButtonsPanel';
 import editorContext from './Context';
 
 const { Title } = Typography;
@@ -12,11 +13,21 @@ interface IMarkdownInputProps {
 }
 
 export const MarkdownInput: React.FC<IMarkdownInputProps> = ({ literals }) => {
+    const [textArea, setTextArea] = useState('');
     const { setMarkdownText } = useContext(editorContext);
 
-    const onInputChange = (value: string) => {
+    const handleInputChange = (value: string) => {
+        console.debug({ value });
+        setTextArea(value);
         setMarkdownText(value);
     };
+
+    const handleAddMarkdownSynt = (value: string) => {
+        const newValue = `${textArea}${value}`;
+        setTextArea(newValue);
+        setMarkdownText(newValue);
+    };
+
     return (
         <Col span={10}>
             <Row>
@@ -27,10 +38,12 @@ export const MarkdownInput: React.FC<IMarkdownInputProps> = ({ literals }) => {
                     )}
                 </Title>
             </Row>
+            <ButtonsPanel onSetTextValue={handleAddMarkdownSynt} />
             <Row>
                 <TextArea
+                    value={textArea}
                     rows={10}
-                    onChange={(e) => onInputChange(e.target.value)}
+                    onChange={(e) => handleInputChange(e.target.value)}
                 />
             </Row>
         </Col>

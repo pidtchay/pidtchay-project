@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as renderer from 'react-test-renderer';
-import { RepositoriesBody } from 'Container/Repositories/RepositoriesBody';
+import { RepositoriesBody } from 'Modules/Repositories/RepositoriesBody';
 import { convertRepositoryDataToColumns, convertRepositoryDataToSchema } from 'Utils/TableUtils';
 import { loadLang } from 'i18n/i18n';
 
