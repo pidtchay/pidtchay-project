@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { GithubOutlined, MailOutlined } from '@ant-design/icons';
 import { RootState } from 'Store';
 import style from 'Style/App.less';
-import { get } from 'Utils/common';
+import { getI18nValue } from 'Utils/common';
 const { Title } = Typography;
 
 const iconStyle = {
@@ -26,12 +26,27 @@ export const AboutPage = () => {
                         <div>
                             <Divider orientation="left">
                                 <Title>
-                                    {get(literals, 'Pages.About.title')}
+                                    {getI18nValue(
+                                        literals,
+                                        'Pages.About.title'
+                                    )}
                                 </Title>
                             </Divider>
-                            <p>{get(literals, 'Pages.About.greeting')}</p>
-                            <p>{get(literals, 'Pages.About.paragraph1')}</p>
-                            <p>{get(literals, 'Pages.About.paragraph2')}</p>
+                            <p>
+                                {getI18nValue(literals, 'Pages.About.greeting')}
+                            </p>
+                            <p>
+                                {getI18nValue(
+                                    literals,
+                                    'Pages.About.paragraph1'
+                                )}
+                            </p>
+                            <p>
+                                {getI18nValue(
+                                    literals,
+                                    'Pages.About.paragraph2'
+                                )}
+                            </p>
                         </div>
                     </Row>
                     <Row>

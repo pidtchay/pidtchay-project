@@ -9,7 +9,7 @@ import { ILoginData } from 'Model/Authenticate';
 import { RootState } from 'Store';
 import { thunkUpdateSession } from 'Store/system/thunks';
 import style from 'Style/Login/LoginPage.less';
-import { throttle, get } from '../../Utils/common';
+import { throttle, getI18nValue } from '../../Utils/common';
 
 export const LogInPage: React.FC<RouteComponentProps> = (props) => {
     const literals = useSelector((state: RootState) => state.literals);
@@ -25,8 +25,8 @@ export const LogInPage: React.FC<RouteComponentProps> = (props) => {
         <div className={style.login_form}>
             <Alert
                 className={style.login_form_info}
-                message={get(literals, 'Forms.Login.Info.title')}
-                description={get(literals, 'Forms.Login.Info.note')}
+                message={getI18nValue(literals, 'Forms.Login.Info.title')}
+                description={getI18nValue(literals, 'Forms.Login.Info.note')}
                 type="info"
                 showIcon={true}
             />

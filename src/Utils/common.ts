@@ -35,7 +35,7 @@ export const debounce = (func, limit: number) => {
  *
  * @returns [].
  */
-export function get<T>(obj: T, path: string): [] {
+export function getI18nValue<T>(obj: T, path: string): [] {
     const idx = (p, o) => p.reduce((xs, x) => (xs && xs[x] ? xs[x] : null), o);
     const paths = path.split('.');
     return idx(paths, obj);

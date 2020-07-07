@@ -9,7 +9,8 @@ export const MenuRoute = {
     CONTACT: {
         DEFAULT: '/contact',
         DETAILS: (id: number | string) => `/contact/${id}`
-    }
+    },
+    MARKDOWN: '/markdown_editor'
 };
 
 export const ContentRoute = {
@@ -23,5 +24,6 @@ export const ContentRoute = {
     CONTACT: {
         DEFAULT: '/contact',
         DETAILS: '/contact/:id'
-    }
+    },
+    MARKDOWN: '/markdown_editor'
 };
