@@ -13,8 +13,8 @@ import history from 'Utils/history';
 const { Header, Content, Footer, Sider } = Layout;
 
 export const App = () => {
-    const [isSideMenuToogle, setSideMenuToggled] = useState(true);
-    const toggleTrueFalse = () => setSideMenuToggled(!isSideMenuToogle);
+    const [isMenuToggle, setSideMenuToggled] = useState(true);
+    const toggleTrueFalse = () => setSideMenuToggled(!isMenuToggle);
     const literals = useSelector((state: RootState) => state.literals);
 
     return (
@@ -23,14 +23,14 @@ export const App = () => {
                 <Sider
                     trigger={null}
                     collapsible={true}
-                    collapsed={isSideMenuToogle}
+                    collapsed={isMenuToggle}
                 >
                     <MainMenu literals={literals} />
                 </Sider>
                 <Layout className={style.site_layout}>
                     <Header className={style.site_layout_header}>
                         <HeaderPanel
-                            isSideMenuToogle={isSideMenuToogle}
+                            isSideMenuToogle={isMenuToggle}
                             onToggleTrueFalse={toggleTrueFalse}
                         />
                     </Header>

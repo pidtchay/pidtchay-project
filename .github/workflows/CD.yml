@@ -8,7 +8,7 @@ jobs:
       runs-on: ubuntu-latest
       strategy:
         matrix:
-          node-version: [ 12.x ]
+          node-version: [ 10.x ]
       steps:
       - uses: actions/checkout@v2
       - name: Check files in workfolder
@@ -17,24 +17,37 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
+      - name: Values
+        run: |
+          echo ${GITHUB_ACTOR}
       - name: Install Packages
         run: npm install
       - name: Build page
         run: npm run build
       - name: Exist folder
-        run: ls -lah
+        run: |
+          cd out
+          ls -lah
       - name: Make deploy dir
-        run: mkdir -p deploy
+        run: |
+          mkdir -p deploy
+          ls -lah deploy/
       - name: Clone master branch
         run: git clone "https://${{secrets.ACTIONS_DEPLOY_KEY}}@github.com/${GITHUB_ACTOR}/${GITHUB_ACTOR}.github.io.git" --branch master --single-branch ./deploy
       - name: Copy out to deploy
-        run: cp -r out/. deploy/
+        run: |
+          cd ..
+          cp -r out/. out/deploy/
+          ls -lah deploy/
       - name: Set work dir
-        run: cd deploy/ && ls -lah
+        run: cd deploy/
       - name: Set git config and add changes
         run: |
-          git config user.email "${GITHUB_ACTOR}@https://users.noreply.github.com"
+          git config user.email "${GITHUB_ACTOR}@gmail.com"
           git config user.name "${GITHUB_ACTOR}"
+          git remote set-url origin https://{{secrets.PIDTCHAY_TOKEN}}@github.com/${GITHUB_ACTOR}/${GITHUB_ACTOR}.github.io.git
+          git config --list
+          git status --porcelain | wc -l
           git add --all
       - name: Push
         run: |
@@ -42,4 +55,4 @@ jobs:
           TEST=$(git status --porcelain|wc -l)
           if [[ 0 -eq $TEST ]]; then    echo "No changes"; exit 0; else echo $COMMIT_MESSAGE; fi
           git commit -m "${COMMIT_MESSAGE}"
-          git push
+          git push https://{{secrets.PIDTCHAY_TOKEN}}@github.com/${GITHUB_ACTOR}/${GITHUB_ACTOR}.github.io.git master
