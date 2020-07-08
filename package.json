@@ -71,7 +71,7 @@
     "eslint-config-prettier": "^6.11.0",
     "eslint-config-react": "^1.1.7",
     "eslint-plugin-import-helpers": "^1.0.2",
-    "eslint-plugin-jsdoc": "^28.6.1",
+    "eslint-plugin-jsdoc": "^29.1.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.3",
     "fork-ts-checker-webpack-plugin": "^4.1.4",
