@@ -25,7 +25,6 @@ export const RepositoryDetails: React.FC<IProps> = ({
     repository,
     onBackClick: handleBackClick
 }) => {
-    console.debug({ literals });
     return (
         <div className={style.details_layout}>
             <PageHeader

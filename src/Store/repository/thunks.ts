@@ -17,8 +17,7 @@ export const thunkFetchRepositoryData = (
         .then((resp) => {
             dispatch(fetchRepositoryData(resp));
         })
-        .catch((e) => {
-            console.error(e);
+        .catch(() => {
             dispatch(clearRepositoryData());
             openNotificationWithIcon({
                 description: convertStringArrayToString(

@@ -27,8 +27,7 @@ export const thunkUpdateSession = (
                     type: 'success'
                 });
             })
-            .catch((e) => {
-                console.error(e);
+            .catch(() => {
                 openNotificationWithIcon({
                     description: convertStringArrayToString(
                         getI18nValue(

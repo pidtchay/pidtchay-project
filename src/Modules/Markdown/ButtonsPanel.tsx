@@ -7,14 +7,14 @@ import {
     TableOutlined
 } from '@ant-design/icons';
 
-enum MardownSyntax {
+export enum MarkdownSyntax {
     HEADER = '# ',
-    BOLD = '**',
-    ITALIAN = '*',
+    BOLD = '****',
+    ITALIAN = '**',
     // UNDERLINE = '__', // TODO This syntax does not work. Need to find working syntax.
-    STRIKETHROUGH = '~~',
+    STRIKETHROUGH = '~~~~',
     BLOCK_QUOTE = '> ',
-    BLOCK_CODE = '```',
+    BLOCK_CODE = '```\n\n```',
     BLOCK_TABLE = '| ColumnName1 | ColumnName2 |\n| --------- | ------- |\n| Value1 | Value2 |\n'
 }
 
@@ -27,28 +27,30 @@ interface IProps {
 }
 
 export const ButtonsPanel: React.FC<IProps> = ({ onSetTextValue }) => {
-    const handleSetTextareaValue = (syntax: MardownSyntax) => {
+    const handleSetTextareaValue = (syntax: MarkdownSyntax) => {
         onSetTextValue(syntax);
     };
     return (
         <Row>
             <Col>
                 <Button
-                    onClick={() => handleSetTextareaValue(MardownSyntax.HEADER)}
+                    onClick={() =>
+                        handleSetTextareaValue(MarkdownSyntax.HEADER)
+                    }
                 >
                     H
                 </Button>
             </Col>
             <Col>
                 <Button
-                    onClick={() => handleSetTextareaValue(MardownSyntax.BOLD)}
+                    onClick={() => handleSetTextareaValue(MarkdownSyntax.BOLD)}
                     icon={<BoldOutlined />}
                 />
             </Col>
             <Col>
                 <Button
                     onClick={() =>
-                        handleSetTextareaValue(MardownSyntax.ITALIAN)
+                        handleSetTextareaValue(MarkdownSyntax.ITALIAN)
                     }
                     icon={<ItalicOutlined />}
                 />
@@ -56,7 +58,7 @@ export const ButtonsPanel: React.FC<IProps> = ({ onSetTextValue }) => {
             <Col>
                 <Button
                     onClick={() =>
-                        handleSetTextareaValue(MardownSyntax.STRIKETHROUGH)
+                        handleSetTextareaValue(MarkdownSyntax.STRIKETHROUGH)
                     }
                     icon={<StrikethroughOutlined />}
                 />
@@ -64,7 +66,7 @@ export const ButtonsPanel: React.FC<IProps> = ({ onSetTextValue }) => {
             <Col>
                 <Button
                     onClick={() =>
-                        handleSetTextareaValue(MardownSyntax.BLOCK_QUOTE)
+                        handleSetTextareaValue(MarkdownSyntax.BLOCK_QUOTE)
                     }
                 >
                     Q
@@ -73,7 +75,7 @@ export const ButtonsPanel: React.FC<IProps> = ({ onSetTextValue }) => {
             <Col>
                 <Button
                     onClick={() =>
-                        handleSetTextareaValue(MardownSyntax.BLOCK_CODE)
+                        handleSetTextareaValue(MarkdownSyntax.BLOCK_CODE)
                     }
                 >
                     C
@@ -82,7 +84,7 @@ export const ButtonsPanel: React.FC<IProps> = ({ onSetTextValue }) => {
             <Col>
                 <Button
                     onClick={() =>
-                        handleSetTextareaValue(MardownSyntax.BLOCK_TABLE)
+                        handleSetTextareaValue(MarkdownSyntax.BLOCK_TABLE)
                     }
                     icon={<TableOutlined />}
                 />
@@ -94,7 +96,7 @@ export const ButtonsPanel: React.FC<IProps> = ({ onSetTextValue }) => {
 // <Col>
 // <Button
 // onClick={() =>
-// handleSetTextareaValue(MardownSyntax.UNDERLINE)
+// handleSetTextareaValue(MarkdownSyntax.UNDERLINE)
 // }
 // icon={<UnderlineOutlined />}
 // />

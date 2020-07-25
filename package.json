@@ -19,7 +19,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "echo 'Complete'"
+      "pre-commit": "tsc && npm run codestyle"
     }
   },
   "keywords": [
