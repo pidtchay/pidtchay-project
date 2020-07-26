@@ -5,7 +5,7 @@ import { AboutPage } from 'Container/AboutPage';
 import { AuthRoute } from 'Container/AuthRoute';
 import { HomePage } from 'Container/Home/HomePage';
 import { LogInPage } from 'Container/Login/LoginPage';
-import { MarkdownEditor } from 'Container/Markdown/MarkdownEditor';
+import { MarkdownNotes } from 'Container/Markdown/MarkdownNotes';
 import { RepositoriesPage } from 'Container/Repositories/RepositoriesPage';
 import { RepositoryDetailsPage } from 'Container/Repositories/RepositoryDetailsPage';
 
@@ -27,7 +27,7 @@ export const MainRoutes = () => {
             />
             <AuthRoute
                 path={ContentRoute.MARKDOWN}
-                component={() => <MarkdownEditor />}
+                component={() => <MarkdownNotes />}
             />
             <AuthRoute
                 path={ContentRoute.HOME}

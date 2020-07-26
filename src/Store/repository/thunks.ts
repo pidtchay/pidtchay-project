@@ -40,7 +40,7 @@ const fetchRepositoryApi = async (
 ): Promise<IRepositoryData[]> => {
     const response = await fetch(GITHUB_API.REPOS.LIST_BY_ORGNAME(orgName));
     const body = await response.json();
-    return body.map((item: any) => {
+    return body.map((item) => {
         return {
             id: item.id,
             avatarImg: item.owner.avatar_url,

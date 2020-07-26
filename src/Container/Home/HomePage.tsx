@@ -67,7 +67,7 @@ export const HomePage = () => {
 
     return (
         <>
-            <Row>
+            <Row gutter={[16, 16]}>
                 <div className={style.home_title}>
                     <Title>
                         {getI18nValue(literals, 'Pages.Home.welcome.title')}
@@ -86,7 +86,7 @@ export const HomePage = () => {
 
             <Divider />
 
-            <Row>
+            <Row gutter={[16, 16]}>
                 <Col span={8}>
                     <RoadMap literals={literals} />
                 </Col>

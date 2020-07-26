@@ -22,7 +22,7 @@ export const AboutPage = () => {
                 </div>
             ) : (
                 <div>
-                    <Row>
+                    <Row gutter={[16, 16]}>
                         <div>
                             <Divider orientation="left">
                                 <Title>
@@ -49,7 +49,7 @@ export const AboutPage = () => {
                             </p>
                         </div>
                     </Row>
-                    <Row>
+                    <Row gutter={[16, 16]}>
                         <Col span={1} offset={1}>
                             <Tooltip title="https://github.com/pidtchay">
                                 <GithubOutlined style={iconStyle} />

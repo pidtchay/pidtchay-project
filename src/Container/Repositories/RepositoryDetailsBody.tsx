@@ -41,7 +41,7 @@ export const RepositoryDetails: React.FC<IProps> = ({
                     'Pages.GithubRepositories.Details.Divider.owner'
                 )}
             </Divider>
-            <Row>
+            <Row gutter={[16, 16]}>
                 <Col span={4}>
                     <div className={style.avatar_panel}>
                         <Avatar
@@ -99,7 +99,7 @@ export const RepositoryDetails: React.FC<IProps> = ({
                     'Pages.GithubRepositories.Divider.details'
                 )}
             </Divider>
-            <Row>
+            <Row gutter={[16, 16]}>
                 <Col>
                     <Descriptions
                         title={getI18nValue(

@@ -1,11 +1,14 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const commonConfig = require('./webpack.common');
+const webpackPlugins = require('./webpack.plugins');
 
 module.exports = Object.assign({}, commonConfig, {
     mode: 'production',
     devtool: false,
-    plugins: commonConfig.plugins || [],
+    plugins: Object.assign([], commonConfig.plugins, [
+        webpackPlugins.plugins.bundleAnalyzer
+    ]),
     optimization: Object.assign({}, commonConfig.optimization, {
         minimize: true,
         minimizer: [

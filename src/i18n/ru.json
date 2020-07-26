@@ -13,7 +13,10 @@
     "submit": "Отправить",
     "reset": "Очистить",
     "fill_form": "Заполнить поля",
-    "up": "Вверх"
+    "up": "Вверх",
+    "save":"Сохранить",
+    "add":"Создать",
+    "edit": "Редактировать"
   },
   "Forms": {
     "Login": {
@@ -86,9 +89,10 @@
     "Markdown": {
       "page_title":"Markdown редактор",
       "MarkdownInput": {
-        "title":"Текст с разметкой Markdown"
+        "title":"Текст с разметкой Markdown",
+        "createDate":"Создано: "
       },
-      "MarkdownResult": {
+      "MarkdownPreview": {
         "title":"Преобразованный в MarkDown текст"
       }
     }

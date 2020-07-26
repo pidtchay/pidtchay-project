@@ -13,7 +13,10 @@
     "submit": "Submit",
     "reset": "Reset",
     "fill_form": "Fill form",
-    "up": "UP"
+    "up": "UP",
+    "save":"Save",
+    "add":"Add",
+    "edit": "Edit"
   },
   "Forms": {
     "Login": {
@@ -96,9 +99,10 @@
     "Markdown": {
       "page_title":"Markdown Editor",
       "MarkdownInput": {
-        "title":"Rich text"
+        "title":"Rich text",
+        "createDate":"Created: "
       },
-      "MarkdownResult": {
+      "MarkdownPreview": {
         "title":"Converted to MarkDown Text"
       }
     }
