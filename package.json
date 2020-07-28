@@ -30,7 +30,7 @@
   "author": "pidtchay",
   "license": "ISC",
   "dependencies": {
-    "antd": "^4.3.5",
+    "antd": "^4.5.1",
     "git-branch-is": "^3.1.0",
     "history": "4.6.3",
     "react": "^16.13.1",
