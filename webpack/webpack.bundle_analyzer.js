@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const commonConfig = require('./webpack.common');
 const webpackPlugins = require('./webpack.plugins');
 
@@ -12,14 +12,11 @@ module.exports = Object.assign({}, commonConfig, {
     optimization: Object.assign({}, commonConfig.optimization, {
         minimize: true,
         minimizer: [
-            new UglifyJsPlugin({
+            new TerserPlugin({
                 cache: true,
-                sourceMap: true,
-                uglifyOptions: {
-                    parallel: 5,
-                    extractComments: false,
-                    exclude: /[\\/]node_modules[\\/]/
-                }
+                extractComments: false,
+                parallel: 4,
+                sourceMap: true
             })
         ]
     })

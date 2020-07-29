@@ -1,9 +1,9 @@
 import { Col } from 'antd';
 import { useContext } from 'react';
 import React from 'react';
-import { MarkdownNote } from './MarkdownNote';
-import MarkdownNoteContext from './context';
-import { IMarkdownNoteContext } from './models';
+import MarkdownNoteContext from 'Container/Markdown/Context';
+import { MarkdownNote } from 'Container/Markdown/MarkdownNote';
+import { IMarkdownNoteContext } from 'Container/Markdown/Models';
 
 export const MarkdownNotesList = () => {
     const { notes } = useContext<IMarkdownNoteContext>(MarkdownNoteContext);

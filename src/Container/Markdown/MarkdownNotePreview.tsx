@@ -2,10 +2,10 @@ import { Row, Typography, Col } from 'antd';
 import React, { useContext } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { useSelector } from 'react-redux';
+import MarkdownNoteContext from 'Container/Markdown/Context';
 import { RootState } from 'Store';
 import styles from 'Style/MarkdownEditor/MarkdownPreview.less';
 import { getI18nValue } from 'Utils/common';
-import MarkdownNoteContext from './context';
 
 const { Title } = Typography;
 

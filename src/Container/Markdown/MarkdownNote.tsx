@@ -1,12 +1,12 @@
 import { Button } from 'antd';
 import React, { useContext } from 'react';
 import { useSelector } from 'react-redux';
+import MarkdownNoteContext from 'Container/Markdown/Context';
+import { IMarkdownNote, IMarkdownNoteContext } from 'Container/Markdown/Models';
+import { EMarkdownStep } from 'Container/Markdown/enums';
 import { RootState } from 'Store';
 import { setCurrentNote, setMarkdownStep } from 'Store/markdown_notes/actions';
 import { getI18nValue } from 'Utils/common';
-import MarkdownNoteContext from './context';
-import { EMarkdownStep } from './enums';
-import { IMarkdownNote, IMarkdownNoteContext } from './models';
 
 interface IProps {
     note: IMarkdownNote;

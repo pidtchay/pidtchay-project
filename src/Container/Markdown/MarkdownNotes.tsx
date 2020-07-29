@@ -1,15 +1,15 @@
 import { Row, Col, Button } from 'antd';
 import React, { useContext, useReducer } from 'react';
 import { useSelector } from 'react-redux';
+import MarkdownNoteContext from 'Container/Markdown/Context';
+import { MarkdownNoteEditor } from 'Container/Markdown/MarkdownNoteEditor';
+import { MarkdownNotesList } from 'Container/Markdown/MarkdownNotesList';
+import { IMarkdownNoteContext } from 'Container/Markdown/Models';
+import { EMarkdownStep } from 'Container/Markdown/enums';
 import { RootState } from 'Store';
 import { setMarkdownStep } from 'Store/markdown_notes/actions';
 import { reducer } from 'Store/markdown_notes/reducer';
 import { getI18nValue } from 'Utils/common';
-import { MarkdownNoteEditor } from './MarkdownNoteEditor';
-import { MarkdownNotesList } from './MarkdownNotesList';
-import MarkdownNoteContext from './context';
-import { EMarkdownStep } from './enums';
-import { IMarkdownNoteContext } from './models';
 
 export const MarkdownNotes = () => {
     const initialState = useContext<IMarkdownNoteContext>(MarkdownNoteContext);

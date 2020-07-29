@@ -1,4 +1,4 @@
-import { ICursorPositionSettings } from './models';
+import { ICursorPositionSettings } from 'Container/Markdown/Models';
 
 /**
  * Input's selection settings.

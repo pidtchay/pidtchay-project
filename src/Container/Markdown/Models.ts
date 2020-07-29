@@ -1,5 +1,5 @@
+import { EMarkdownStep } from 'Container/Markdown/enums';
 import { TMarkdownNoteActionTypes } from 'Store/markdown_notes/types';
-import { EMarkdownStep } from './enums';
 
 /**
  * Cursor position settings.

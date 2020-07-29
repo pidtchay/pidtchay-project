@@ -6,7 +6,7 @@ import {
     StrikethroughOutlined,
     TableOutlined
 } from '@ant-design/icons';
-import { MarkdownSyntax } from './enums';
+import { MarkdownSyntax } from 'Container/Markdown/enums';
 
 /**
  * @property {string} [textValue] Textarea value.

@@ -1,6 +1,6 @@
 /* eslint-disable jsdoc/require-returns */
 import { useRef, useCallback } from 'react';
-import { setInputSelection, getInputSelection } from './utils';
+import { setInputSelection, getInputSelection } from 'Container/Markdown/utils';
 
 /**
  * Custom react hook.

@@ -4,7 +4,12 @@ import React, { useContext, useRef, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { uuid } from 'uuidv4';
 import { DATE_TIME_FORMAT } from 'Constants/Common';
+import { ActionsPanel } from 'Container/Markdown/ActionsPanel';
+import MarkdownNoteContext from 'Container/Markdown/Context';
+import { IMarkdownNoteContext } from 'Container/Markdown/Models';
+import { EMarkdownStep } from 'Container/Markdown/enums';
 import { useSelection } from 'Container/Markdown/hooks';
+import { getSpacesInSyntax } from 'Container/Markdown/utils';
 import { RootState } from 'Store';
 import {
     setMarkdownText,
@@ -15,11 +20,6 @@ import {
 } from 'Store/markdown_notes/actions';
 import styles from 'Style/MarkdownEditor/MarkdowInput.less';
 import { getI18nValue } from 'Utils/common';
-import { ActionsPanel } from './ActionsPanel';
-import MarkdownNoteContext from './context';
-import { EMarkdownStep } from './enums';
-import { IMarkdownNoteContext } from './models';
-import { getSpacesInSyntax } from './utils';
 
 const { Title } = Typography;
 
