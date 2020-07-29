@@ -1,4 +1,5 @@
-const commonConfig = require('./webpack.common')
+/* eslint-disable @typescript-eslint/no-var-requires */
+const commonConfig = require('./webpack.common');
 
 module.exports = Object.assign({}, commonConfig, {
     mode: 'development',
@@ -8,4 +9,4 @@ module.exports = Object.assign({}, commonConfig, {
         historyApiFallback: true
     },
     plugins: commonConfig.plugins || []
-})
+});

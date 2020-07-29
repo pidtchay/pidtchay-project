@@ -1,18 +1,16 @@
-const applicationOptions = require('./webpack.appOptions')
-const webpackPlugins = require('./webpack.plugins')
-const webpackModuleRules = require('./webpack.rules')
+/* eslint-disable @typescript-eslint/no-var-requires */
+const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
+const applicationOptions = require('./webpack.appOptions');
+const webpackPlugins = require('./webpack.plugins');
+const webpackModuleRules = require('./webpack.rules');
 
-const SpeedMeasurePlugin = require('speed-measure-webpack-plugin')
-const smp = new SpeedMeasurePlugin()
+const smp = new SpeedMeasurePlugin();
 
 const common = {
     entry: applicationOptions.entry,
     output: applicationOptions.output,
     resolve: {
-        modules: [
-            'node_modules',
-            'src'
-        ],
+        modules: ['node_modules', 'src'],
         extensions: ['.ts', '.tsx', '.js']
     },
     // https://medium.com/hackernoon/the-100-correct-way-to-split-your-chunks-with-webpack-f8a9df5b7758
@@ -42,7 +40,6 @@ const common = {
         }
     },
     plugins: [
-        // webpackPlugins.plugins.bundleAnalyzer,
         webpackPlugins.plugins.cleanWebpack,
         webpackPlugins.plugins.forkTsChecker,
         webpackPlugins.plugins.happyPack,
@@ -50,6 +47,6 @@ const common = {
         webpackPlugins.plugins.miniCssExtract
     ],
     ...webpackModuleRules
-}
+};
 
-module.exports = smp.wrap(common)
+module.exports = smp.wrap(common);

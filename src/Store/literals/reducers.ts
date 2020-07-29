@@ -6,6 +6,8 @@ import { LiteralActionTypes, LOAD_LITERALS } from './types';
  *
  * @param {ILiterals} [state] - Initial state.
  * @param {LiteralActionTypes} [actions] - Literals action types.
+ *
+ * @returns {void}
  */
 export const literalsReducer = (
     state: ILiterals = {},
@@ -13,10 +15,7 @@ export const literalsReducer = (
 ) => {
     switch (actions.type) {
         case LOAD_LITERALS:
-            return {
-                ...state,
-                ...actions.payload
-            };
+            return { ...actions.payload };
         default:
             return state;
     }

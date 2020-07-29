@@ -1,3 +1,5 @@
+/* eslint-disable jsdoc/require-returns */
+/* eslint-disable jsdoc/require-param */
 import { Input, BackTop, Tooltip } from 'antd';
 import * as React from 'react';
 import { RocketOutlined } from '@ant-design/icons';
@@ -25,12 +27,6 @@ interface IRepositoriesBodyProps {
 
 /**
  * Repositories Body Component.
- *
- * @param root0
- * @param root0.literals
- * @param root0.columns
- * @param root0.data
- * @param root0.onFetchRepositories
  */
 export const RepositoriesBody: React.FC<IRepositoriesBodyProps> = ({
     literals,

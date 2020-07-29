@@ -5,7 +5,7 @@ import { LiteralActionTypes, LOAD_LITERALS } from './types';
  * Loads language dictionary.
  *
  * @param {ILiterals} [literals] - Language dictionary.
- * @returns LiteralActionTypes.
+ * @returns {LiteralActionTypes}.
  */
 export function loadLiterals(literals: ILiterals): LiteralActionTypes {
     return {
