@@ -90,6 +90,7 @@ export const MarkdownNoteEdit = () => {
         }
 
         dispatch(setMarkdownStep(EMarkdownStep.LIST));
+        dispatch(setMarkdownText(''));
     };
 
     const createDate = currentNote
