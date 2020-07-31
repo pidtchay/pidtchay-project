@@ -9,35 +9,28 @@ import {
     PageHeader
 } from 'antd';
 import * as React from 'react';
-import { ILiterals } from 'Model/Literals';
 import { IRepositoryData } from 'Model/RepositoryData';
 import style from 'Style/RepositoryDetails.less';
-import { getI18nValue } from 'Utils/common';
+import { useLiteralValue } from 'Utils/hooks';
 
 interface IProps {
-    literals: ILiterals;
     repository: IRepositoryData;
     onBackClick: () => void;
 }
 
 export const RepositoryDetails: React.FC<IProps> = ({
-    literals,
     repository,
     onBackClick: handleBackClick
 }) => {
-    console.debug({ literals });
+    const { getValue: getLiteralValue } = useLiteralValue();
     return (
         <div className={style.details_layout}>
             <PageHeader
                 onBack={handleBackClick}
-                title={
-                    getI18nValue(literals, 'Pages.GithubRepositories.back') ||
-                    ''
-                }
+                title={getLiteralValue('Pages.GithubRepositories.back') || ''}
             />
             <Divider orientation="left">
-                {getI18nValue(
-                    literals,
+                {getLiteralValue(
                     'Pages.GithubRepositories.Details.Divider.owner'
                 )}
             </Divider>
@@ -53,38 +46,33 @@ export const RepositoryDetails: React.FC<IProps> = ({
                 </Col>
                 <Col span={10} offset={2}>
                     <Descriptions
-                        title={getI18nValue(
-                            literals,
+                        title={getLiteralValue(
                             'Pages.GithubRepositories.Details.info'
                         )}
                     >
                         <Descriptions.Item
-                            label={getI18nValue(
-                                literals,
+                            label={getLiteralValue(
                                 'Pages.GithubRepositories.Details.owner'
                             )}
                         >
                             {repository.owner}
                         </Descriptions.Item>
                         <Descriptions.Item
-                            label={getI18nValue(
-                                literals,
+                            label={getLiteralValue(
                                 'Pages.GithubRepositories.Details.home_page'
                             )}
                         >
                             <Button type="link">{repository.homepage}</Button>
                         </Descriptions.Item>
                         <Descriptions.Item
-                            label={getI18nValue(
-                                literals,
+                            label={getLiteralValue(
                                 'Pages.GithubRepositories.Details.forks'
                             )}
                         >
                             {repository.forks}
                         </Descriptions.Item>
                         <Descriptions.Item
-                            label={getI18nValue(
-                                literals,
+                            label={getLiteralValue(
                                 'Pages.GithubRepositories.Details.watchers'
                             )}
                         >
@@ -94,38 +82,31 @@ export const RepositoryDetails: React.FC<IProps> = ({
                 </Col>
             </Row>
             <Divider orientation="left">
-                {getI18nValue(
-                    literals,
-                    'Pages.GithubRepositories.Divider.details'
-                )}
+                {getLiteralValue('Pages.GithubRepositories.Divider.details')}
             </Divider>
             <Row gutter={[16, 16]}>
                 <Col>
                     <Descriptions
-                        title={getI18nValue(
-                            literals,
+                        title={getLiteralValue(
                             'Pages.GithubRepositories.Details.description'
                         )}
                     >
                         <Descriptions.Item
-                            label={getI18nValue(
-                                literals,
+                            label={getLiteralValue(
                                 'Pages.GithubRepositories.Details.name'
                             )}
                         >
                             {repository.name}
                         </Descriptions.Item>
                         <Descriptions.Item
-                            label={getI18nValue(
-                                literals,
+                            label={getLiteralValue(
                                 'Pages.GithubRepositories.Details.description'
                             )}
                         >
                             {repository.description}
                         </Descriptions.Item>
                         <Descriptions.Item
-                            label={getI18nValue(
-                                literals,
+                            label={getLiteralValue(
                                 'Pages.GithubRepositories.Details.language'
                             )}
                         >

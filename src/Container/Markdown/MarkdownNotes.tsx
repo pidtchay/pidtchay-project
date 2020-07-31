@@ -7,7 +7,7 @@ import { MarkdownNotesList } from 'Container/Markdown/MarkdownNotesList';
 import { EMarkdownStep } from 'Container/Markdown/enums';
 import { RootState } from 'Store';
 import { setMarkdownStep } from 'Store/markdown_notes/actions';
-import { getI18nValue } from 'Utils/common';
+import { useLiteralValue } from 'Utils/hooks';
 
 export const MarkdownNotes = () => {
     const markdownState = useSelector(
@@ -16,7 +16,7 @@ export const MarkdownNotes = () => {
 
     const dispatch = useDispatch();
 
-    const literals = useSelector((state: RootState) => state.literals);
+    const { getValue: getLiteralValue } = useLiteralValue();
 
     const handleAddNote = () => {
         dispatch(setMarkdownStep(EMarkdownStep.CREATE));
@@ -31,7 +31,7 @@ export const MarkdownNotes = () => {
                 <Row gutter={[16, 16]}>
                     <Col>
                         <Button type="primary" onClick={() => handleAddNote()}>
-                            {getI18nValue(literals, 'ACTIONS.add')}
+                            {getLiteralValue('ACTIONS.add')}
                         </Button>
                     </Col>
                 </Row>

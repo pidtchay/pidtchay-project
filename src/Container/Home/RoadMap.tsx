@@ -1,44 +1,38 @@
 import { Timeline } from 'antd';
 import React from 'react';
 import { ClockCircleOutlined } from '@ant-design/icons';
-import { ILiterals } from 'Model/Literals';
-import { getI18nValue } from 'Utils/common';
+import { useLiteralValue } from 'Utils/hooks';
 
-interface IProps {
-    literals: ILiterals;
-}
-
+// eslint-disable-next-line jsdoc/require-returns
 /**
  * Component displays a kind of roadmap.
- *
- * @param literals.literals
- * @param literals - Language settings in the form of key-value. The text depends on the selected language.
  */
-export const RoadMap: React.FC<IProps> = ({ literals }) => {
+export const RoadMap: React.FC = () => {
+    const { getValue: getLiteralValue } = useLiteralValue();
     return (
         <Timeline
-            pending={getI18nValue(literals, 'Pages.Home.timeline.comming_soon')}
+            pending={getLiteralValue('Pages.Home.timeline.comming_soon')}
             mode="alternate"
         >
             <Timeline.Item color="green">
-                {getI18nValue(literals, 'Pages.Home.timeline.step1')}
+                {getLiteralValue('Pages.Home.timeline.step1')}
             </Timeline.Item>
             <Timeline.Item color="green">
-                {getI18nValue(literals, 'Pages.Home.timeline.step2')}
+                {getLiteralValue('Pages.Home.timeline.step2')}
             </Timeline.Item>
             <Timeline.Item color="green">
-                {getI18nValue(literals, 'Pages.Home.timeline.step3')}
+                {getLiteralValue('Pages.Home.timeline.step3')}
             </Timeline.Item>
             <Timeline.Item color="green">
-                {getI18nValue(literals, 'Pages.Home.timeline.step4')}
+                {getLiteralValue('Pages.Home.timeline.step4')}
             </Timeline.Item>
             <Timeline.Item color="red">
-                {getI18nValue(literals, 'Pages.Home.timeline.step5')}
+                {getLiteralValue('Pages.Home.timeline.step5')}
             </Timeline.Item>
             <Timeline.Item
                 dot={<ClockCircleOutlined style={{ fontSize: '16px' }} />}
             >
-                {getI18nValue(literals, 'Pages.Home.timeline.step6')}
+                {getLiteralValue('Pages.Home.timeline.step6')}
             </Timeline.Item>
         </Timeline>
     );

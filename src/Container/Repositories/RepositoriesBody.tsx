@@ -4,11 +4,11 @@ import { Input, BackTop, Tooltip } from 'antd';
 import * as React from 'react';
 import { RocketOutlined } from '@ant-design/icons';
 import { TableComponent } from 'Component/Common/TableComponent';
-import { ILiterals } from 'Model/Literals';
 import { IRepositoryData } from 'Model/RepositoryData';
 import { IColumnField } from 'Model/Table';
 import style from 'Style/RepositoriesBody.less';
-import { getI18nValue, convertStringArrayToString } from 'Utils/common';
+import { convertStringArrayToString } from 'Utils/common';
+import { useLiteralValue } from 'Utils/hooks';
 
 const { Search } = Input;
 
@@ -19,7 +19,6 @@ const { Search } = Input;
  * @property {Function} [onFetchRepositories] The function queries the list of repositories for the selected organization name.
  */
 interface IRepositoriesBodyProps {
-    literals: ILiterals;
     columns: IColumnField[];
     data: IRepositoryData[];
     onFetchRepositories: (valuse: string) => void;
@@ -29,13 +28,13 @@ interface IRepositoriesBodyProps {
  * Repositories Body Component.
  */
 export const RepositoriesBody: React.FC<IRepositoriesBodyProps> = ({
-    literals,
     columns,
     data,
     onFetchRepositories
 }) => {
+    const { getValue: getLiteralValue } = useLiteralValue();
     const placeholder = convertStringArrayToString(
-        getI18nValue(literals, 'Pages.GithubRepositories.search_placeholder')
+        getLiteralValue('Pages.GithubRepositories.search_placeholder')
     );
     return (
         <>
@@ -48,7 +47,7 @@ export const RepositoriesBody: React.FC<IRepositoriesBodyProps> = ({
                 />
             </div>
             <TableComponent columns={columns} dataSource={data || []} />
-            <Tooltip title={getI18nValue(literals, 'ACTIONS.up')}>
+            <Tooltip title={getLiteralValue('ACTIONS.up')}>
                 <BackTop className={style.repositories_body}>
                     <div className={style.repositories_body_up_button}>
                         <RocketOutlined />

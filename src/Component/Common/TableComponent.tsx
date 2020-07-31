@@ -14,12 +14,12 @@ interface ITableProps {
     dataSource: IRepositoryData[];
 }
 
+// eslint-disable-next-line jsdoc/require-returns
 /**
  * Wrapper for component table.
  *
- * @param root0
- * @param root0.columns
- * @param root0.dataSource
+ * @param {Array<IColumnField>} [root0.columns] - Columns.
+ * @param {Array<IRepositoryData>} [root0.dataSource] - Data source.
  */
 export const TableComponent: React.FC<ITableProps> = ({
     columns,
