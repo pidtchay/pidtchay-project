@@ -1,47 +1,39 @@
 import { ILoginData, ISystemState } from 'Model/Authenticate';
-import { ILiterals } from 'Model/Literals';
 import { TThunkResult } from 'Store/constants';
-import {
-    openNotificationWithIcon,
-    getI18nValue,
-    convertStringArrayToString
-} from 'Utils/common';
+import { openNotificationWithIcon } from 'Utils/common';
 import { updateSession } from './actions';
 
-export const thunkUpdateSession = (
-    loginData: ILoginData,
-    literals: ILiterals
-): TThunkResult<void> => {
+interface IUpdateSessionProps {
+    loginData: ILoginData;
+    loginDescription: string;
+    loginTitle: string;
+    errorDescription: string;
+    errorTitle: string;
+}
+
+export const thunkUpdateSession = ({
+    loginData,
+    loginDescription,
+    loginTitle,
+    errorDescription,
+    errorTitle
+}: IUpdateSessionProps): TThunkResult<void> => {
     return async (dispatch) => {
         await updateSessionAPI(loginData)
             .then((resp) => {
                 dispatch(updateSession(resp));
 
                 openNotificationWithIcon({
-                    description: convertStringArrayToString(
-                        getI18nValue(literals, 'Notification.login.description')
-                    ),
-                    title: convertStringArrayToString(
-                        getI18nValue(literals, 'Notification.login.title')
-                    ),
+                    description: loginDescription,
+                    title: loginTitle,
                     type: 'success'
                 });
             })
             .catch((e) => {
                 console.error(e);
                 openNotificationWithIcon({
-                    description: convertStringArrayToString(
-                        getI18nValue(
-                            literals,
-                            'Notification.request.error.description'
-                        )
-                    ),
-                    title: convertStringArrayToString(
-                        getI18nValue(
-                            literals,
-                            'Notification.request.error.title'
-                        )
-                    ),
+                    description: errorDescription,
+                    title: errorTitle,
                     type: 'error'
                 });
             });

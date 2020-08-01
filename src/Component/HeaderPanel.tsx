@@ -15,8 +15,8 @@ import { RootState } from 'Store';
 import { loadLiterals } from 'Store/literals/actions';
 import { cleanSession } from 'Store/system/actions';
 import style from 'Style/HeaderPanel.less';
-import { getI18nValue } from 'Utils/common';
 import history from 'Utils/history';
+import { useLiteralValue } from 'Utils/hooks';
 
 interface IHeaderPanel {
     isSideMenuToogle: boolean;
@@ -32,8 +32,11 @@ export const HeaderPanel: React.FC<IHeaderPanel> = ({
     const [languageUsed, setLanguageUsed] = useState(
         ESupportedLanguages.EN.toUpperCase()
     );
+
+    const { getValue: getLiteralValue } = useLiteralValue();
+
     const auth = useSelector((state: RootState) => state.system.authenticated);
-    const literals = useSelector((state: RootState) => state.literals);
+
     const dispatch = useDispatch();
 
     const onGoHome = () => history.push(MenuRoute.HOME);
@@ -100,7 +103,7 @@ export const HeaderPanel: React.FC<IHeaderPanel> = ({
                                 className={style.header_layout_button}
                                 onClick={() => dispatch(cleanSession())}
                             >
-                                {getI18nValue(literals, 'ACTIONS.logout')}
+                                {getLiteralValue('ACTIONS.logout')}
                             </Button>
                         )}
                     </div>

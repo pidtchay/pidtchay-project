@@ -1,12 +1,10 @@
 import { Button } from 'antd';
 import React, { useContext } from 'react';
-import { useSelector } from 'react-redux';
 import MarkdownNoteContext from 'Container/Markdown/Context';
 import { IMarkdownNote, IMarkdownNoteContext } from 'Container/Markdown/Models';
 import { EMarkdownStep } from 'Container/Markdown/enums';
-import { RootState } from 'Store';
 import { setCurrentNote, setMarkdownStep } from 'Store/markdown_notes/actions';
-import { getI18nValue } from 'Utils/common';
+import { useLiteralValue } from 'Utils/hooks';
 
 interface IProps {
     note: IMarkdownNote;
@@ -14,7 +12,7 @@ interface IProps {
 export const MarkdownNote: React.FC<IProps> = ({ note }) => {
     const { dispatch } = useContext<IMarkdownNoteContext>(MarkdownNoteContext);
 
-    const literals = useSelector((state: RootState) => state.literals);
+    const { getValue: getLiteralValue } = useLiteralValue();
 
     const handleEditNote = () => {
         dispatch(setCurrentNote(note));
@@ -33,7 +31,7 @@ export const MarkdownNote: React.FC<IProps> = ({ note }) => {
             <p>{note.text}</p>
             <div>
                 <Button type="primary" onClick={handleEditNote}>
-                    {getI18nValue(literals, 'ACTIONS.edit')}
+                    {getLiteralValue('ACTIONS.edit')}
                 </Button>
             </div>
         </div>

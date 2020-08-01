@@ -6,7 +6,6 @@ import { RootState } from 'Store';
 import { RepositoryDetails } from './RepositoryDetailsBody';
 
 export const RepositoryDetailsPage: React.FC<RouteComponentProps> = (props) => {
-    const literals = useSelector((state: RootState) => state.literals);
     const store = useSelector((state: RootState) => state.repository);
     const repository = store.find((x) => x.id === +props.match.params['id']);
     if (!repository) {
@@ -19,7 +18,6 @@ export const RepositoryDetailsPage: React.FC<RouteComponentProps> = (props) => {
 
     return (
         <RepositoryDetails
-            literals={literals}
             repository={repository}
             onBackClick={handleBackClick}
         />

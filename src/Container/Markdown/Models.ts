@@ -1,3 +1,4 @@
+import { Dispatch } from 'redux';
 import { EMarkdownStep } from 'Container/Markdown/enums';
 import { TMarkdownNoteActionTypes } from 'Store/markdown_notes/types';
 
@@ -32,12 +33,12 @@ export interface IMarkdownNote {
  * @property {Array<IMarkdownNote>} [notes] Notes list.
  * @property {string} [markdownText] Current markdown text.
  * @property {EMarkdownStep} [step] Current step of working with notes.
- * @property {React.Dispatch<TMarkdownNoteActionTypes>} [dispatch] Redux-actions.
+ * @property {Dispatch<TMarkdownNoteActionTypes>} [dispatch] Redux-actions.
  */
 export interface IMarkdownNoteContext {
     currentNote: IMarkdownNote;
     notes: IMarkdownNote[];
     markdownText?: string;
     step?: EMarkdownStep;
-    dispatch?: React.Dispatch<TMarkdownNoteActionTypes>;
+    dispatch?: Dispatch<TMarkdownNoteActionTypes>;
 }

@@ -1,9 +1,8 @@
 import { Form, Input, Button } from 'antd';
 import * as React from 'react';
 import { ILoginData } from 'Model/Authenticate';
-import { ILiterals } from 'Model/Literals';
 import style from 'Style/Login/LoginForm.less';
-import { getI18nValue } from 'Utils/common';
+import { useLiteralValue } from 'Utils/hooks';
 
 const layout = {
     labelCol: { span: 8 },
@@ -15,25 +14,19 @@ const layout = {
  */
 interface ILogInProps {
     initialData: ILoginData;
-    literals: ILiterals;
     onSubmit: (loginData: ILoginData) => void;
 }
 
+// eslint-disable-next-line jsdoc/require-returns
 /**
  * LogIn Form.
  *
- * @param [ILoginData] - InitialData - LogIn Data model.
- * @param [Function] - OnSubmit - submit action.
- * @param ILoginData.initialData
- * @param ILoginData.onSubmit
- * @param ILoginData.literals
+ * @param {ILoginData} [initialData] - InitialData - LogIn Data model.
+ * @param {Function} [onSubmit] - OnSubmit - submit action.
  */
-export const LoginForm: React.FC<ILogInProps> = ({
-    initialData,
-    onSubmit,
-    literals
-}) => {
+export const LoginForm: React.FC<ILogInProps> = ({ initialData, onSubmit }) => {
     const [form] = Form.useForm();
+    const { getValue: getLiteralValue } = useLiteralValue();
 
     const onFinish = (values) => {
         onSubmit({ ...values });
@@ -55,15 +48,14 @@ export const LoginForm: React.FC<ILogInProps> = ({
             onFinish={onFinish}
         >
             <Form.Item
-                label={getI18nValue(literals, 'Forms.Login.nickname.label')}
+                label={getLiteralValue('Forms.Login.nickname.label')}
                 name="nickName"
                 rules={[
                     {
                         required: true,
                         message: (
                             <>
-                                {getI18nValue(
-                                    literals,
+                                {getLiteralValue(
                                     'Forms.Login.nickname.message'
                                 )}
                             </>
@@ -74,18 +66,13 @@ export const LoginForm: React.FC<ILogInProps> = ({
                 <Input />
             </Form.Item>
             <Form.Item
-                label={getI18nValue(literals, 'Forms.Login.email.label')}
+                label={getLiteralValue('Forms.Login.email.label')}
                 name="email"
                 rules={[
                     {
                         required: true,
                         message: (
-                            <>
-                                {getI18nValue(
-                                    literals,
-                                    'Forms.Login.email.message'
-                                )}
-                            </>
+                            <>{getLiteralValue('Forms.Login.email.message')}</>
                         ),
                         type: 'email'
                     }
@@ -94,15 +81,14 @@ export const LoginForm: React.FC<ILogInProps> = ({
                 <Input />
             </Form.Item>
             <Form.Item
-                label={getI18nValue(literals, 'Forms.Login.password.label')}
+                label={getLiteralValue('Forms.Login.password.label')}
                 name="password"
                 rules={[
                     {
                         required: true,
                         message: (
                             <>
-                                {getI18nValue(
-                                    literals,
+                                {getLiteralValue(
                                     'Forms.Login.password.message'
                                 )}
                             </>
@@ -114,13 +100,13 @@ export const LoginForm: React.FC<ILogInProps> = ({
             </Form.Item>
             <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
                 <Button type="primary" htmlType="submit">
-                    {getI18nValue(literals, 'ACTIONS.submit')}
+                    {getLiteralValue('ACTIONS.submit')}
                 </Button>
                 <Button htmlType="button" onClick={onReset}>
-                    {getI18nValue(literals, 'ACTIONS.reset')}
+                    {getLiteralValue('ACTIONS.reset')}
                 </Button>
                 <Button type="link" htmlType="button" onClick={onFill}>
-                    {getI18nValue(literals, 'ACTIONS.fill_form')}
+                    {getLiteralValue('ACTIONS.fill_form')}
                 </Button>
             </Form.Item>
         </Form>

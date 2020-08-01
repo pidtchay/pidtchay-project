@@ -1,7 +1,6 @@
 import { Col, Row, Comment, Avatar, Tooltip, Typography, Divider } from 'antd';
 import moment from 'moment';
 import React, { useState, createElement } from 'react';
-import { useSelector } from 'react-redux';
 import {
     UserOutlined,
     LikeFilled,
@@ -9,12 +8,12 @@ import {
     DislikeFilled,
     DislikeOutlined
 } from '@ant-design/icons';
-import { RootState } from 'Store';
 import style from 'Style/Home.less';
-import { getI18nValue } from 'Utils/common';
+import { useLiteralValue } from 'Utils/hooks';
 import { RoadMap } from './RoadMap';
 const { Title } = Typography;
 
+// eslint-disable-next-line jsdoc/require-returns
 /**
  * Home page component.
  */
@@ -22,7 +21,7 @@ export const HomePage = () => {
     const [likes, setLikes] = useState(0);
     const [dislikes, setDislikes] = useState(0);
     const [action, setAction] = useState(null);
-    const literals = useSelector((state: RootState) => state.literals);
+    const { getValue: getLiteralValue } = useLiteralValue();
 
     const like = () => {
         setLikes(1);
@@ -38,9 +37,7 @@ export const HomePage = () => {
 
     const commentActions = [
         <span key="comment-basic-like">
-            <Tooltip
-                title={getI18nValue(literals, 'Paget.Home.comment.footer.like')}
-            >
+            <Tooltip title={getLiteralValue('Paget.Home.comment.footer.like')}>
                 {createElement(action === 'liked' ? LikeFilled : LikeOutlined, {
                     onClick: like
                 })}
@@ -49,10 +46,7 @@ export const HomePage = () => {
         </span>,
         <span key="comment-basic-dislike">
             <Tooltip
-                title={getI18nValue(
-                    literals,
-                    'Paget.Home.comment.footer.dislike'
-                )}
+                title={getLiteralValue('Paget.Home.comment.footer.dislike')}
             >
                 {React.createElement(
                     action === 'disliked' ? DislikeFilled : DislikeOutlined,
@@ -69,11 +63,9 @@ export const HomePage = () => {
         <>
             <Row gutter={[16, 16]}>
                 <div className={style.home_title}>
-                    <Title>
-                        {getI18nValue(literals, 'Pages.Home.welcome.title')}
-                    </Title>
+                    <Title>{getLiteralValue('Pages.Home.welcome.title')}</Title>
                     <Title level={2}>
-                        {getI18nValue(literals, 'Pages.Home.welcome.title2')}
+                        {getLiteralValue('Pages.Home.welcome.title2')}
                         <a
                             href="https://pidtchay.github.io/pidtchay-project/"
                             target="_blank"
@@ -88,7 +80,7 @@ export const HomePage = () => {
 
             <Row gutter={[16, 16]}>
                 <Col span={8}>
-                    <RoadMap literals={literals} />
+                    <RoadMap />
                 </Col>
                 <Col offset={2}>
                     <Comment
@@ -104,14 +96,12 @@ export const HomePage = () => {
                         content={
                             <div>
                                 <p>
-                                    {getI18nValue(
-                                        literals,
+                                    {getLiteralValue(
                                         'Pages.Home.comment.howdy'
                                     )}
                                 </p>
                                 <p>
-                                    {getI18nValue(
-                                        literals,
+                                    {getLiteralValue(
                                         'Pages.Home.comment.message'
                                     )}
                                 </p>
