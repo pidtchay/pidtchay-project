@@ -10,12 +10,42 @@ import history from 'Utils/history';
 import { useLiteralValue } from 'Utils/hooks';
 const { Header, Content, Sider, Footer } = Layout;
 
+// import React, { useState } from 'react';
+// import { useThrottledFunction } from 'Utils/hooks';
+
 export const App = () => {
     const [isSideMenuToogle, setSideMenuToggled] = useState(true);
     const toggleTrueFalse = () => setSideMenuToggled(!isSideMenuToogle);
     const { isLoading, getValue: getLiteralValue } = useLiteralValue();
 
+    // const [eventCount, setEvenntCount] = useState(0);
+    // const [functionCount, setFunctionCount] = useState(0);
+    // const [throtledSetFunctionCount] = useThrottledFunction(
+    //     setFunctionCount,
+    //     300
+    // );
+
+    // const handleClick = () => {
+    //     setEvenntCount(eventCount + 1);
+    //     throtledSetFunctionCount(functionCount + 1);
+    // };
+
     return (
+        //     <div>
+        //         <div>
+        //             <button onClick={handleClick}>Click Me!</button>
+        //         </div>
+        //         <div>
+        //             <p>
+        //                 Event triggered: <label>{eventCount}</label>
+        //             </p>
+        //         </div>
+        //         <div>
+        //             <p>
+        //                 Function executed: <label>{functionCount}</label>
+        //             </p>
+        //         </div>
+        //     </div>
         <Spin spinning={isLoading}>
             <Router history={history}>
                 <Layout>

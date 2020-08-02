@@ -23,3 +23,5 @@ export enum ESupportedLanguages {
 }
 
 export const DATE_TIME_FORMAT = 'MM/DD/YYYY HH:mm:ss';
+
+export const EVENT_DELAY = 300;

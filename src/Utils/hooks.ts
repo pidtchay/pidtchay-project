@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+/* eslint-disable jsdoc/require-returns */
+import { useEffect, useState, useRef, useCallback } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from 'Store';
 
-// eslint-disable-next-line jsdoc/require-returns
 /**
  * A custom hook that gets the language setting and returns a value from the store at the specified path.
  */
@@ -16,7 +16,6 @@ export function useLiteralValue() {
         }
     }, [literals, isLoading]);
 
-    // eslint-disable-next-line jsdoc/require-returns
     /**
      * Deep value search by key in the transferred object.
      *
@@ -30,4 +29,55 @@ export function useLiteralValue() {
     }
 
     return { isLoading, getValue };
+}
+
+/**
+ * Pattern that we can limit the times it fires an event.
+ * No matter how many times the user can trigger this, it executes only once in specific time interval.
+ *
+ * @param {Function} [func] - Calback function.
+ * @param {number} [delay] - Interval.
+ */
+export function useThrottledDispatchedFunction(
+    func: (...args) => void,
+    delay: number
+) {
+    const timeoutRef = useRef(null);
+    const dispatch = useDispatch();
+    const executFunc = useCallback(
+        (...args) => {
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current);
+            }
+            timeoutRef.current = setTimeout(
+                () => dispatch(func(...args)),
+                delay
+            );
+        },
+        [delay]
+    );
+
+    return [executFunc];
+}
+
+/**
+ * Pattern that we can limit the times it fires an event.
+ * No matter how many times the user can trigger this, it executes only once in specific time interval.
+ *
+ * @param {Function} [func] - Calback function.
+ * @param {number} [delay] - Interval.
+ */
+export function useThrottledFunction(func: (...args) => void, delay: number) {
+    const timeoutRef = useRef(null);
+    const executFunc = useCallback(
+        (...args) => {
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current);
+            }
+            timeoutRef.current = setTimeout(() => func(...args), delay);
+        },
+        [delay]
+    );
+
+    return [executFunc];
 }
