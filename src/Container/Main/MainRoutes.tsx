@@ -9,6 +9,12 @@ import { MarkdownNotes } from 'Container/Markdown/MarkdownNotes';
 import { RepositoriesPage } from 'Container/Repositories/RepositoriesPage';
 import { RepositoryDetailsPage } from 'Container/Repositories/RepositoryDetailsPage';
 
+/**
+ * Routing component.
+ * Contains basic routing settings between site pages.
+ *
+ * @returns {JSX.Element} [return0] Routing.
+ */
 export const MainRoutes = () => {
     return (
         <Switch>

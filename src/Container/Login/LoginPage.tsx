@@ -1,3 +1,4 @@
+/* eslint-disable jsdoc/require-param */
 import { Alert } from 'antd';
 import React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
@@ -14,6 +15,11 @@ import {
 } from 'Utils/hooks';
 import { convertStringArrayToString } from '../../Utils/common';
 
+/**
+ * Login page component.
+ *
+ * @returns {JSX.Element} [return0] Login page.
+ */
 export const LogInPage: React.FC<RouteComponentProps> = (props) => {
     const { getValue: getLiteralValue } = useLiteralValue();
 

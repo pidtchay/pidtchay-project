@@ -10,6 +10,12 @@ import { RootState } from 'Store';
 import { setMarkdownStep } from 'Store/markdown_notes/actions';
 import { useLiteralValue, useThrottledDispatchedFunction } from 'Utils/hooks';
 
+/**
+ * Wrapper component for displaying a list of notes or creating / editing a single note.
+ * The component uses context.
+ *
+ * @returns {JSX.Element} [return0] list of notes or a single note.
+ */
 export const MarkdownNotes = () => {
     const markdownState = useSelector(
         (state: RootState) => state.markdownNotes
