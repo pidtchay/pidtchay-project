@@ -6,8 +6,8 @@ import { IColumnField } from 'Model/Table';
 /**
  * Data model for displaying a Table.
  *
- * @property {IColumnField[]} [columns] List of columns to display in the table.
- * @property {IRepositoryData[]} [dataSource] Transmitted data for display in a table.
+ * @property {Array<IColumnField>} [columns] List of columns to display in the table.
+ * @property {Array<IRepositoryData>} [dataSource] Transmitted data for display in a table.
  */
 interface ITableProps {
     columns: IColumnField[];

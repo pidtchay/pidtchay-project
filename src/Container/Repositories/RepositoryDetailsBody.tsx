@@ -1,17 +1,10 @@
-import {
-    Divider,
-    Row,
-    Col,
-    Avatar,
-    Descriptions,
-    Tag,
-    Button,
-    PageHeader
-} from 'antd';
+import { Divider, Row, Col, Avatar, PageHeader } from 'antd';
 import * as React from 'react';
 import { IRepositoryData } from 'Model/RepositoryData';
 import style from 'Style/RepositoryDetails.less';
 import { useLiteralValue } from 'Utils/hooks';
+import { DetailsDescription } from './DetailsDescription';
+import { OwnerDescription } from './OwnerDescription';
 
 interface IProps {
     repository: IRepositoryData;
@@ -45,40 +38,12 @@ export const RepositoryDetails: React.FC<IProps> = ({
                     </div>
                 </Col>
                 <Col span={10} offset={2}>
-                    <Descriptions
-                        title={getLiteralValue(
-                            'Pages.GithubRepositories.Details.info'
-                        )}
-                    >
-                        <Descriptions.Item
-                            label={getLiteralValue(
-                                'Pages.GithubRepositories.Details.owner'
-                            )}
-                        >
-                            {repository.owner}
-                        </Descriptions.Item>
-                        <Descriptions.Item
-                            label={getLiteralValue(
-                                'Pages.GithubRepositories.Details.home_page'
-                            )}
-                        >
-                            <Button type="link">{repository.homepage}</Button>
-                        </Descriptions.Item>
-                        <Descriptions.Item
-                            label={getLiteralValue(
-                                'Pages.GithubRepositories.Details.forks'
-                            )}
-                        >
-                            {repository.forks}
-                        </Descriptions.Item>
-                        <Descriptions.Item
-                            label={getLiteralValue(
-                                'Pages.GithubRepositories.Details.watchers'
-                            )}
-                        >
-                            {repository.watchers}
-                        </Descriptions.Item>
-                    </Descriptions>
+                    <OwnerDescription
+                        owner={repository.owner}
+                        homepage={repository.homepage}
+                        forks={repository.forks}
+                        watchers={repository.watchers}
+                    />
                 </Col>
             </Row>
             <Divider orientation="left">
@@ -86,33 +51,11 @@ export const RepositoryDetails: React.FC<IProps> = ({
             </Divider>
             <Row gutter={[16, 16]}>
                 <Col>
-                    <Descriptions
-                        title={getLiteralValue(
-                            'Pages.GithubRepositories.Details.description'
-                        )}
-                    >
-                        <Descriptions.Item
-                            label={getLiteralValue(
-                                'Pages.GithubRepositories.Details.name'
-                            )}
-                        >
-                            {repository.name}
-                        </Descriptions.Item>
-                        <Descriptions.Item
-                            label={getLiteralValue(
-                                'Pages.GithubRepositories.Details.description'
-                            )}
-                        >
-                            {repository.description}
-                        </Descriptions.Item>
-                        <Descriptions.Item
-                            label={getLiteralValue(
-                                'Pages.GithubRepositories.Details.language'
-                            )}
-                        >
-                            <Tag color="geekblue">{repository.language}</Tag>
-                        </Descriptions.Item>
-                    </Descriptions>
+                    <DetailsDescription
+                        name={repository.name}
+                        description={repository.description}
+                        language={repository.language}
+                    />
                 </Col>
             </Row>
         </div>
