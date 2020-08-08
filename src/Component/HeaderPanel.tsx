@@ -23,7 +23,6 @@ interface IHeaderPanel {
     onToggleTrueFalse: () => void;
 }
 
-// TODO Switch language button
 export const HeaderPanel: React.FC<IHeaderPanel> = ({
     isSideMenuToogle,
     onToggleTrueFalse

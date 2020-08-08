@@ -1,5 +1,6 @@
 import { Col, Row, Typography, Divider } from 'antd';
 import React from 'react';
+import { HyperLink } from 'Component/Common/HyperLink';
 import style from 'Style/Home.less';
 import { useLiteralValue } from 'Utils/hooks';
 import { CommentComponent } from './Comment';
@@ -20,12 +21,9 @@ export const HomePage = () => {
                     <Title>{getLiteralValue('Pages.Home.welcome.title')}</Title>
                     <Title level={2}>
                         {getLiteralValue('Pages.Home.welcome.title2')}
-                        <a
-                            href="https://pidtchay.github.io/pidtchay-project/"
-                            target="_blank"
-                        >
+                        <HyperLink href="https://pidtchay.github.io/pidtchay-project/">
                             pidtchay.github.io
-                        </a>
+                        </HyperLink>
                     </Title>
                 </div>
             </Row>

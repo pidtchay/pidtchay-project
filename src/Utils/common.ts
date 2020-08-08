@@ -33,6 +33,13 @@ export function getI18nValue<T>(obj: T, path: string): [] {
     return idx(paths, obj);
 }
 
+/**
+ * Convert array of strings to string.
+ *
+ * @param {Array<string> | string} [value] - Input value.
+ *
+ * @returns {string} [return0] Result string.
+ */
 export const convertStringArrayToString = (
     value: string[] | string
 ): string => {
