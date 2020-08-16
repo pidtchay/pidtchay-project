@@ -1,8 +1,9 @@
-import { Form, Input, Button } from 'antd';
+import { Form, Input } from 'antd';
 import * as React from 'react';
 import { ILoginData } from 'Model/Authenticate';
 import style from 'Style/Login/LoginForm.less';
 import { useLiteralValue } from 'Utils/hooks';
+import { LoginFormFooter } from './LoginFormFooter';
 
 const layout = {
     labelCol: { span: 8 },
@@ -32,11 +33,11 @@ export const LoginForm: React.FC<ILogInProps> = ({ initialData, onSubmit }) => {
         onSubmit({ ...values });
     };
 
-    const onReset = () => {
+    const handleReset = () => {
         form.resetFields();
     };
 
-    const onFill = () => {
+    const handleFill = () => {
         form.setFieldsValue(initialData);
     };
 
@@ -99,15 +100,7 @@ export const LoginForm: React.FC<ILogInProps> = ({ initialData, onSubmit }) => {
                 <Input.Password />
             </Form.Item>
             <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-                <Button type="primary" htmlType="submit">
-                    {getLiteralValue('ACTIONS.submit')}
-                </Button>
-                <Button htmlType="button" onClick={onReset}>
-                    {getLiteralValue('ACTIONS.reset')}
-                </Button>
-                <Button type="link" htmlType="button" onClick={onFill}>
-                    {getLiteralValue('ACTIONS.fill_form')}
-                </Button>
+                <LoginFormFooter onReset={handleReset} onFill={handleFill} />
             </Form.Item>
         </Form>
     );

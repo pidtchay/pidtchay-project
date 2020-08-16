@@ -10,6 +10,11 @@ import {
 import { MenuRoute } from 'Constants/Routes';
 import { useLiteralValue } from 'Utils/hooks';
 
+/**
+ * Navigation component.
+ *
+ * @returns {JSX.Element} [return0] Menu panel.
+ */
 export const MainMenu: React.FC = () => {
     const { getValue: getLiteralValue } = useLiteralValue();
     return (

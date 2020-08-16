@@ -3,9 +3,10 @@ import React from 'react';
 import { ClockCircleOutlined } from '@ant-design/icons';
 import { useLiteralValue } from 'Utils/hooks';
 
-// eslint-disable-next-line jsdoc/require-returns
 /**
  * Component displays a kind of roadmap.
+ *
+ * @returns {JSX.Element} [return0] Roadmap.
  */
 export const RoadMap: React.FC = () => {
     const { getValue: getLiteralValue } = useLiteralValue();

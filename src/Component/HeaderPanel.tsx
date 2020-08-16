@@ -1,7 +1,7 @@
 import { Row, Col, Avatar, Button } from 'antd';
 import { loadLang } from 'i18n/i18n';
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
     MenuUnfoldOutlined,
     LoginOutlined,
@@ -9,21 +9,20 @@ import {
     UserOutlined,
     HomeOutlined
 } from '@ant-design/icons';
-import { ESupportedLanguages } from 'Constants/Common';
+import { ESupportedLanguages, EVENT_DELAY } from 'Constants/Common';
 import { MenuRoute } from 'Constants/Routes';
 import { RootState } from 'Store';
 import { loadLiterals } from 'Store/literals/actions';
 import { cleanSession } from 'Store/system/actions';
 import style from 'Style/HeaderPanel.less';
 import history from 'Utils/history';
-import { useLiteralValue } from 'Utils/hooks';
+import { useLiteralValue, useThrottledDispatchedFunction } from 'Utils/hooks';
 
 interface IHeaderPanel {
     isSideMenuToogle: boolean;
     onToggleTrueFalse: () => void;
 }
 
-// TODO Switch language button
 export const HeaderPanel: React.FC<IHeaderPanel> = ({
     isSideMenuToogle,
     onToggleTrueFalse
@@ -32,12 +31,19 @@ export const HeaderPanel: React.FC<IHeaderPanel> = ({
     const [languageUsed, setLanguageUsed] = useState(
         ESupportedLanguages.EN.toUpperCase()
     );
+    const [throttledLoadLiterals] = useThrottledDispatchedFunction(
+        loadLiterals,
+        EVENT_DELAY
+    );
+
+    const [throttledCleanSession] = useThrottledDispatchedFunction(
+        cleanSession,
+        EVENT_DELAY
+    );
 
     const { getValue: getLiteralValue } = useLiteralValue();
 
     const auth = useSelector((state: RootState) => state.system.authenticated);
-
-    const dispatch = useDispatch();
 
     const onGoHome = () => history.push(MenuRoute.HOME);
 
@@ -49,7 +55,7 @@ export const HeaderPanel: React.FC<IHeaderPanel> = ({
         );
         setLanguageUsed(language.toUpperCase());
         // tslint:disable-next-line: no-floating-promises
-        loadLang(language).then((lang) => dispatch(loadLiterals(lang)));
+        loadLang(language).then((lang) => throttledLoadLiterals(lang));
     };
     return (
         <div>
@@ -101,7 +107,7 @@ export const HeaderPanel: React.FC<IHeaderPanel> = ({
                                 icon={<LoginOutlined />}
                                 size="large"
                                 className={style.header_layout_button}
-                                onClick={() => dispatch(cleanSession())}
+                                onClick={() => throttledCleanSession()}
                             >
                                 {getLiteralValue('ACTIONS.logout')}
                             </Button>

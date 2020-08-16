@@ -10,6 +10,9 @@ import history from 'Utils/history';
 import { useLiteralValue } from 'Utils/hooks';
 const { Header, Content, Sider, Footer } = Layout;
 
+// import React, { useState } from 'react';
+// import { useThrottledFunction } from 'Utils/hooks';
+
 export const App = () => {
     const [isSideMenuToogle, setSideMenuToggled] = useState(true);
     const toggleTrueFalse = () => setSideMenuToggled(!isSideMenuToogle);
