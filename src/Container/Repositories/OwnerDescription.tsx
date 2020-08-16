@@ -9,46 +9,17 @@ interface IOwnerDescriptionProps {
     watchers: number;
 }
 
-export const OwnerDescription: React.FC<IOwnerDescriptionProps> = ({
-    owner,
-    homepage,
-    forks,
-    watchers
-}) => {
+export const OwnerDescription: React.FC<IOwnerDescriptionProps> = ({ owner, homepage, forks, watchers }) => {
     const { getValue: getLiteralValue } = useLiteralValue();
     return (
         <>
-            <Descriptions
-                title={getLiteralValue('Pages.GithubRepositories.Details.info')}
-            >
-                <Descriptions.Item
-                    label={getLiteralValue(
-                        'Pages.GithubRepositories.Details.owner'
-                    )}
-                >
-                    {owner}
-                </Descriptions.Item>
-                <Descriptions.Item
-                    label={getLiteralValue(
-                        'Pages.GithubRepositories.Details.home_page'
-                    )}
-                >
+            <Descriptions title={getLiteralValue('Pages.GithubRepositories.Details.info')}>
+                <Descriptions.Item label={getLiteralValue('Pages.GithubRepositories.Details.owner')}>{owner}</Descriptions.Item>
+                <Descriptions.Item label={getLiteralValue('Pages.GithubRepositories.Details.home_page')}>
                     <Button type="link">{homepage}</Button>
                 </Descriptions.Item>
-                <Descriptions.Item
-                    label={getLiteralValue(
-                        'Pages.GithubRepositories.Details.forks'
-                    )}
-                >
-                    {forks}
-                </Descriptions.Item>
-                <Descriptions.Item
-                    label={getLiteralValue(
-                        'Pages.GithubRepositories.Details.watchers'
-                    )}
-                >
-                    {watchers}
-                </Descriptions.Item>
+                <Descriptions.Item label={getLiteralValue('Pages.GithubRepositories.Details.forks')}>{forks}</Descriptions.Item>
+                <Descriptions.Item label={getLiteralValue('Pages.GithubRepositories.Details.watchers')}>{watchers}</Descriptions.Item>
             </Descriptions>
         </>
     );

@@ -1,11 +1,6 @@
 import { Tooltip } from 'antd';
 import React, { useState, createElement } from 'react';
-import {
-    LikeFilled,
-    LikeOutlined,
-    DislikeFilled,
-    DislikeOutlined
-} from '@ant-design/icons';
+import { LikeFilled, LikeOutlined, DislikeFilled, DislikeOutlined } from '@ant-design/icons';
 import { useLiteralValue } from 'Utils/hooks';
 
 export const CommentActions = (): Array<React.ReactNode> => {
@@ -36,15 +31,10 @@ export const CommentActions = (): Array<React.ReactNode> => {
             <span className="comment-action">{likes}</span>
         </span>,
         <span key="comment-basic-dislike">
-            <Tooltip
-                title={getLiteralValue('Paget.Home.comment.footer.dislike')}
-            >
-                {React.createElement(
-                    action === 'disliked' ? DislikeFilled : DislikeOutlined,
-                    {
-                        onClick: handleDislike
-                    }
-                )}
+            <Tooltip title={getLiteralValue('Paget.Home.comment.footer.dislike')}>
+                {React.createElement(action === 'disliked' ? DislikeFilled : DislikeOutlined, {
+                    onClick: handleDislike
+                })}
             </Tooltip>
             <span className="comment-action">{dislikes}</span>
         </span>

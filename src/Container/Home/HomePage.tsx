@@ -21,9 +21,7 @@ export const HomePage = () => {
                     <Title>{getLiteralValue('Pages.Home.welcome.title')}</Title>
                     <Title level={2}>
                         {getLiteralValue('Pages.Home.welcome.title2')}
-                        <HyperLink href="https://pidtchay.github.io/pidtchay-project/">
-                            pidtchay.github.io
-                        </HyperLink>
+                        <HyperLink href="https://pidtchay.github.io/pidtchay-project/">pidtchay.github.io</HyperLink>
                     </Title>
                 </div>
             </Row>

@@ -40,8 +40,6 @@ export function getI18nValue<T>(obj: T, path: string): [] {
  *
  * @returns {string} [return0] Result string.
  */
-export const convertStringArrayToString = (
-    value: string[] | string
-): string => {
+export const convertStringArrayToString = (value: string[] | string): string => {
     return Array.isArray(value) ? value.join('') : value;
 };

@@ -8,19 +8,7 @@ import { CommentDateTime } from 'Container/Home/CommentDateTime';
 export const CommentComponent = () => {
     return (
         <>
-            <Comment
-                actions={CommentActions()}
-                author={<span>PidtChay</span>}
-                avatar={
-                    <Avatar
-                        size="large"
-                        icon={<UserOutlined />}
-                        alt="PidtChay"
-                    />
-                }
-                content={<CommentContent />}
-                datetime={<CommentDateTime />}
-            />
+            <Comment actions={CommentActions()} author={<span>PidtChay</span>} avatar={<Avatar size="large" icon={<UserOutlined />} alt="PidtChay" />} content={<CommentContent />} datetime={<CommentDateTime />} />
         </>
     );
 };

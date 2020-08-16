@@ -13,10 +13,10 @@
     "prettier": "node node_modules/prettier/bin-prettier.js  --write --config ./.prettierrc.js  src/**/*.{ts,tsx}",
     "preversion:minor": "git-branch-is -r \"^feature/\" && npm version minor",
     "preversion:patch": "git-branch-is -r \"^(bugfix|hotfix)/\" && npm version patch",
-    "start": "node --max-old-space-size=3072 node_modules/webpack-dev-server/bin/webpack-dev-server.js --host localhost --port 5454 --open --hot --config webpack/webpack.dev.js",
+    "start": "node --max-old-space-size=2048 node_modules/webpack-dev-server/bin/webpack-dev-server.js --host localhost --port 5454 --open --hot --config webpack/webpack.dev.js",
     "test": "jest --colors",
     "test:updateShapshots": "jest --updateSnapshot --colors",
-    "tsc": "node --max-old-space-size=3072 node_modules/typescript/bin/tsc --noEmit"
+    "tsc": "node --max-old-space-size=2048 node_modules/typescript/bin/tsc --noEmit"
   },
   "husky": {
     "hooks": {
@@ -32,6 +32,7 @@
   "license": "ISC",
   "dependencies": {
     "antd": "^4.3.5",
+    "crypto-js": "^4.0.0",
     "git-branch-is": "^3.1.0",
     "history": "4.6.3",
     "react": "^16.13.1",
@@ -48,6 +49,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "devDependencies": {
+    "@types/crypto-js": "^3.1.47",
     "@types/enzyme": "^3.10.5",
     "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/history": "^4.7.6",

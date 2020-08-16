@@ -42,25 +42,14 @@ export const LoginForm: React.FC<ILogInProps> = ({ initialData, onSubmit }) => {
     };
 
     return (
-        <Form
-            {...layout}
-            className={style.loginForm}
-            form={form}
-            onFinish={onFinish}
-        >
+        <Form {...layout} className={style.loginForm} form={form} onFinish={onFinish}>
             <Form.Item
                 label={getLiteralValue('Forms.Login.nickname.label')}
                 name="nickName"
                 rules={[
                     {
                         required: true,
-                        message: (
-                            <>
-                                {getLiteralValue(
-                                    'Forms.Login.nickname.message'
-                                )}
-                            </>
-                        )
+                        message: <>{getLiteralValue('Forms.Login.nickname.message')}</>
                     }
                 ]}
             >
@@ -72,9 +61,7 @@ export const LoginForm: React.FC<ILogInProps> = ({ initialData, onSubmit }) => {
                 rules={[
                     {
                         required: true,
-                        message: (
-                            <>{getLiteralValue('Forms.Login.email.message')}</>
-                        ),
+                        message: <>{getLiteralValue('Forms.Login.email.message')}</>,
                         type: 'email'
                     }
                 ]}
@@ -87,13 +74,7 @@ export const LoginForm: React.FC<ILogInProps> = ({ initialData, onSubmit }) => {
                 rules={[
                     {
                         required: true,
-                        message: (
-                            <>
-                                {getLiteralValue(
-                                    'Forms.Login.password.message'
-                                )}
-                            </>
-                        )
+                        message: <>{getLiteralValue('Forms.Login.password.message')}</>
                     }
                 ]}
             >

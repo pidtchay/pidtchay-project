@@ -17,14 +17,9 @@ import { useLiteralValue, useThrottledDispatchedFunction } from 'Utils/hooks';
  * @returns {JSX.Element} [return0] list of notes or a single note.
  */
 export const MarkdownNotes = () => {
-    const markdownState = useSelector(
-        (state: RootState) => state.markdownNotes
-    );
+    const markdownState = useSelector((state: RootState) => state.markdownNotes);
 
-    const [throttledSetMarkdownStep] = useThrottledDispatchedFunction(
-        setMarkdownStep,
-        EVENT_DELAY
-    );
+    const [throttledSetMarkdownStep] = useThrottledDispatchedFunction(setMarkdownStep, EVENT_DELAY);
     const dispatch = useDispatch();
 
     const { getValue: getLiteralValue } = useLiteralValue();
@@ -33,8 +28,7 @@ export const MarkdownNotes = () => {
         throttledSetMarkdownStep(EMarkdownStep.CREATE);
     };
 
-    const isMarkdownEditForm =
-        markdownState.currentNote ?? markdownState.step !== EMarkdownStep.LIST;
+    const isMarkdownEditForm = markdownState.currentNote ?? markdownState.step !== EMarkdownStep.LIST;
 
     return (
         <MarkdownNoteContext.Provider value={{ ...markdownState, dispatch }}>
@@ -47,13 +41,7 @@ export const MarkdownNotes = () => {
                     </Col>
                 </Row>
             )}
-            <Row gutter={[16, 16]}>
-                {isMarkdownEditForm ? (
-                    <MarkdownNoteEditor />
-                ) : (
-                    <MarkdownNotesList />
-                )}
-            </Row>
+            <Row gutter={[16, 16]}>{isMarkdownEditForm ? <MarkdownNoteEditor /> : <MarkdownNotesList />}</Row>
         </MarkdownNoteContext.Provider>
     );
 };

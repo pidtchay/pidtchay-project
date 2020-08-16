@@ -11,6 +11,7 @@ const defaultContext: IMarkdownNoteContext = {
         {
             id: uuid(),
             createDate: moment(new Date()).format(DATE_TIME_FORMAT),
+            title: 'Title',
             text: 'First note'
         }
     ],

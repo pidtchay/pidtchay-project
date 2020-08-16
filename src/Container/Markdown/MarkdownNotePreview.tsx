@@ -14,9 +14,7 @@ export const MarkdownNotePreview = () => {
     return (
         <Col offset={2} span={10}>
             <Row gutter={[16, 16]}>
-                <Title level={2}>
-                    {getLiteralValue('Pages.Markdown.MarkdownPreview.title')}
-                </Title>
+                <Title level={2}>{getLiteralValue('Pages.Markdown.MarkdownPreview.title')}</Title>
             </Row>
             <Row gutter={[16, 16]}>
                 <div className={styles.reactMarkdownContainer}>

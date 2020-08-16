@@ -1,12 +1,5 @@
 /* eslint-disable */
-import {
-    TMarkdownNoteActionTypes,
-    CREATE_NOTE,
-    UPDATE_NOTE,
-    SET_CURRENT_NOTE,
-    SET_MARKDOWD_STEP,
-    SET_MARKDOWD_TEXT
-} from './types';
+import { TMarkdownNoteActionTypes, CREATE_NOTE, UPDATE_NOTE, SET_CURRENT_NOTE, SET_MARKDOWD_STEP, SET_MARKDOWD_TEXT } from './types';
 import { IMarkdownNote } from 'Container/Markdown/Models';
 import { EMarkdownStep } from 'Container/Markdown/enums';
 

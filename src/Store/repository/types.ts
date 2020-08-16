@@ -18,6 +18,4 @@ interface IClearRepositoryData {
     type: typeof CLEAR_REPOSITORY_DATA;
 }
 
-export type RepositoryDataActionTypes =
-    | IFetchRepositoryData
-    | IClearRepositoryData;
+export type RepositoryDataActionTypes = IFetchRepositoryData | IClearRepositoryData;

@@ -22,8 +22,7 @@ export function useLiteralValue() {
      * @param {string} [path] - Key path.
      */
     function getValue(path: string): [] {
-        const idx = (p, o) =>
-            p.reduce((xs, x) => (xs && xs[x] ? xs[x] : null), o);
+        const idx = (p, o) => p.reduce((xs, x) => (xs && xs[x] ? xs[x] : null), o);
         const paths = path.split('.');
         return idx(paths, literals);
     }
@@ -38,10 +37,7 @@ export function useLiteralValue() {
  * @param {Function} [func] - Calback function.
  * @param {number} [delay] - Interval.
  */
-export function useThrottledDispatchedFunction(
-    func: (...args) => void,
-    delay: number
-) {
+export function useThrottledDispatchedFunction(func: (...args) => void, delay: number) {
     const timeoutRef = useRef(null);
     const dispatch = useDispatch();
     const executFunc = useCallback(
@@ -49,10 +45,7 @@ export function useThrottledDispatchedFunction(
             if (timeoutRef.current) {
                 clearTimeout(timeoutRef.current);
             }
-            timeoutRef.current = setTimeout(
-                () => dispatch(func(...args)),
-                delay
-            );
+            timeoutRef.current = setTimeout(() => dispatch(func(...args)), delay);
         },
         [delay]
     );

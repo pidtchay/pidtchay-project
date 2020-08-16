@@ -31,7 +31,7 @@ export const MarkdownNote: React.FC<IProps> = ({ note }) => {
     return (
         <div className={styles.markdownNote}>
             <p>{note.createDate}</p>
-            <p>{note.text}</p>
+            <p>{note.title}</p>
             <div>
                 <Button type="primary" onClick={handleEditNote}>
                     {getLiteralValue('ACTIONS.edit')}
