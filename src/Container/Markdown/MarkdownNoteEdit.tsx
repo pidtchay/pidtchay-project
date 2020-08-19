@@ -31,12 +31,13 @@ export const MarkdownNoteEdit = () => {
 
     const { encryptMessage, decryptMessage } = useCryptoAES256();
 
+    const [title, setTitle] = useState(currentNote?.title || '');
     const [passwd, setPasswd] = useState('');
     const [visible, setVisible] = useState(false);
     const [isEncrypt, setEncryptFlag] = useState(false);
     const [isEncrypted, setEncrypted] = useState(false);
     const [isDecrypted, setDecrypted] = useState(false);
-    const [textArea, setTextArea] = useState(currentNote ? currentNote.text : '');
+    const [textArea, setTextArea] = useState(currentNote?.text || '');
     const [currentSyntax, setCurrentSyntax] = useState('');
 
     useEffect(() => {
@@ -85,7 +86,7 @@ export const MarkdownNoteEdit = () => {
                 createNote({
                     id: uuid(),
                     createDate: createDate.current,
-                    title: textArea.split('\n')[0],
+                    title: title || textArea.split('\n')[0],
                     text: textArea,
                     isEncrypted: isEncrypted
                 })
@@ -148,6 +149,9 @@ export const MarkdownNoteEdit = () => {
                 <Col>{`${getLiteralValue('Pages.Markdown.MarkdownInput.createDate')}${createDate}`}</Col>
             </Row>
             <ActionsPanel onSetTextValue={handleAddMarkdownSynt} />
+            <Row gutter={[16, 16]}>
+                <Input placeholder="Enter title" onChange={(e) => setTitle(e.target.value)} value={title} />
+            </Row>
             <Row gutter={[16, 16]}>
                 <textarea className={styles.markdownInput} ref={myRef} value={textArea} rows={10} onChange={(e) => handleInputChange(e.target.value)} />
             </Row>
