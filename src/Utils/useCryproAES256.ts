@@ -2,7 +2,7 @@
 import { AES, pad, mode, enc, PBKDF2 } from 'crypto-js';
 
 /**
- * Use custom AES string encryption hook.
+ * User custom AES string encryption hook.
  */
 export function useCryptoAES256() {
     const keySize = 256;

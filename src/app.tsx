@@ -1,40 +1,38 @@
-// import React, { useState } from 'react';
-// import { useCryptoAES256 } from 'Utils/useCryproAES256';
-
-import React from 'react';
-import { MarkdownNotes } from 'Container/Markdown/MarkdownNotes';
+import { Layout, Spin } from 'antd';
+import React, { useState } from 'react';
+import { Router } from 'react-router-dom';
+import { HeaderPanel } from 'Component/HeaderPanel';
+import { MainMenu } from 'Container/Main/MainMenu';
+import { MainRoutes } from 'Container/Main/MainRoutes';
+import style from 'Style/App.less';
 import 'antd/dist/antd.css';
-// const PASSWD = 'ir3allyl0vebubblegum';
-
-// const DEFAULT_MESAGE = 'Hello world';
+import history from 'Utils/history';
+import { useLiteralValue } from 'Utils/hooks';
+const { Header, Content, Sider, Footer } = Layout;
 
 export const App = () => {
-    return <MarkdownNotes />;
-    // const [message, setMessage] = useState(DEFAULT_MESAGE);
+    const [isSideMenuToogle, setSideMenuToggled] = useState(true);
+    const toggleTrueFalse = () => setSideMenuToggled(!isSideMenuToogle);
+    const { isLoading, getValue: getLiteralValue } = useLiteralValue();
 
-    // const { encryptMessage, decryptMessage } = useCryptoAES256();
-
-    // const handleEncrypt = () => {
-    //     const encrypted = encryptMessage(message, PASSWD);
-    //     setMessage(encrypted);
-    //     console.debug({ encrypted });
-    // };
-
-    // const handleDecrypt = () => {
-    //     const decrypted = decryptMessage(message, PASSWD);
-    //     setMessage(decrypted);
-    //     console.debug({ decrypted });
-    // };
-
-    // const handleRefresh = () => {
-    //     setMessage('Hello world');
-    // };
-
-    // return (
-    //     <div className="App">
-    //         <button onClick={handleEncrypt}>Encrypt</button>
-    //         <button onClick={handleDecrypt}>Decrypt</button>
-    //         <button onClick={handleRefresh}>Refresh</button>
-    //     </div>
-    // );
+    return (
+        <Spin spinning={isLoading}>
+            <Router history={history}>
+                <Layout>
+                    <Sider trigger={null} collapsible={true} collapsed={isSideMenuToogle}>
+                        <MainMenu />
+                    </Sider>
+                    <Layout className={style.site_layout}>
+                        <Header className={style.site_layout_header}>
+                            <HeaderPanel isSideMenuToogle={isSideMenuToogle} onToggleTrueFalse={toggleTrueFalse} />
+                        </Header>
+                        <Content className={style.site_layout_content}>
+                            <MainRoutes />
+                        </Content>
+                        <Footer>{getLiteralValue('Layout.footer')}</Footer>
+                    </Layout>
+                </Layout>
+            </Router>
+        </Spin>
+    );
 };

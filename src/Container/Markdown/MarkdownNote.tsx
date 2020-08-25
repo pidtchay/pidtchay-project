@@ -1,6 +1,7 @@
 import { Button } from 'antd';
 import React, { useContext } from 'react';
-import MarkdownNoteContext from 'Container/Markdown/Context';
+import ReactMarkdown from 'react-markdown';
+import MarkdownNoteContext from 'Container/Markdown/MarkdownContext';
 import { IMarkdownNote, IMarkdownNoteContext } from 'Container/Markdown/Models';
 import { EMarkdownStep } from 'Container/Markdown/enums';
 import { setCurrentNote, setMarkdownStep } from 'Store/markdown_notes/actions';
@@ -31,7 +32,8 @@ export const MarkdownNote: React.FC<IProps> = ({ note }) => {
     return (
         <div className={styles.markdownNote}>
             <p>{note.createDate}</p>
-            <p>{note.title}</p>
+            <ReactMarkdown source={note.title} />
+            <ReactMarkdown source={note.text.split(note.title).filter(Boolean).join('')} />
             <div>
                 <Button type="primary" onClick={handleEditNote}>
                     {getLiteralValue('ACTIONS.edit')}
