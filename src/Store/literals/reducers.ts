@@ -9,10 +9,7 @@ import { LiteralActionTypes, LOAD_LITERALS } from './types';
  *
  * @returns {void}
  */
-export const literalsReducer = (
-    state: ILiterals = {},
-    actions: LiteralActionTypes
-) => {
+export const literalsReducer = (state: ILiterals = {}, actions: LiteralActionTypes) => {
     switch (actions.type) {
         case LOAD_LITERALS:
             return { ...actions.payload };

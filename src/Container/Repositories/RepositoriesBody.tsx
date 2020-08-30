@@ -27,24 +27,13 @@ interface IRepositoriesBodyProps {
 /**
  * Repositories Body Component.
  */
-export const RepositoriesBody: React.FC<IRepositoriesBodyProps> = ({
-    columns,
-    data,
-    onFetchRepositories
-}) => {
+export const RepositoriesBody: React.FC<IRepositoriesBodyProps> = ({ columns, data, onFetchRepositories }) => {
     const { getValue: getLiteralValue } = useLiteralValue();
-    const placeholder = convertStringArrayToString(
-        getLiteralValue('Pages.GithubRepositories.search_placeholder')
-    );
+    const placeholder = convertStringArrayToString(getLiteralValue('Pages.GithubRepositories.search_placeholder'));
     return (
         <>
             <div>
-                <Search
-                    placeholder={placeholder}
-                    enterButton="Search"
-                    size="large"
-                    onSearch={onFetchRepositories}
-                />
+                <Search placeholder={placeholder} enterButton="Search" size="large" onSearch={onFetchRepositories} />
             </div>
             <TableComponent columns={columns} dataSource={data || []} />
             <Tooltip title={getLiteralValue('ACTIONS.up')}>

@@ -11,13 +11,7 @@ interface IUpdateSessionProps {
     errorTitle: string;
 }
 
-export const thunkUpdateSession = ({
-    loginData,
-    loginDescription,
-    loginTitle,
-    errorDescription,
-    errorTitle
-}: IUpdateSessionProps): TThunkResult<void> => {
+export const thunkUpdateSession = ({ loginData, loginDescription, loginTitle, errorDescription, errorTitle }: IUpdateSessionProps): TThunkResult<void> => {
     return async (dispatch) => {
         await updateSessionAPI(loginData)
             .then((resp) => {

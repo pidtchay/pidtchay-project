@@ -16,9 +16,7 @@ export const AboutPage = () => {
                 <Row gutter={[16, 16]}>
                     <div>
                         <Divider orientation="left">
-                            <Title>
-                                {getLiteralValue('Pages.About.title')}
-                            </Title>
+                            <Title>{getLiteralValue('Pages.About.title')}</Title>
                         </Divider>
                         <p>{getLiteralValue('Pages.About.greeting')}</p>
                         <p>{getLiteralValue('Pages.About.paragraph1')}</p>

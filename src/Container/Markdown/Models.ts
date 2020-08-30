@@ -18,12 +18,16 @@ export interface ICursorPositionSettings {
  *
  * @property {string} [id] UUID.
  * @property {string} [createDate] Create date time.
+ * @property {string} [title] Note title.
  * @property {string} [text] Note text.
+ * @property {string} [isEncrypted] Encryp flag.
  */
 export interface IMarkdownNote {
     id: string;
     createDate: string;
+    title: string;
     text: string;
+    isEncrypted?: boolean;
 }
 
 /**

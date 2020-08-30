@@ -1,53 +1,48 @@
-import { Row, Col, Button, Typography } from 'antd';
+import { Row, Col, Button, Typography, Switch, Modal, Input } from 'antd';
 import moment from 'moment';
 import React, { useContext, useRef, useEffect, useState } from 'react';
 import { uuid } from 'uuidv4';
+import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
 import { DATE_TIME_FORMAT } from 'Constants/Common';
 import { ActionsPanel } from 'Container/Markdown/ActionsPanel';
-import MarkdownNoteContext from 'Container/Markdown/Context';
+import MarkdownNoteContext from 'Container/Markdown/MarkdownContext';
 import { IMarkdownNoteContext } from 'Container/Markdown/Models';
 import { EMarkdownStep } from 'Container/Markdown/enums';
-import { useSelection } from 'Container/Markdown/hooks';
-import { getSpacesInSyntax } from 'Container/Markdown/utils';
-import {
-    setMarkdownText,
-    updateNote,
-    setCurrentNote,
-    createNote,
-    setMarkdownStep
-} from 'Store/markdown_notes/actions';
+import { setMarkdownText, updateNote, setCurrentNote, createNote, setMarkdownStep } from 'Store/markdown_notes/actions';
 import styles from 'Style/MarkdownEditor/MarkdowInput.less';
+import { openNotificationWithIcon, convertStringArrayToString } from 'Utils/common';
 import { useLiteralValue } from 'Utils/hooks';
+import { useCryptoAES256 } from 'Utils/useCryproAES256';
+import { useMarkdownNoteEdit, useSelection } from './hooks';
+import { getSpacesInSyntax } from './utils';
 
 const { Title } = Typography;
 
 export const MarkdownNoteEdit = () => {
-    const myRef = useRef<HTMLTextAreaElement>();
-
     const { getValue: getLiteralValue } = useLiteralValue();
+    const { currentNote, dispatch } = useContext<IMarkdownNoteContext>(MarkdownNoteContext);
 
-    const { getLastSelection, setSelection } = useSelection(myRef);
+    // Refs
+    const textareaRef = useRef<HTMLTextAreaElement>();
+    const createDate = useRef(currentNote ? currentNote.createDate : moment(new Date()).format(DATE_TIME_FORMAT));
 
-    const { currentNote, dispatch } = useContext<IMarkdownNoteContext>(
-        MarkdownNoteContext
-    );
+    // Custom hooks
+    const { setSelection } = useSelection(textareaRef);
+    const { noteText, currentSyntax, title, changeValue, changeMarkdownSyntax } = useMarkdownNoteEdit(currentNote);
+    const { encryptMessage, decryptMessage } = useCryptoAES256();
 
-    const createDate = useRef(
-        currentNote
-            ? currentNote.createDate
-            : moment(new Date()).format(DATE_TIME_FORMAT)
-    );
-
-    const [textArea, setTextArea] = useState(
-        currentNote ? currentNote.text : ''
-    );
-    const [currentSyntax, setCurrentSyntax] = useState('');
+    // Component state
+    const [passwd, setPasswd] = useState('');
+    const [visible, setVisible] = useState(false);
+    const [isEncrypt, setEncryptFlag] = useState(false);
+    const [isEncrypted, setEncrypted] = useState(false);
+    const [isDecrypted, setDecrypted] = useState(false);
 
     useEffect(() => {
-        if (!myRef || !myRef.current) {
+        if (!textareaRef || !textareaRef.current) {
             return;
         }
-        const { selectionStart, selectionEnd } = myRef.current;
+        const { selectionStart, selectionEnd } = textareaRef.current;
         const spaces = getSpacesInSyntax(currentSyntax);
 
         if (spaces.type === 'plus') {
@@ -62,33 +57,27 @@ export const MarkdownNoteEdit = () => {
             });
         }
 
-        myRef.current.focus();
-    }, [myRef]);
+        textareaRef.current.focus();
+    }, [noteText, currentSyntax]);
 
-    const handleInputChange = (value: string) => {
-        setTextArea(value);
-        setCurrentSyntax('');
-        dispatch(setMarkdownText(value));
-    };
-
-    const handleAddMarkdownSynt = (value: string) => {
-        console.debug({ selection: getLastSelection() });
-        const newValue = `${textArea}${value}`;
-        setTextArea(newValue);
-        setCurrentSyntax(value);
-        dispatch(setMarkdownText(newValue));
-    };
+    useEffect(() => {
+        if (isEncrypted) {
+            handleSaveNote();
+        }
+    }, [isEncrypted, noteText]);
 
     const handleSaveNote = () => {
         if (currentNote) {
-            dispatch(updateNote(textArea));
+            dispatch(updateNote(noteText));
             dispatch(setCurrentNote(null));
         } else {
             dispatch(
                 createNote({
                     id: uuid(),
                     createDate: createDate.current,
-                    text: textArea
+                    title: title || noteText.split('\n')[0],
+                    text: noteText,
+                    isEncrypted: isEncrypted
                 })
             );
         }
@@ -97,34 +86,89 @@ export const MarkdownNoteEdit = () => {
         dispatch(setMarkdownText(''));
     };
 
+    const handleEncryptChange = () => setEncryptFlag(!isEncrypt);
+
+    const handleEncrypt = () => {
+        encryptMessage(noteText, passwd).then((encrypted) => {
+            changeValue(encrypted);
+            setEncrypted(!isEncrypted);
+        });
+    };
+
+    const handleDecrypt = () => {
+        decryptMessage(noteText, passwd).then((decrypted) => {
+            if (decrypted && decrypted !== '') {
+                changeValue(decrypted);
+                dispatch(setMarkdownText(decrypted));
+                setDecrypted(!isDecrypted);
+            } else {
+                openNotificationWithIcon({
+                    description: convertStringArrayToString(getLiteralValue('Notification.crypto.description')),
+                    title: convertStringArrayToString(getLiteralValue('Notification.crypto.title')),
+                    type: 'error'
+                });
+            }
+        });
+    };
+
+    const handleInputChange = (value: string) => {
+        changeValue(value);
+        dispatch(setMarkdownText(value));
+    };
+    const handleOk = () => {
+        if (!passwd) {
+            openNotificationWithIcon({
+                description: convertStringArrayToString(getLiteralValue('Notification.passPhrase.description')),
+                title: convertStringArrayToString(getLiteralValue('Notification.passPhrase.title')),
+                type: 'error'
+            });
+            return;
+        }
+        if (!isDecrypted && currentNote?.isEncrypted) {
+            handleDecrypt();
+        } else {
+            handleEncrypt();
+        }
+        setVisible(false);
+    };
+
+    const handleCancel = () => setVisible(false);
+
+    const showModal = () => setVisible(true);
+
     return (
         <Col span={10}>
             <Row gutter={[16, 16]}>
-                <Title level={2}>
-                    {getLiteralValue('Pages.Markdown.MarkdownInput.title')}
-                </Title>
+                <Title level={2}>{getLiteralValue('Pages.Markdown.MarkdownInput.title')}</Title>
             </Row>
             <Row gutter={[16, 16]}>
-                <Col>{`${getLiteralValue(
-                    'Pages.Markdown.MarkdownInput.createDate'
-                )}${createDate}`}</Col>
+                <Col>{`${getLiteralValue('Pages.Markdown.MarkdownInput.createDate')}${createDate.current}`}</Col>
             </Row>
-            <ActionsPanel onSetTextValue={handleAddMarkdownSynt} />
+            <ActionsPanel onSetTextValue={changeMarkdownSyntax} />
             <Row gutter={[16, 16]}>
-                <textarea
-                    className={styles.markdownInput}
-                    ref={myRef}
-                    value={textArea}
-                    rows={10}
-                    onChange={(e) => handleInputChange(e.target.value)}
-                />
+                <textarea className={styles.markdownInput} ref={textareaRef} value={noteText} rows={10} onChange={(e) => handleInputChange(e.target.value)} />
             </Row>
             <Row gutter={[16, 16]}>
                 <Col>
-                    <Button type="primary" onClick={handleSaveNote}>
+                    <Switch onChange={handleEncryptChange} checkedChildren={<CheckOutlined />} unCheckedChildren={<CloseOutlined />} checked={isEncrypt} />
+                </Col>
+            </Row>
+            <Row gutter={[16, 16]}>
+                <Col>
+                    <Button type="primary" onClick={isEncrypt ? showModal : handleSaveNote}>
                         {getLiteralValue('ACTIONS.save')}
                     </Button>
                 </Col>
+                {currentNote?.isEncrypted && !isDecrypted && (
+                    <Col>
+                        <Button onClick={showModal}>Decrypt</Button>
+                    </Col>
+                )}
+            </Row>
+            <Row>
+                <Modal title={getLiteralValue('Pages.Markdown.MarkdownInput.Note.passPhrase.title')} visible={visible} onOk={handleOk} onCancel={handleCancel}>
+                    <Input.Password onChange={(e) => setPasswd(e.target.value)} placeholder={convertStringArrayToString(getLiteralValue('Pages.Markdown.MarkdownInput.Note.passPhrase.placeholder'))} />
+                </Modal>
             </Row>
         </Col>
     );

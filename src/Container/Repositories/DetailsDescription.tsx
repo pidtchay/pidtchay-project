@@ -8,38 +8,14 @@ interface IDetailsDescriptionProps {
     language: string;
 }
 
-export const DetailsDescription: React.FC<IDetailsDescriptionProps> = ({
-    name,
-    description,
-    language
-}) => {
+export const DetailsDescription: React.FC<IDetailsDescriptionProps> = ({ name, description, language }) => {
     const { getValue: getLiteralValue } = useLiteralValue();
     return (
         <>
-            <Descriptions
-                title={getLiteralValue(
-                    'Pages.GithubRepositories.Details.description'
-                )}
-            >
-                <Descriptions.Item
-                    label={getLiteralValue(
-                        'Pages.GithubRepositories.Details.name'
-                    )}
-                >
-                    {name}
-                </Descriptions.Item>
-                <Descriptions.Item
-                    label={getLiteralValue(
-                        'Pages.GithubRepositories.Details.description'
-                    )}
-                >
-                    {description}
-                </Descriptions.Item>
-                <Descriptions.Item
-                    label={getLiteralValue(
-                        'Pages.GithubRepositories.Details.language'
-                    )}
-                >
+            <Descriptions title={getLiteralValue('Pages.GithubRepositories.Details.description')}>
+                <Descriptions.Item label={getLiteralValue('Pages.GithubRepositories.Details.name')}>{name}</Descriptions.Item>
+                <Descriptions.Item label={getLiteralValue('Pages.GithubRepositories.Details.description')}>{description}</Descriptions.Item>
+                <Descriptions.Item label={getLiteralValue('Pages.GithubRepositories.Details.language')}>
                     <Tag color="geekblue">{language}</Tag>
                 </Descriptions.Item>
             </Descriptions>

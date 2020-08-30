@@ -21,17 +21,6 @@ interface ITableProps {
  * @param {Array<IColumnField>} [root0.columns] - Columns.
  * @param {Array<IRepositoryData>} [root0.dataSource] - Data source.
  */
-export const TableComponent: React.FC<ITableProps> = ({
-    columns,
-    dataSource
-}) => {
-    return (
-        <Table
-            dataSource={dataSource}
-            columns={columns}
-            rowKey={(record) => record.id}
-            loading={dataSource.length === 0}
-            pagination={{ current: 1, pageSize: 30 }}
-        />
-    );
+export const TableComponent: React.FC<ITableProps> = ({ columns, dataSource }) => {
+    return <Table dataSource={dataSource} columns={columns} rowKey={(record) => record.id} loading={dataSource.length === 0} pagination={{ current: 1, pageSize: 30 }} />;
 };

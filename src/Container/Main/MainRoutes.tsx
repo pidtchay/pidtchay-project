@@ -18,27 +18,12 @@ import { RepositoryDetailsPage } from 'Container/Repositories/RepositoryDetailsP
 export const MainRoutes = () => {
     return (
         <Switch>
-            <Route
-                path={ContentRoute.LOGIN}
-                render={(props) => <LogInPage {...props} />}
-            />
+            <Route path={ContentRoute.LOGIN} render={(props) => <LogInPage {...props} />} />
             <Route path={ContentRoute.ABOUT} render={() => <AboutPage />} />,
-            <AuthRoute
-                path={ContentRoute.REPOSITORIES.DETAILS}
-                component={RepositoryDetailsPage}
-            />
-            <AuthRoute
-                path={ContentRoute.REPOSITORIES.DEFAULT}
-                component={RepositoriesPage}
-            />
-            <AuthRoute
-                path={ContentRoute.MARKDOWN}
-                component={() => <MarkdownNotes />}
-            />
-            <AuthRoute
-                path={ContentRoute.HOME}
-                component={() => <HomePage />}
-            />
+            <AuthRoute path={ContentRoute.REPOSITORIES.DETAILS} component={RepositoryDetailsPage} />
+            <AuthRoute path={ContentRoute.REPOSITORIES.DEFAULT} component={RepositoriesPage} />
+            <AuthRoute path={ContentRoute.MARKDOWN} component={() => <MarkdownNotes />} />
+            <AuthRoute path={ContentRoute.HOME} component={() => <HomePage />} />
         </Switch>
     );
 };

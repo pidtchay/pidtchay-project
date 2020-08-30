@@ -9,21 +9,7 @@ import { RootState } from 'Store';
 /**
  * Authorisation route component.
  */
-export const AuthRoute: React.FC<RouteProps> = ({
-    component: Component,
-    ...rest
-}) => {
+export const AuthRoute: React.FC<RouteProps> = ({ component: Component, ...rest }) => {
     const auth = useSelector((state: RootState) => state.system.authenticated);
-    return (
-        <Route
-            {...rest}
-            render={(props) =>
-                !auth ? (
-                    <Redirect to={MenuRoute.LOGIN} />
-                ) : (
-                    <Component {...props} />
-                )
-            }
-        />
-    );
+    return <Route {...rest} render={(props) => (!auth ? <Redirect to={MenuRoute.LOGIN} /> : <Component {...props} />)} />;
 };

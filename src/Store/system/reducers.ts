@@ -16,10 +16,7 @@ const initialState: ISystemState = {
  * @param {ISystemState} [state] - Initial state.
  * @param {SystemActionTypes} [actions] - System action types.
  */
-export const systemReducer = (
-    state: ISystemState = initialState,
-    actions: SystemActionTypes
-) => {
+export const systemReducer = (state: ISystemState = initialState, actions: SystemActionTypes) => {
     switch (actions.type) {
         case UPDATE_SESSION:
             return {

@@ -1,12 +1,5 @@
 /* eslint-disable */
-import {
-    TMarkdownNoteActionTypes,
-    CREATE_NOTE,
-    UPDATE_NOTE,
-    SET_CURRENT_NOTE,
-    SET_MARKDOWD_STEP,
-    SET_MARKDOWD_TEXT
-} from './types';
+import { TMarkdownNoteActionTypes, CREATE_NOTE, UPDATE_NOTE, SET_CURRENT_NOTE, SET_MARKDOWD_STEP, SET_MARKDOWD_TEXT } from './types';
 import { IMarkdownNoteContext } from 'Container/Markdown/Models';
 import { EMarkdownStep } from 'Container/Markdown/enums';
 
@@ -17,10 +10,7 @@ const initialState: IMarkdownNoteContext = {
     markdownText: ''
 };
 
-export function reducer(
-    state: IMarkdownNoteContext = initialState,
-    action: TMarkdownNoteActionTypes
-) {
+export function reducer(state: IMarkdownNoteContext = initialState, action: TMarkdownNoteActionTypes) {
     switch (action.type) {
         case CREATE_NOTE: {
             const addedNotes = [...state.notes, action.payload];
@@ -35,15 +25,9 @@ export function reducer(
                 text: action.payload
             };
 
-            const updatedNotesIndex = state.notes.findIndex(
-                (note) => note.id === state.currentNote.id
-            );
+            const updatedNotesIndex = state.notes.findIndex((note) => note.id === state.currentNote.id);
 
-            const updatedNotes = [
-                ...state.notes.slice(0, updatedNotesIndex),
-                updatedNote,
-                ...state.notes.slice(updatedNotesIndex + 1)
-            ];
+            const updatedNotes = [...state.notes.slice(0, updatedNotesIndex), updatedNote, ...state.notes.slice(updatedNotesIndex + 1)];
 
             return {
                 currentNote: null,

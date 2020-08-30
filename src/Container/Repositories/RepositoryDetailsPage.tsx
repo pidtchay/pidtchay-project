@@ -16,10 +16,5 @@ export const RepositoryDetailsPage: React.FC<RouteComponentProps> = (props) => {
         props.history.push(MenuRoute.REPOSITORIES.DEFAULT);
     };
 
-    return (
-        <RepositoryDetails
-            repository={repository}
-            onBackClick={handleBackClick}
-        />
-    );
+    return <RepositoryDetails repository={repository} onBackClick={handleBackClick} />;
 };

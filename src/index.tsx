@@ -9,10 +9,7 @@ import thunk from 'redux-thunk';
 import { rootReducer } from 'Store';
 import { loadLiterals } from 'Store/literals/actions';
 
-const store = createStore(
-    rootReducer,
-    composeWithDevTools(applyMiddleware(thunk))
-);
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 loadLang().then((lang) => store.dispatch(loadLiterals(lang)));
 
 ReactDOM.render(

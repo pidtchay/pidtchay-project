@@ -20,11 +20,7 @@ interface ISelection {
  * @param {number} [start] - Cursor start position.
  * @param {number} [end] - Cursor end position.
  */
-export function setInputSelection(
-    input: HTMLTextAreaElement,
-    start: number,
-    end?: number
-) {
+export function setInputSelection(input: HTMLTextAreaElement, start: number, end?: number) {
     if (end == undefined) {
         end = start;
     }
