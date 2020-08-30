@@ -32,9 +32,4 @@ interface ISetMarkdownText {
     payload: string;
 }
 
-export type TMarkdownNoteActionTypes =
-    | ISetCurrentNote
-    | ICreateNote
-    | IUpdateNote
-    | ISetStep
-    | ISetMarkdownText;
+export type TMarkdownNoteActionTypes = ISetCurrentNote | ICreateNote | IUpdateNote | ISetStep | ISetMarkdownText;

@@ -100,7 +100,13 @@
       "page_title":"Markdown Editor",
       "MarkdownInput": {
         "title":"Rich text",
-        "createDate":"Created: "
+        "createDate":"Created: ",
+        "Note": {
+          "passPhrase": {
+            "title": "Pass phrase",
+            "placeholder": "input password"
+          }
+        }
       },
       "MarkdownPreview": {
         "title":"Converted to MarkDown Text"
@@ -117,6 +123,16 @@
     "login": {
       "title": "Authorization was successful.",
       "description": "Welcome! Have a nice day and mood."
+    },
+    "crypto": {
+      "incorrectPasswd": {
+        "title": "Error",
+        "description": "Incorrect password. Try again."
+      }
+    },
+    "passPhrase": {
+      "title": "Error",
+      "description": "Empty pass phrase. Input your password."
     }
   }
 }

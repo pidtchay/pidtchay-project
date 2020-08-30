@@ -90,7 +90,13 @@
       "page_title":"Markdown редактор",
       "MarkdownInput": {
         "title":"Текст с разметкой Markdown",
-        "createDate":"Создано: "
+        "createDate":"Создано: ",
+        "Note": {
+          "passPhrase": {
+            "title": "Пароль",
+            "placeholder": "введите пароль"
+          }
+        }
       },
       "MarkdownPreview": {
         "title":"Преобразованный в MarkDown текст"
@@ -107,6 +113,16 @@
     "login": {
       "title": "Авторизация прошла успешно.",
       "description": "Добро пожаловать! Хорошего дня и настроения."
+    },
+    "crypto": {
+      "incorrectPasswd": {
+        "title": "Ошибка",
+        "description": "Введен неправильный пароль. Попробуйте еще раз."
+      }
+    },
+    "passPhrase": {
+      "title": "Error",
+      "description": "Пароль не указан. Введите пароль."
     }
   }
 }

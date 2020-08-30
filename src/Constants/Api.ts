@@ -3,7 +3,6 @@ export const GITHUB_API = {
         LIST: ''
     },
     REPOS: {
-        LIST_BY_ORGNAME: (orgName: string) =>
-            `https://api.github.com/orgs/${orgName}/repos`
+        LIST_BY_ORGNAME: (orgName: string) => `https://api.github.com/orgs/${orgName}/repos`
     }
 };

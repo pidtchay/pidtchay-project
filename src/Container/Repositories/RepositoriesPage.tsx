@@ -4,10 +4,7 @@ import { ILiterals } from 'Model/Literals';
 import { IRepositoryData } from 'Model/RepositoryData';
 import { RootState } from 'Store';
 import { thunkFetchRepositoryData } from 'Store/repository/thunks';
-import {
-    convertRepositoryDataToSchema,
-    convertRepositoryDataToColumns
-} from 'Utils/TableUtils';
+import { convertRepositoryDataToSchema, convertRepositoryDataToColumns } from 'Utils/TableUtils';
 import { RepositoriesBody } from './RepositoriesBody';
 
 interface IState {
@@ -37,26 +34,15 @@ class RepositoriesPageComponent extends React.Component<IProps, IState> {
     }
 
     handleFetchRepositories = (value: string) => {
-        this.setState({ orgname: value }, () =>
-            this.props.fetchRepositories(
-                this.state.orgname,
-                this.props.literals
-            )
-        );
+        this.setState({ orgname: value }, () => this.props.fetchRepositories(this.state.orgname, this.props.literals));
     };
 
     render() {
         const { repositoryData } = this.props;
-        const columns = convertRepositoryDataToColumns(
-            convertRepositoryDataToSchema(repositoryData[0])
-        );
+        const columns = convertRepositoryDataToColumns(convertRepositoryDataToSchema(repositoryData[0]));
         return (
             <>
-                <RepositoriesBody
-                    columns={columns}
-                    data={repositoryData}
-                    onFetchRepositories={this.handleFetchRepositories}
-                />
+                <RepositoriesBody columns={columns} data={repositoryData} onFetchRepositories={this.handleFetchRepositories} />
             </>
         );
     }
@@ -70,11 +56,7 @@ const mapStateToProps = (state: RootState) => {
 };
 
 const mapPropsToDispatch = {
-    fetchRepositories: (orgName: string, literals: ILiterals) =>
-        thunkFetchRepositoryData(orgName, literals)
+    fetchRepositories: (orgName: string, literals: ILiterals) => thunkFetchRepositoryData(orgName, literals)
 };
 
-export const RepositoriesPage = connect(
-    mapStateToProps,
-    mapPropsToDispatch
-)(RepositoriesPageComponent);
+export const RepositoriesPage = connect(mapStateToProps, mapPropsToDispatch)(RepositoriesPageComponent);

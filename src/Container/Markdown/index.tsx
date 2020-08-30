@@ -12,9 +12,7 @@ export const MarkdownNoteEditor = () => {
     return (
         <Col span={24}>
             <Row gutter={[16, 16]}>
-                <Title level={1}>
-                    {getLiteralValue('Pages.Markdown.page_title')}
-                </Title>
+                <Title level={1}>{getLiteralValue('Pages.Markdown.page_title')}</Title>
             </Row>
             <Row gutter={[16, 16]}>
                 <MarkdownNoteEdit />

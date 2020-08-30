@@ -10,9 +10,6 @@ import history from 'Utils/history';
 import { useLiteralValue } from 'Utils/hooks';
 const { Header, Content, Sider, Footer } = Layout;
 
-// import React, { useState } from 'react';
-// import { useThrottledFunction } from 'Utils/hooks';
-
 export const App = () => {
     const [isSideMenuToogle, setSideMenuToggled] = useState(true);
     const toggleTrueFalse = () => setSideMenuToggled(!isSideMenuToogle);
@@ -22,19 +19,12 @@ export const App = () => {
         <Spin spinning={isLoading}>
             <Router history={history}>
                 <Layout>
-                    <Sider
-                        trigger={null}
-                        collapsible={true}
-                        collapsed={isSideMenuToogle}
-                    >
+                    <Sider trigger={null} collapsible={true} collapsed={isSideMenuToogle}>
                         <MainMenu />
                     </Sider>
                     <Layout className={style.site_layout}>
                         <Header className={style.site_layout_header}>
-                            <HeaderPanel
-                                isSideMenuToogle={isSideMenuToogle}
-                                onToggleTrueFalse={toggleTrueFalse}
-                            />
+                            <HeaderPanel isSideMenuToogle={isSideMenuToogle} onToggleTrueFalse={toggleTrueFalse} />
                         </Header>
                         <Content className={style.site_layout_content}>
                             <MainRoutes />

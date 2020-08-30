@@ -18,9 +18,7 @@ interface ISchema {
     type: ERenderType;
 }
 
-export const convertRepositoryDataToColumns = (
-    data: ISchema[]
-): IColumnField[] => {
+export const convertRepositoryDataToColumns = (data: ISchema[]): IColumnField[] => {
     if (!data) return [];
     return data.map((item) => {
         const column: IColumnField = {
@@ -31,14 +29,7 @@ export const convertRepositoryDataToColumns = (
 
         if (item.type === ERenderType.LINK) {
             column.render = () => (
-                <Button
-                    type="link"
-                    onClick={() =>
-                        history.push(
-                            MenuRoute.REPOSITORIES.DETAILS(item.description)
-                        )
-                    }
-                >
+                <Button type="link" onClick={() => history.push(MenuRoute.REPOSITORIES.DETAILS(item.description))}>
                     {item.description}
                 </Button>
             );
@@ -47,18 +38,14 @@ export const convertRepositoryDataToColumns = (
             column.render = () => <Avatar src={item.description} />;
         }
         if (item.type === ERenderType.TAG) {
-            column.render = () => (
-                <Tag color="geekblue">{item.description}</Tag>
-            );
+            column.render = () => <Tag color="geekblue">{item.description}</Tag>;
         }
 
         return column;
     });
 };
 
-export const convertRepositoryDataToSchema = (
-    data: IRepositoryData
-): ISchema[] => {
+export const convertRepositoryDataToSchema = (data: IRepositoryData): ISchema[] => {
     if (!data) return [];
     return Object.keys(data).map((item) => {
         const schema: ISchema = {
