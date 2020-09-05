@@ -1,7 +1,7 @@
 import { Row, Col, Button } from 'antd';
 import React from 'react';
 import { BoldOutlined, ItalicOutlined, StrikethroughOutlined, TableOutlined } from '@ant-design/icons';
-import { MarkdownSyntax } from 'Container/Markdown/enums';
+import { ESpecialSyntax } from 'Container/Markdown/enums';
 
 /**
  * @property {string} [textValue] Textarea value.
@@ -12,31 +12,31 @@ interface IProps {
 }
 
 export const ActionsPanel: React.FC<IProps> = ({ onSetTextValue }) => {
-    const handleSetTextareaValue = (syntax: MarkdownSyntax) => {
+    const handleSetTextareaValue = (syntax: ESpecialSyntax) => {
         onSetTextValue(syntax);
     };
     return (
         <Row gutter={[16, 16]}>
             <Col>
-                <Button onClick={() => handleSetTextareaValue(MarkdownSyntax.HEADER)}>H</Button>
+                <Button onClick={() => handleSetTextareaValue(ESpecialSyntax.HEADER)}>H</Button>
             </Col>
             <Col>
-                <Button onClick={() => handleSetTextareaValue(MarkdownSyntax.BOLD)} icon={<BoldOutlined />} />
+                <Button onClick={() => handleSetTextareaValue(ESpecialSyntax.BOLD)} icon={<BoldOutlined />} />
             </Col>
             <Col>
-                <Button onClick={() => handleSetTextareaValue(MarkdownSyntax.ITALIAN)} icon={<ItalicOutlined />} />
+                <Button onClick={() => handleSetTextareaValue(ESpecialSyntax.ITALIAN)} icon={<ItalicOutlined />} />
             </Col>
             <Col>
-                <Button onClick={() => handleSetTextareaValue(MarkdownSyntax.STRIKETHROUGH)} icon={<StrikethroughOutlined />} />
+                <Button onClick={() => handleSetTextareaValue(ESpecialSyntax.STRIKETHROUGH)} icon={<StrikethroughOutlined />} />
             </Col>
             <Col>
-                <Button onClick={() => handleSetTextareaValue(MarkdownSyntax.BLOCK_QUOTE)}>Q</Button>
+                <Button onClick={() => handleSetTextareaValue(ESpecialSyntax.BLOCK_QUOTE)}>Q</Button>
             </Col>
             <Col>
-                <Button onClick={() => handleSetTextareaValue(MarkdownSyntax.BLOCK_CODE)}>C</Button>
+                <Button onClick={() => handleSetTextareaValue(ESpecialSyntax.BLOCK_CODE)}>C</Button>
             </Col>
             <Col>
-                <Button onClick={() => handleSetTextareaValue(MarkdownSyntax.BLOCK_TABLE)} icon={<TableOutlined />} />
+                <Button onClick={() => handleSetTextareaValue(ESpecialSyntax.BLOCK_TABLE)} icon={<TableOutlined />} />
             </Col>
         </Row>
     );

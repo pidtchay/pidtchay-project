@@ -1,4 +1,5 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+/* eslint-disable @typescript-eslint/no-var-requires */
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const webpackModuleRules = {
     module: {
@@ -29,10 +30,10 @@ const webpackModuleRules = {
             },
             {
                 test: /\.css$/,
-                use: ['style-loader','css-loader']
+                use: ['style-loader', 'css-loader']
             }
         ]
     }
-}
+};
 
-module.exports = webpackModuleRules
+module.exports = webpackModuleRules;

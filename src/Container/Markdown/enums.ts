@@ -1,10 +1,9 @@
-export enum EMarkdownStep {
-    LIST = 'LIST',
-    CREATE = 'CREATE',
-    UPDATE = 'UPDATE'
+export enum ESyntaxType {
+    COVERED,
+    PREFIX
 }
 
-export enum MarkdownSyntax {
+export enum ESpecialSyntax {
     HEADER = '#',
     BOLD = '****',
     ITALIAN = '**',
@@ -12,4 +11,16 @@ export enum MarkdownSyntax {
     BLOCK_QUOTE = '>',
     BLOCK_CODE = '```\n\n```',
     BLOCK_TABLE = '| ColumnName1 | ColumnName2 |\n| --------- | ------- |\n| Value1 | Value2 |\n'
+}
+
+export enum EOperationType {
+    PLUS,
+    MINUS,
+    HOLD
+}
+
+export enum EMarkdownStep {
+    LIST = 'LIST',
+    CREATE = 'CREATE',
+    UPDATE = 'UPDATE'
 }

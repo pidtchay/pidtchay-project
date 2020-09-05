@@ -2,10 +2,28 @@
 import { TMarkdownNoteActionTypes, CREATE_NOTE, UPDATE_NOTE, SET_CURRENT_NOTE, SET_MARKDOWD_STEP, SET_MARKDOWD_TEXT } from './types';
 import { IMarkdownNoteContext } from 'Container/Markdown/Models';
 import { EMarkdownStep } from 'Container/Markdown/enums';
+import { uuid } from 'uuidv4';
+import moment from 'moment';
+import { DATE_TIME_FORMAT } from 'Constants/Common';
 
 const initialState: IMarkdownNoteContext = {
     currentNote: null,
-    notes: [],
+    notes: [
+        {
+            id: uuid(),
+            createDate: moment(new Date()).format(DATE_TIME_FORMAT),
+            title: 'Title',
+            text: '1ju7OW3uOhy0oYqLTiEPNg==',
+            isEncrypted: true
+        },
+        {
+            id: uuid(),
+            createDate: moment(new Date()).format(DATE_TIME_FORMAT),
+            title: 'Title',
+            text: '# Header\n>this decrypted note.',
+            isEncrypted: false
+        }
+    ],
     step: EMarkdownStep.LIST,
     markdownText: ''
 };
