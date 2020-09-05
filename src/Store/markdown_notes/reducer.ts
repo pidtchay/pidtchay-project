@@ -39,8 +39,7 @@ export function reducer(state: IMarkdownNoteContext = initialState, action: TMar
         }
         case UPDATE_NOTE: {
             const updatedNote = {
-                ...state.currentNote,
-                text: action.payload
+                ...action.payload
             };
 
             const updatedNotesIndex = state.notes.findIndex((note) => note.id === state.currentNote.id);

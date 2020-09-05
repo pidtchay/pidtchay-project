@@ -33,6 +33,7 @@ export const MarkdownNoteEdit = () => {
 
     useEffect(() => {
         if (noteText && isEncryptedMessage) {
+            console.debug('useEffect isEncryptedMessage');
             saveNote();
         }
     }, [isEncryptedMessage]);
@@ -110,7 +111,9 @@ export const MarkdownNoteEdit = () => {
 
     const saveNote = () => {
         if (currentNote) {
-            dispatch(updateNote(noteText));
+            currentNote.text = noteText;
+            currentNote.isEncrypted = isEncryptedMessage;
+            dispatch(updateNote(currentNote));
             dispatch(setCurrentNote(null));
         } else {
             dispatch(

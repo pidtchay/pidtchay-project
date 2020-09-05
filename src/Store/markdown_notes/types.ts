@@ -19,7 +19,7 @@ interface ICreateNote {
 
 interface IUpdateNote {
     type: typeof UPDATE_NOTE;
-    payload: string;
+    payload: IMarkdownNote;
 }
 
 interface ISetStep {
