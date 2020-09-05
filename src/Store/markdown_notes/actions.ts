@@ -10,10 +10,10 @@ export function createNote(note: IMarkdownNote): TMarkdownNoteActionTypes {
     };
 }
 
-export function updateNote(value: string): TMarkdownNoteActionTypes {
+export function updateNote(note: IMarkdownNote): TMarkdownNoteActionTypes {
     return {
         type: UPDATE_NOTE,
-        payload: value
+        payload: note
     };
 }
 

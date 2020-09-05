@@ -6,9 +6,7 @@ const webpackPlugins = require('./webpack.plugins');
 module.exports = Object.assign({}, commonConfig, {
     mode: 'production',
     devtool: false,
-    plugins: Object.assign([], commonConfig.plugins, [
-        webpackPlugins.plugins.bundleAnalyzer
-    ]),
+    plugins: Object.assign([], commonConfig.plugins, [webpackPlugins.plugins.bundleAnalyzer]),
     optimization: Object.assign({}, commonConfig.optimization, {
         minimize: true,
         minimizer: [

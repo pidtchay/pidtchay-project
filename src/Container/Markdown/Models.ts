@@ -1,17 +1,6 @@
 import { Dispatch } from 'redux';
-import { EMarkdownStep } from 'Container/Markdown/enums';
+import { EMarkdownStep, ESyntaxType, ESpecialSyntax, EOperationType } from 'Container/Markdown/enums';
 import { TMarkdownNoteActionTypes } from 'Store/markdown_notes/types';
-
-/**
- * Cursor position settings.
- *
- * @property {'plus' | 'minus'} [type] Type of action to be performed.
- * @property {number} [spaces] Number of spaces.
- */
-export interface ICursorPositionSettings {
-    type: 'plus' | 'minus';
-    spaces: number;
-}
 
 /**
  * Data model markdown notes.
@@ -46,3 +35,55 @@ export interface IMarkdownNoteContext {
     step?: EMarkdownStep;
     dispatch?: Dispatch<TMarkdownNoteActionTypes>;
 }
+
+export interface ISpecialSyntaxConfig {
+    type: ESyntaxType;
+    value: ESpecialSyntax;
+    operation: EOperationType;
+    position?: number;
+}
+
+export const SpecialSyntaxRules: ISpecialSyntaxConfig[] = [
+    {
+        type: ESyntaxType.PREFIX,
+        operation: EOperationType.PLUS,
+        value: ESpecialSyntax.HEADER,
+        position: 1
+    },
+    {
+        type: ESyntaxType.COVERED,
+        operation: EOperationType.MINUS,
+        value: ESpecialSyntax.BOLD,
+        position: 2
+    },
+    {
+        type: ESyntaxType.COVERED,
+        operation: EOperationType.MINUS,
+        value: ESpecialSyntax.ITALIAN,
+        position: 1
+    },
+    {
+        type: ESyntaxType.COVERED,
+        operation: EOperationType.MINUS,
+        value: ESpecialSyntax.STRIKETHROUGH,
+        position: 2
+    },
+    {
+        type: ESyntaxType.PREFIX,
+        operation: EOperationType.PLUS,
+        value: ESpecialSyntax.BLOCK_QUOTE,
+        position: 1
+    },
+    {
+        type: ESyntaxType.COVERED,
+        operation: EOperationType.MINUS,
+        value: ESpecialSyntax.BLOCK_CODE,
+        position: 4
+    },
+    {
+        type: ESyntaxType.PREFIX,
+        operation: EOperationType.HOLD,
+        value: ESpecialSyntax.BLOCK_TABLE,
+        position: 0
+    }
+];

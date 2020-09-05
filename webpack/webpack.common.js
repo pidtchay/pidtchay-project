@@ -39,13 +39,7 @@ const common = {
             }
         }
     },
-    plugins: [
-        webpackPlugins.plugins.cleanWebpack,
-        webpackPlugins.plugins.forkTsChecker,
-        webpackPlugins.plugins.happyPack,
-        webpackPlugins.plugins.htmlWebpack,
-        webpackPlugins.plugins.miniCssExtract
-    ],
+    plugins: [webpackPlugins.plugins.cleanWebpack, webpackPlugins.plugins.forkTsChecker, webpackPlugins.plugins.happyPack, webpackPlugins.plugins.htmlWebpack, webpackPlugins.plugins.miniCssExtract],
     ...webpackModuleRules
 };
 

@@ -16,7 +16,8 @@
     "up": "UP",
     "save":"Save",
     "add":"Add",
-    "edit": "Edit"
+    "edit": "Edit",
+    "cancel":"Cancel"
   },
   "Forms": {
     "Login": {
@@ -132,7 +133,11 @@
     },
     "passPhrase": {
       "title": "Error",
-      "description": "Empty pass phrase. Input your password."
+      "description": "Empty pass phrase. Input your password.",
+      "minimumLength": {
+        "title": "Warning",
+        "description": "The minimum password length is 8 characters. Please enter the password according to the conditions."
+      }
     }
   }
 }

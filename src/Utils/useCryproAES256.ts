@@ -1,10 +1,13 @@
 /* eslint-disable jsdoc/require-returns */
 import { AES, pad, mode, enc, PBKDF2 } from 'crypto-js';
+import { useState } from 'react';
 
 /**
  * User custom AES string encryption hook.
  */
 export function useCryptoAES256() {
+    const [isEncryptedMessage, setEncryptedMessage] = useState(false);
+    const [isDecryptedMessage, setDecryptedMessage] = useState(false);
     const keySize = 256;
     const iterations = 1000;
 
@@ -34,5 +37,9 @@ export function useCryptoAES256() {
         return await AES.decrypt(ciphertext, key, config).toString(enc.Utf8);
     };
 
-    return { encryptMessage, decryptMessage };
+    const toggleEncrypted = () => setEncryptedMessage(!isEncryptedMessage);
+
+    const toggleDecrypted = () => setDecryptedMessage(!isDecryptedMessage);
+
+    return { encryptMessage, isEncryptedMessage, isDecryptedMessage, decryptMessage, toggleEngrypted: toggleEncrypted, toggleDecrypted };
 }
