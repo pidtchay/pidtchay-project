@@ -37,9 +37,9 @@ export function useCryptoAES256() {
         return await AES.decrypt(ciphertext, key, config).toString(enc.Utf8);
     };
 
-    const toggleEngrypted = () => setEncryptedMessage(!isEncryptedMessage);
+    const toggleEncrypted = () => setEncryptedMessage(!isEncryptedMessage);
 
     const toggleDecrypted = () => setDecryptedMessage(!isDecryptedMessage);
 
-    return { encryptMessage, isEncryptedMessage, isDecryptedMessage, decryptMessage, toggleEngrypted, toggleDecrypted };
+    return { encryptMessage, isEncryptedMessage, isDecryptedMessage, decryptMessage, toggleEngrypted: toggleEncrypted, toggleDecrypted };
 }
