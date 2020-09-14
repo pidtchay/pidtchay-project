@@ -17,3 +17,21 @@ export function fetchLanguages() {
             });
     };
 }
+
+/**
+ * Change language settings.
+ *
+ * @param {string} [languageName] - Language name.
+ */
+export function changeLanguage(languageName: string) {
+    return (dispatch) => {
+        dispatch(languagesFetching());
+        loadLang(languageName)
+            .then((languages) => {
+                dispatch(languagesFetched({ languages }));
+            })
+            .catch((error) => {
+                dispatch(languagesFetchingError({ errors: error }));
+            });
+    };
+}
