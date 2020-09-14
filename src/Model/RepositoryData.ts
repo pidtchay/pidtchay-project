@@ -17,7 +17,7 @@ export interface IRepositoryData {
     description: string;
     forks: number;
     homepage: string;
-    id: number;
+    id: number | string;
     language: string;
     name: string;
     owner: string;

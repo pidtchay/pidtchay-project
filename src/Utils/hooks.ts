@@ -1,20 +1,20 @@
 /* eslint-disable jsdoc/require-returns */
 import { useEffect, useState, useRef, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from 'Store';
+import { NewRootState } from 'Store/root';
 
 /**
  * A custom hook that gets the language setting and returns a value from the store at the specified path.
  */
 export function useLiteralValue() {
     const [isLoading, setLoading] = useState(true);
-    const literals = useSelector((state: RootState) => state.literals);
+    const literals = useSelector((state: NewRootState) => state.languages);
 
     useEffect(() => {
-        if (Object.keys(literals).length > 0) {
+        if (Object.keys(literals.languages).length > 0) {
             setLoading(false);
         }
-    }, [literals, isLoading]);
+    }, [literals.languages, isLoading]);
 
     /**
      * Deep value search by key in the transferred object.
@@ -24,7 +24,7 @@ export function useLiteralValue() {
     function getValue(path: string): [] {
         const idx = (p, o) => p.reduce((xs, x) => (xs && xs[x] ? xs[x] : null), o);
         const paths = path.split('.');
-        return idx(paths, literals);
+        return idx(paths, literals.languages);
     }
 
     return { isLoading, getValue };
