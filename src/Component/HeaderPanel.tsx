@@ -5,9 +5,9 @@ import { useSelector } from 'react-redux';
 import { MenuUnfoldOutlined, LoginOutlined, MenuFoldOutlined, UserOutlined, HomeOutlined } from '@ant-design/icons';
 import { ESupportedLanguages, EVENT_DELAY } from 'Constants/Common';
 import { MenuRoute } from 'Constants/Routes';
-import { RootState } from 'Store';
+import { cleanAuthSession } from 'Store/authSession/actions';
 import { changeLanguage } from 'Store/languages/api';
-import { cleanSession } from 'Store/system/actions';
+import { NewRootState } from 'Store/root';
 import style from 'Style/HeaderPanel.less';
 import history from 'Utils/history';
 import { useLiteralValue, useThrottledDispatchedFunction } from 'Utils/hooks';
@@ -22,11 +22,11 @@ export const HeaderPanel: React.FC<IHeaderPanel> = ({ isSideMenuToogle, onToggle
     const [languageUsed, setLanguageUsed] = useState(ESupportedLanguages.EN.toUpperCase());
     const [throttledLoadLiterals] = useThrottledDispatchedFunction(changeLanguage, EVENT_DELAY);
 
-    const [throttledCleanSession] = useThrottledDispatchedFunction(cleanSession, EVENT_DELAY);
+    const [throttledCleanSession] = useThrottledDispatchedFunction(cleanAuthSession, EVENT_DELAY);
 
     const { getValue: getLiteralValue } = useLiteralValue();
 
-    const auth = useSelector((state: RootState) => state.system.authenticated);
+    const auth = useSelector((state: NewRootState) => state.authSession.authenticated);
 
     const onGoHome = () => history.push(MenuRoute.HOME);
 

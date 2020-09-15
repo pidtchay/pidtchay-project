@@ -6,7 +6,7 @@ import { InitializationLoginData, EVENT_DELAY } from 'Constants/Common';
 import { MenuRoute } from 'Constants/Routes';
 import { LoginForm } from 'Container/Login/LoginForm';
 import { ILoginData } from 'Model/Authenticate';
-import { thunkUpdateSession } from 'Store/system/thunks';
+import { authorisation } from 'Store/authSession/api';
 import style from 'Style/Login/LoginPage.less';
 import { useLiteralValue, useThrottledDispatchedFunction, useThrottledFunction } from 'Utils/hooks';
 import { convertStringArrayToString } from '../../Utils/common';
@@ -19,7 +19,7 @@ import { convertStringArrayToString } from '../../Utils/common';
 export const LogInPage: React.FC<RouteComponentProps> = (props) => {
     const { getValue: getLiteralValue } = useLiteralValue();
 
-    const [throttledUpdateSession] = useThrottledDispatchedFunction(thunkUpdateSession, EVENT_DELAY);
+    const [throttledUpdateSession] = useThrottledDispatchedFunction(authorisation, EVENT_DELAY);
     const [throttledHistory] = useThrottledFunction(() => props.history.push(MenuRoute.HOME), EVENT_DELAY);
 
     const handleSubmit = (data: ILoginData) => {

@@ -1,7 +1,7 @@
+import { EVENT_DELAY } from 'Constants/Common';
 import { ILoginData, ISystemState } from 'Model/Authenticate';
-import { TThunkResult } from 'Store/constants';
 import { openNotificationWithIcon } from 'Utils/common';
-import { updateSession } from './actions';
+import { changeAuthSession } from './actions';
 
 interface IUpdateSessionProps {
     loginData: ILoginData;
@@ -10,12 +10,20 @@ interface IUpdateSessionProps {
     errorDescription: string;
     errorTitle: string;
 }
-
-export const thunkUpdateSession = ({ loginData, loginDescription, loginTitle, errorDescription, errorTitle }: IUpdateSessionProps): TThunkResult<void> => {
+export const authorisation = ({ loginData, loginDescription, loginTitle, errorDescription, errorTitle }: IUpdateSessionProps) => {
     return async (dispatch) => {
-        await updateSessionAPI(loginData)
-            .then((resp) => {
-                dispatch(updateSession(resp));
+        await new Promise<ISystemState>((resolve, rejects) => {
+            resolve({
+                authenticated: true,
+                session: 'test session',
+                userName: loginData.nickName
+            });
+            setTimeout(() => {
+                rejects('Timeout error');
+            }, EVENT_DELAY);
+        })
+            .then((data: ISystemState) => {
+                dispatch(changeAuthSession({ ...data }));
 
                 openNotificationWithIcon({
                     description: loginDescription,
@@ -24,7 +32,7 @@ export const thunkUpdateSession = ({ loginData, loginDescription, loginTitle, er
                 });
             })
             .catch((e) => {
-                console.error(e);
+                console.error({ e });
                 openNotificationWithIcon({
                     description: errorDescription,
                     title: errorTitle,
@@ -32,13 +40,4 @@ export const thunkUpdateSession = ({ loginData, loginDescription, loginTitle, er
                 });
             });
     };
-};
-
-const updateSessionAPI = (loginData: ILoginData) => {
-    const session: ISystemState = {
-        authenticated: true,
-        session: 'test session',
-        userName: loginData.nickName
-    };
-    return Promise.resolve(session);
 };
