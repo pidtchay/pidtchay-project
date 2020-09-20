@@ -19,7 +19,7 @@ export function useGithubRepos() {
                 dispatch(fetched({ repositories: githubRepos }));
             })
             .catch((error) => {
-                error.clientMessage = "Can't get product releases";
+                error.clientMessage = "Can't get repositories data";
                 dispatch(fetchingError({ error }));
             });
     };

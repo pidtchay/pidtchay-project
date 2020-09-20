@@ -5,7 +5,7 @@ import { AboutPage } from 'Container/AboutPage';
 import { AuthRoute } from 'Container/AuthRoute';
 import { HomePage } from 'Container/Home/HomePage';
 import { LogInPage } from 'Container/Login/LoginPage';
-import { MarkdownNotes } from 'Container/Markdown/MarkdownNotes';
+import { MarkdownNotesPage } from 'Container/Markdown/Page/MarkdownNotesPage';
 import { ListOfRepositoriesPage } from 'Container/Repositories/ListOfRepositoriesPage';
 import { RepositoryDetailsPage } from 'Container/Repositories/RepositoryDetailsPage';
 
@@ -22,7 +22,7 @@ export const MainRoutes = () => {
             <Route path={ContentRoute.ABOUT} render={() => <AboutPage />} />,
             <AuthRoute path={ContentRoute.REPOSITORIES.DETAILS} component={RepositoryDetailsPage} />
             <AuthRoute path={ContentRoute.REPOSITORIES.DEFAULT} component={() => <ListOfRepositoriesPage />} />
-            <AuthRoute path={ContentRoute.MARKDOWN} component={() => <MarkdownNotes />} />
+            <AuthRoute path={ContentRoute.MARKDOWN} component={() => <MarkdownNotesPage />} />
             <AuthRoute path={ContentRoute.HOME} component={() => <HomePage />} />
         </Switch>
     );

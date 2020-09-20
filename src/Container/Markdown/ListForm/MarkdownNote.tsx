@@ -1,32 +1,31 @@
 import { Button } from 'antd';
-import React, { useContext } from 'react';
+import React from 'react';
 import ReactMarkdown from 'react-markdown';
-import MarkdownNoteContext from 'Container/Markdown/MarkdownContext';
-import { IMarkdownNote, IMarkdownNoteContext } from 'Container/Markdown/Models';
-import { EMarkdownStep } from 'Container/Markdown/enums';
-import { setCurrentNote, setMarkdownStep } from 'Store/markdown_notes/actions';
+import { INote } from 'Container/Markdown/Models';
+import { EFormStep } from 'Container/Markdown/enums';
 import styles from 'Style/MarkdownEditor/MarkdownNote.less';
 import { useLiteralValue } from 'Utils/hooks';
+import { useNoteContext } from '../hooks';
 
 interface IProps {
-    note: IMarkdownNote;
+    note: INote;
 }
 
 /**
  * Note display component.
  *
  * @param {IProps} [param0] - Component properties.
- * @param {IMarkdownNote} [param0.note] - Note model.
+ * @param {INote} [param0.note] - Note model.
  * @returns {JSX.Element} [return0] Note JSX Element.
  */
 export const MarkdownNote: React.FC<IProps> = ({ note }) => {
-    const { dispatch } = useContext<IMarkdownNoteContext>(MarkdownNoteContext);
+    const { setCurrentNote, setNextStep } = useNoteContext();
 
     const { getValue: getLiteralValue } = useLiteralValue();
 
     const handleEditNote = () => {
-        dispatch(setCurrentNote(note));
-        dispatch(setMarkdownStep(EMarkdownStep.UPDATE));
+        setCurrentNote(note);
+        setNextStep(EFormStep.UPDATE);
     };
 
     return (

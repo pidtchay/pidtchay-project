@@ -3,10 +3,10 @@ import { Provider } from 'react-redux';
 import * as renderer from 'react-test-renderer';
 import { createStore } from 'redux';
 import { ListOfRepositories } from 'Container/Repositories/ListOfRepositories';
-import { rootReducer } from 'Store';
+import { newRootReducer } from 'Store/root';
 import { convertRepositoryDataToColumns, convertRepositoryDataToSchema } from 'Utils/TableUtils';
 
-const store = createStore(rootReducer);
+const store = createStore(newRootReducer);
 
 describe('render success', () => {
     it('should match the snapshot', async () => {

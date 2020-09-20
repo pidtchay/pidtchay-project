@@ -23,6 +23,7 @@ export const authorisation = ({ loginData, loginDescription, loginTitle, errorDe
             }, EVENT_DELAY);
         })
             .then((data: ISystemState) => {
+                console.debug({ data });
                 dispatch(changeAuthSession({ ...data }));
 
                 openNotificationWithIcon({

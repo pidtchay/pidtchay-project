@@ -1,5 +1,4 @@
 import { Row, Col, Avatar, Button } from 'antd';
-import { loadLang } from 'i18n/i18n';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { MenuUnfoldOutlined, LoginOutlined, MenuFoldOutlined, UserOutlined, HomeOutlined } from '@ant-design/icons';
@@ -34,7 +33,7 @@ export const HeaderPanel: React.FC<IHeaderPanel> = ({ isSideMenuToogle, onToggle
         setLanguage(language === ESupportedLanguages.EN ? ESupportedLanguages.RU : ESupportedLanguages.EN);
         setLanguageUsed(language.toUpperCase());
         // tslint:disable-next-line: no-floating-promises
-        loadLang(language).then((lang) => throttledLoadLiterals(lang));
+        throttledLoadLiterals(language);
     };
     return (
         <div>

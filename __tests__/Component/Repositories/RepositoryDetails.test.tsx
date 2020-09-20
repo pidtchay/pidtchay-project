@@ -4,9 +4,9 @@ import * as renderer from 'react-test-renderer';
 import { createStore } from 'redux';
 import { RepositoryDetails } from 'Container/Repositories/RepositoryDetailsBody';
 import { IRepositoryData } from 'Model/RepositoryData';
-import { rootReducer } from 'Store';
+import { newRootReducer } from 'Store/root';
 
-const store = createStore(rootReducer);
+const store = createStore(newRootReducer);
 
 describe('render success', () => {
     it('should match the snapshot', async () => {
@@ -25,10 +25,7 @@ describe('render success', () => {
         };
         const component = renderer.create(
             <Provider store={store}>
-                <RepositoryDetails
-                    onBackClick={handleBackClick}
-                    repository={repository}
-                />
+                <RepositoryDetails onBackClick={handleBackClick} repository={repository} />
             </Provider>
         );
         expect(component.toJSON()).toMatchSnapshot();

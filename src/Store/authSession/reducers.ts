@@ -9,6 +9,7 @@ export const authSessionReducer = createReducer(initialState, {
         state.userName = '';
     },
     [changeAuthSession.type]: (state, action) => {
+        console.debug({ state, action });
         state = { ...state, ...action.payload };
     }
 });

@@ -6,25 +6,25 @@ import { CloseOutlined, CheckOutlined } from '@ant-design/icons';
 import { DATE_TIME_FORMAT } from 'Constants/Common';
 import { ActionsPanel } from 'Container/Markdown/ActionsPanel';
 import MarkdownNoteContext from 'Container/Markdown/MarkdownContext';
-import { IMarkdownNoteContext } from 'Container/Markdown/Models';
-import { setMarkdownText, updateNote, setCurrentNote, createNote, setMarkdownStep } from 'Store/markdown_notes/actions';
+import { INotesSectionData } from 'Container/Markdown/Models';
 import styles from 'Style/MarkdownEditor/MarkdowInput.less';
 import { openNotificationWithIcon, convertStringArrayToString } from 'Utils/common';
 import { useLiteralValue } from 'Utils/hooks';
 import { useCryptoAES256 } from 'Utils/useCryproAES256';
-import { EMarkdownStep } from './enums';
-import { useTextAreaState, useNotePassword } from './hooks';
+import { EFormStep } from '../enums';
+import { useTextAreaState, useNotePassword, useNoteContext } from '../hooks';
 
 const { Title } = Typography;
 
-export const MarkdownNoteEdit = () => {
+export const NoteEditForm = () => {
     // Context
-    const { currentNote, step, dispatch } = useContext<IMarkdownNoteContext>(MarkdownNoteContext);
+    const { currentNote, step } = useContext<INotesSectionData>(MarkdownNoteContext);
     // Hooks
     const { textareaRef, getLastState, getState, setState, setStateSyntax, processChange, processChangeSyntax } = useTextAreaState(currentNote);
     const { passwd, isPasswordEnable, changePassword, verifyPassword, togglePasswordEnable } = useNotePassword();
     const { encryptMessage, decryptMessage, isEncryptedMessage, isDecryptedMessage, toggleEngrypted, toggleDecrypted } = useCryptoAES256();
     const { getValue: getLiteralValue } = useLiteralValue();
+    const { setNoteText, update: updateNote, setCurrentNote, create: createNote, setNextStep } = useNoteContext();
 
     const [visible, setVisible] = useState(false);
 
@@ -38,10 +38,10 @@ export const MarkdownNoteEdit = () => {
     }, [isEncryptedMessage]);
 
     useEffect(() => {
-        if (step !== EMarkdownStep.LIST) {
-            dispatch(setMarkdownText(noteText));
+        if (step !== EFormStep.LIST) {
+            setNoteText(noteText);
         } else {
-            dispatch(setMarkdownText(''));
+            setNoteText('');
         }
     }, [noteText, step]);
     /**
@@ -84,7 +84,7 @@ export const MarkdownNoteEdit = () => {
                 if (decrypted) {
                     const cursorPosition = decrypted.length;
                     setState({ start: cursorPosition, end: cursorPosition }, decrypted);
-                    dispatch(setMarkdownText(decrypted));
+                    setNoteText(decrypted);
                     toggleDecrypted();
                     tooglePasswdModalVisible();
                 } else {
@@ -109,31 +109,35 @@ export const MarkdownNoteEdit = () => {
     };
 
     const saveNote = () => {
+        if (!noteText) {
+            return;
+        }
         if (currentNote) {
-            currentNote.text = noteText;
-            currentNote.isEncrypted = isEncryptedMessage;
-            dispatch(updateNote(currentNote));
-            dispatch(setCurrentNote(null));
+            updateNote({
+                ...currentNote,
+                text: noteText,
+                isEncrypted: isEncryptedMessage,
+                title: noteText.split('\n')[0]
+            });
+            setCurrentNote(null);
         } else {
-            dispatch(
-                createNote({
-                    id: uuid(),
-                    createDate: createDate.current,
-                    title: noteTitle || noteText.split('\n')[0],
-                    text: noteText,
-                    isEncrypted: isEncryptedMessage
-                })
-            );
+            createNote({
+                id: uuid(),
+                createDate: createDate.current,
+                title: noteTitle || noteText.split('\n')[0],
+                text: noteText,
+                isEncrypted: isEncryptedMessage
+            });
         }
         tooglePasswdModalVisible();
-        dispatch(setMarkdownStep(EMarkdownStep.LIST));
+        setNextStep(EFormStep.LIST);
     };
     const tooglePasswdModalVisible = () => setVisible(!visible);
 
     const handleCancel = () => {
-        dispatch(setMarkdownText(''));
-        dispatch(setCurrentNote(null));
-        dispatch(setMarkdownStep(EMarkdownStep.LIST));
+        setNoteText('');
+        setCurrentNote(null);
+        setNextStep(EFormStep.LIST);
     };
 
     return (
@@ -179,4 +183,4 @@ export const MarkdownNoteEdit = () => {
     );
 };
 
-MarkdownNoteEdit.displayName = 'MarkdownNoteEdit';
+NoteEditForm.displayName = 'MarkdownNoteEdit';

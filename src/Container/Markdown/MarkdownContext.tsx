@@ -2,10 +2,10 @@ import moment from 'moment';
 import React from 'react';
 import { uuid } from 'uuidv4';
 import { DATE_TIME_FORMAT } from 'Constants/Common';
-import { IMarkdownNoteContext } from 'Container/Markdown/Models';
-import { EMarkdownStep } from 'Container/Markdown/enums';
+import { INotesSectionData } from 'Container/Markdown/Models';
+import { EFormStep } from 'Container/Markdown/enums';
 
-const defaultContext: IMarkdownNoteContext = {
+const defaultContext: INotesSectionData = {
     currentNote: null,
     notes: [
         {
@@ -15,7 +15,7 @@ const defaultContext: IMarkdownNoteContext = {
             text: 'First note'
         }
     ],
-    step: EMarkdownStep.LIST,
+    step: EFormStep.LIST,
     markdownText: ''
 };
 

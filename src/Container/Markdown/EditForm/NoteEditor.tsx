@@ -1,12 +1,12 @@
 import { Row, Typography, Col } from 'antd';
 import React from 'react';
-import { MarkdownNoteEdit } from 'Container/Markdown/MarkdownNoteEdit';
-import { MarkdownNotePreview } from 'Container/Markdown/MarkdownNotePreview';
+import { MarkdownNotePreview } from 'Container/Markdown/EditForm/MarkdownNotePreview';
+import { NoteEditForm } from 'Container/Markdown/EditForm/NoteEditForm';
 import { useLiteralValue } from 'Utils/hooks';
 
 const { Title } = Typography;
 
-export const MarkdownNoteEditor = () => {
+export const NoteEditor = () => {
     const { getValue: getLiteralValue } = useLiteralValue();
 
     return (
@@ -15,11 +15,11 @@ export const MarkdownNoteEditor = () => {
                 <Title level={1}>{getLiteralValue('Pages.Markdown.page_title')}</Title>
             </Row>
             <Row gutter={[16, 16]}>
-                <MarkdownNoteEdit />
+                <NoteEditForm />
                 <MarkdownNotePreview />
             </Row>
         </Col>
     );
 };
 
-MarkdownNoteEditor.displayName = 'MarkdownNoteEditor';
+NoteEditor.displayName = 'NoteEditor';
