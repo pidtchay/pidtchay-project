@@ -1,4 +1,5 @@
-import { createReducer } from '@reduxjs/toolkit';
+import { createReducer, PayloadAction } from '@reduxjs/toolkit';
+import { ISystemState } from 'Model/Authenticate';
 import { changeAuthSession, cleanAuthSession } from './actions';
 import { initialState } from './state';
 
@@ -8,8 +9,9 @@ export const authSessionReducer = createReducer(initialState, {
         state.session = '';
         state.userName = '';
     },
-    [changeAuthSession.type]: (state, action) => {
-        console.debug({ state, action });
-        state = { ...state, ...action.payload };
+    [changeAuthSession.type]: (state, action: PayloadAction<ISystemState>) => {
+        state.authenticated = action.payload.authenticated;
+        state.session = action.payload.session;
+        state.userName = action.payload.userName;
     }
 });

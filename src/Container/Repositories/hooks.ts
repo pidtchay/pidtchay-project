@@ -15,7 +15,6 @@ export function useGithubRepos() {
         dispatch(fetching());
         return getRepositoriesData(orgName)
             .then((githubRepos) => {
-                console.debug({ githubRepos });
                 dispatch(fetched({ repositories: githubRepos }));
             })
             .catch((error) => {
