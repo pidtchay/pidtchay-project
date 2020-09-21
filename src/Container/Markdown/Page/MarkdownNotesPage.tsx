@@ -3,7 +3,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { NoteEditor } from 'Container/Markdown/EditForm/NoteEditor';
 import { MarkdownNotesList } from 'Container/Markdown/ListForm/MarkdownNotesList';
-import MarkdownNoteContext from 'Container/Markdown/MarkdownContext';
+import MarkdownNoteContext from 'Container/Markdown/NotesContext';
 import { EFormStep } from 'Container/Markdown/enums';
 import { NewRootState } from 'Store/root';
 import { useLiteralValue } from 'Utils/hooks';

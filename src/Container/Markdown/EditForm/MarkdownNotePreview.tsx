@@ -1,7 +1,7 @@
 import { Row, Typography, Col } from 'antd';
 import React, { useContext } from 'react';
 import ReactMarkdown from 'react-markdown';
-import MarkdownNoteContext from 'Container/Markdown/MarkdownContext';
+import MarkdownNoteContext from 'Container/Markdown/NotesContext';
 import styles from 'Style/MarkdownEditor/MarkdownPreview.less';
 import { useLiteralValue } from 'Utils/hooks';
 

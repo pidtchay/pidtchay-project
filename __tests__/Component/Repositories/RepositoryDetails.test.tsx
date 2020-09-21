@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Provider } from 'react-redux';
 import * as renderer from 'react-test-renderer';
 import { createStore } from 'redux';
-import { RepositoryDetails } from 'Container/Repositories/RepositoryDetailsBody';
+import { RepositoryDetails } from 'Container/Repositories/Details/RepositoryDetailsBody';
 import { IRepositoryData } from 'Model/RepositoryData';
 import { newRootReducer } from 'Store/root';
 

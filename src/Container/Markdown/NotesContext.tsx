@@ -5,7 +5,7 @@ import { DATE_TIME_FORMAT } from 'Constants/Common';
 import { INotesSectionData } from 'Container/Markdown/Models';
 import { EFormStep } from 'Container/Markdown/enums';
 
-const defaultContext: INotesSectionData = {
+export const defaultContext: INotesSectionData = {
     currentNote: null,
     notes: [
         {

@@ -6,8 +6,8 @@ import { AuthRoute } from 'Container/AuthRoute';
 import { HomePage } from 'Container/Home/HomePage';
 import { LogInPage } from 'Container/Login/LoginPage';
 import { MarkdownNotesPage } from 'Container/Markdown/Page/MarkdownNotesPage';
+import { RepositoryDetailsPage } from 'Container/Repositories/Details/RepositoryDetailsPage';
 import { ListOfRepositoriesPage } from 'Container/Repositories/ListOfRepositoriesPage';
-import { RepositoryDetailsPage } from 'Container/Repositories/RepositoryDetailsPage';
 
 /**
  * Routing component.
