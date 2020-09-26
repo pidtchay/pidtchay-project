@@ -6,7 +6,7 @@ import { ESupportedLanguages, EVENT_DELAY } from 'Constants/Common';
 import { MenuRoute } from 'Constants/Routes';
 import { cleanAuthSession } from 'Store/authSession/actions';
 import { changeLanguage } from 'Store/languages/api';
-import { NewRootState } from 'Store/root';
+import { RootState } from 'Store/root';
 import style from 'Style/HeaderPanel.less';
 import history from 'Utils/history';
 import { useLiteralValue, useThrottledDispatchedFunction } from 'Utils/hooks';
@@ -25,7 +25,7 @@ export const HeaderPanel: React.FC<IHeaderPanel> = ({ isSideMenuToogle, onToggle
 
     const { getValue: getLiteralValue } = useLiteralValue();
 
-    const auth = useSelector((state: NewRootState) => state.authSession.authenticated);
+    const auth = useSelector((state: RootState) => state.authSession.authenticated);
 
     const onGoHome = () => history.push(MenuRoute.HOME);
 

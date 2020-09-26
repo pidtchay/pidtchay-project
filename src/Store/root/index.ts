@@ -10,4 +10,4 @@ export const newRootReducer = combineReducers({
     authSession: authSessionReducer,
     notes: listNotesSlice.reducer
 });
-export type NewRootState = ReturnType<typeof newRootReducer>;
+export type RootState = ReturnType<typeof newRootReducer>;

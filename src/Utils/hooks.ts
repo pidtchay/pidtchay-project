@@ -1,14 +1,14 @@
 /* eslint-disable jsdoc/require-returns */
 import { useEffect, useState, useRef, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NewRootState } from 'Store/root';
+import { RootState } from 'Store/root';
 
 /**
  * A custom hook that gets the language setting and returns a value from the store at the specified path.
  */
 export function useLiteralValue() {
     const [isLoading, setLoading] = useState(true);
-    const literals = useSelector((state: NewRootState) => state.languages);
+    const literals = useSelector((state: RootState) => state.languages);
 
     useEffect(() => {
         if (Object.keys(literals.languages).length > 0) {

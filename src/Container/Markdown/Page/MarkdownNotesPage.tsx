@@ -5,7 +5,7 @@ import { NoteEditor } from 'Container/Markdown/EditForm/NoteEditor';
 import { MarkdownNotesList } from 'Container/Markdown/ListForm/MarkdownNotesList';
 import MarkdownNoteContext from 'Container/Markdown/NotesContext';
 import { EFormStep } from 'Container/Markdown/enums';
-import { NewRootState } from 'Store/root';
+import { RootState } from 'Store/root';
 import { useLiteralValue } from 'Utils/hooks';
 import { useNoteContext } from '../hooks';
 
@@ -16,7 +16,7 @@ import { useNoteContext } from '../hooks';
  * @returns {JSX.Element} [return0] list of notes or a single note.
  */
 export const MarkdownNotesPage = () => {
-    const markdownState = useSelector((state: NewRootState) => state.notes);
+    const markdownState = useSelector((state: RootState) => state.notes);
     const { currentNote, step } = markdownState?.data;
 
     const { setNextStep } = useNoteContext();
