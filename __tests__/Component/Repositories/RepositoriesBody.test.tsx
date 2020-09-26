@@ -2,14 +2,11 @@ import * as React from 'react';
 import { Provider } from 'react-redux';
 import * as renderer from 'react-test-renderer';
 import { createStore } from 'redux';
-import { RepositoriesBody } from 'Container/Repositories/RepositoriesBody';
-import { rootReducer } from 'Store';
-import {
-    convertRepositoryDataToColumns,
-    convertRepositoryDataToSchema
-} from 'Utils/TableUtils';
+import { ListOfRepositories } from 'Container/Repositories/ListOfRepositories';
+import { newRootReducer } from 'Store/root';
+import { convertRepositoryDataToColumns, convertRepositoryDataToSchema } from 'Utils/TableUtils';
 
-const store = createStore(rootReducer);
+const store = createStore(newRootReducer);
 
 describe('render success', () => {
     it('should match the snapshot', async () => {
@@ -39,17 +36,11 @@ describe('render success', () => {
                 watchers: 35
             }
         ];
-        const columns = convertRepositoryDataToColumns(
-            convertRepositoryDataToSchema(repositoryData[0])
-        );
+        const columns = convertRepositoryDataToColumns(convertRepositoryDataToSchema(repositoryData[0]));
         const handleFetchData = () => jest.fn();
         const component = renderer.create(
             <Provider store={store}>
-                <RepositoriesBody
-                    columns={columns}
-                    data={repositoryData}
-                    onFetchRepositories={handleFetchData}
-                />
+                <ListOfRepositories columns={columns} data={repositoryData} onFetchRepositories={handleFetchData} />
             </Provider>
         );
         expect(component.toJSON()).toMatchSnapshot();

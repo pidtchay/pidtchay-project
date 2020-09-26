@@ -1,8 +1,11 @@
 /* eslint-disable jsdoc/require-returns */
 /* eslint-disable jsdoc/require-description */
 import React, { useRef, useState, useEffect } from 'react';
-import { IMarkdownNote, SpecialSyntaxRules } from 'Container/Markdown/Models';
-import { ESpecialSyntax, ESyntaxType, EOperationType } from 'Container/Markdown/enums';
+import { useDispatch } from 'react-redux';
+import { INote, SpecialSyntaxRules } from 'Container/Markdown/Models';
+import { ESpecialSyntax, ESyntaxType, EOperationType, EFormStep } from 'Container/Markdown/enums';
+import { getNotesData } from 'Store/notes/api';
+import { listNotesSlice } from 'Store/notes/slice';
 import { openNotificationWithIcon, convertStringArrayToString } from 'Utils/common';
 import { useLiteralValue } from 'Utils/hooks';
 
@@ -82,9 +85,9 @@ export function useTextareaSelection(textareaRef) {
 /**
  * Custom textarea field state hook.
  *
- * @param {IMarkdownNote} [data] - These notes that are being edited.
+ * @param {INote} [data] - These notes that are being edited.
  */
-export function useTextAreaState(data?: IMarkdownNote) {
+export function useTextAreaState(data?: INote) {
     const textareaRef = useRef<HTMLTextAreaElement>();
     const { getSelection, getLastSelection, setSelection } = useTextareaSelection(textareaRef);
     const { noteText, noteSyntax, prevNoteText, prevNoteSyntax, title, prevNoteTitle, changeValue } = useMarkdownNote(data?.title, data?.text);
@@ -234,4 +237,43 @@ export function useNotePassword() {
     const togglePasswordEnable = () => setPasswordEnable(!isPasswordEnable);
 
     return { passwd, isPasswordEnable, changePassword, verifyPassword, togglePasswordEnable };
+}
+
+/**
+ *
+ */
+export function useNoteContext() {
+    const dispatch = useDispatch();
+    const { changeNode, changeNoteText, changeStep, createNote, updateNote } = listNotesSlice.actions;
+
+    // const [throttleFetch] = useThrottledDispatchedFunction(getNotesData, EVENT_DELAY);
+    // const [throttleChageNote] = useThrottledDispatchedFunction(changeNode, EVENT_DELAY);
+    // const [throttleChangeNoteText] = useThrottledDispatchedFunction(changeNoteText, EVENT_DELAY);
+    // const [throttleChangeStep] = useThrottledDispatchedFunction(changeStep, EVENT_DELAY);
+    // const [throttleCreate] = useThrottledDispatchedFunction(createNote, EVENT_DELAY);
+    // const [throttleUpdate] = useThrottledDispatchedFunction(updateNote, EVENT_DELAY);
+
+    const getAllNotes = () => dispatch(getNotesData);
+
+    const setCurrentNote = (note: INote) => {
+        dispatch(changeNode(note));
+    };
+
+    const setNoteText = (value: string) => {
+        dispatch(changeNoteText(value));
+    };
+
+    const setNextStep = (step: EFormStep) => {
+        dispatch(changeStep(step));
+    };
+
+    const create = (note: INote) => {
+        dispatch(createNote(note));
+    };
+
+    const update = (note: INote) => {
+        dispatch(updateNote(note));
+    };
+
+    return { getAllNotes, setCurrentNote, setNoteText, setNextStep, create, update };
 }

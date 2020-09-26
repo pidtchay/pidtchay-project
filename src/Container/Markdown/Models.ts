@@ -1,6 +1,5 @@
-import { Dispatch } from 'redux';
-import { EMarkdownStep, ESyntaxType, ESpecialSyntax, EOperationType } from 'Container/Markdown/enums';
-import { TMarkdownNoteActionTypes } from 'Store/markdown_notes/types';
+import { EState, IError } from 'Constants/Common';
+import { EFormStep, ESyntaxType, ESpecialSyntax, EOperationType } from 'Container/Markdown/enums';
 
 /**
  * Data model markdown notes.
@@ -11,7 +10,7 @@ import { TMarkdownNoteActionTypes } from 'Store/markdown_notes/types';
  * @property {string} [text] Note text.
  * @property {string} [isEncrypted] Encryp flag.
  */
-export interface IMarkdownNote {
+export interface INote {
     id: string;
     createDate: string;
     title: string;
@@ -25,15 +24,19 @@ export interface IMarkdownNote {
  * @property {IMarkdownNote} [currentNote] Selected note.
  * @property {Array<IMarkdownNote>} [notes] Notes list.
  * @property {string} [markdownText] Current markdown text.
- * @property {EMarkdownStep} [step] Current step of working with notes.
- * @property {Dispatch<TMarkdownNoteActionTypes>} [dispatch] Redux-actions.
+ * @property {EFormStep} [step] Current step of working with notes.
  */
-export interface IMarkdownNoteContext {
-    currentNote: IMarkdownNote;
-    notes: IMarkdownNote[];
+export interface INotesSectionData {
+    currentNote: INote;
+    notes: INote[];
     markdownText?: string;
-    step?: EMarkdownStep;
-    dispatch?: Dispatch<TMarkdownNoteActionTypes>;
+    step?: EFormStep;
+}
+
+export interface INotesSectionContext {
+    data: INotesSectionData;
+    state: EState;
+    errors: IError[];
 }
 
 export interface ISpecialSyntaxConfig {

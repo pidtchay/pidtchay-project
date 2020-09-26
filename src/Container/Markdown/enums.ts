@@ -19,7 +19,7 @@ export enum EOperationType {
     HOLD
 }
 
-export enum EMarkdownStep {
+export enum EFormStep {
     LIST = 'LIST',
     CREATE = 'CREATE',
     UPDATE = 'UPDATE'
