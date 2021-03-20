@@ -13,9 +13,6 @@ const common = {
         modules: ['node_modules', 'src'],
         extensions: ['.ts', '.tsx', '.js']
     },
-    // https://medium.com/hackernoon/the-100-correct-way-to-split-your-chunks-with-webpack-f8a9df5b7758
-    // We’ve saved a whopping 56% in downloads, and this saving will continue until the end of time.
-    // Split your application into sensible little files so your users download less code.
     optimization: {
         runtimeChunk: true,
         splitChunks: {
