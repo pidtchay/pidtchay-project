@@ -1,43 +1,45 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
-const applicationOptions = require('./webpack.appOptions');
-const webpackPlugins = require('./webpack.plugins');
-const webpackModuleRules = require('./webpack.rules');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+// const pkg = require('../package.json');
 
-const smp = new SpeedMeasurePlugin();
+// Корневые директории проекта
+const PATHS = {
+    src: path.join(__dirname, '../src'),
+    dist: path.join(__dirname, '../out')
+};
 
-const common = {
-    entry: applicationOptions.entry,
-    output: applicationOptions.output,
+module.exports = {
+    entry: {
+        app: path.resolve(PATHS.src, './index.tsx')
+    },
+    output: {
+        path: PATHS.dist,
+        filename: 'js/[name].[hash].js',
+        // jsonpFunction: 'webpackJsonp' + pkg.name.replace(/-/g, '_'),
+        // publicPath: '/'
+    },
+    // https://webpack.js.org/configuration/performance/#performancehints
+    performance: {
+        hints: 'warning',
+        maxAssetSize: 300 * 1024, // 300 KiB
+        maxEntrypointSize: 300 * 1024 // 300 KiB
+    },
     resolve: {
         modules: ['node_modules', 'src'],
         extensions: ['.ts', '.tsx', '.js']
     },
-    optimization: {
-        runtimeChunk: true,
-        splitChunks: {
-            chunks: 'async',
-            minSize: 30000,
-            maxSize: 150000,
-            minChunks: 3,
-            maxAsyncRequests: 6,
-            maxInitialRequests: 4,
-            automaticNameMaxLength: 30,
-            cacheGroups: {
-                vendors: {
-                    test: /[\\/]node_modules[\\/]/,
-                    chunks: 'all',
-                    filename: 'js/[name].bundle.[hash].js'
-                },
-                default: {
-                    priority: -20,
-                    reuseExistingChunk: true
-                }
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './src/index.html'
+        })
+    ],
+    module: {
+        rules: [
+            {
+                test: /\.tsx?$/,
+                exclude: /(node_modules)/,
+                loader: 'ts-loader'
             }
-        }
-    },
-    plugins: [webpackPlugins.plugins.cleanWebpack, webpackPlugins.plugins.forkTsChecker, webpackPlugins.plugins.happyPack, webpackPlugins.plugins.htmlWebpack, webpackPlugins.plugins.miniCssExtract],
-    ...webpackModuleRules
+        ]
+    }
 };
-
-module.exports = smp.wrap(common);

@@ -1,12 +1,16 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-const commonConfig = require('./webpack.common');
+const webpackCommon = require('./webpack.common');
 
-module.exports = Object.assign({}, commonConfig, {
+const devConfig = Object.assign(webpackCommon, {
     mode: 'development',
-    // https://webpack.js.org/configuration/devtool/
-    devtool: 'cheap-module-eval-source-map',
+    devtool: 'source-map',
     devServer: {
-        historyApiFallback: true
+        historyApiFallback: true,
+        host: 'localhost',
+        port: 5454
     },
-    plugins: commonConfig.plugins || []
+    plugins: [
+        ...webpackCommon.plugins,
+    ]
 });
+
+module.exports = devConfig;

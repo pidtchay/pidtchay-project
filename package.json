@@ -1,18 +1,16 @@
 {
   "name": "pidtchay-project",
-  "version": "0.7.0",
+  "version": "1.0.0-alpha",
   "homepage": "https://pidtchay.github.io/",
   "description": "Personal project on the react framework",
   "main": "index.js",
   "scripts": {
-    "build": "node node_modules/webpack/bin/webpack.js --config webpack/webpack.prod.js",
-    "build:dev": "node node_modules/webpack/bin/webpack.js --config webpack/webpack.dev.js",
-    "start": "node --max-old-space-size=2048 node_modules/webpack-dev-server/bin/webpack-dev-server.js --host localhost --port 5454 --open --hot --config webpack/webpack.dev.js"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsc && npm run codestyle"
-    }
+    "build": "webpack --config webpack/webpack.prod.js",
+    "build:dev": "webpack --config webpack/webpack.dev.js",
+    "format": "prettier --write src/**/*.{ts,tsx}",
+    "lint": "tsc --noEmit && eslint src/**/*.{ts,tsx}",
+    "start": "webpack --mode development --watch --config webpack/webpack.dev.js",
+    "json-server": "json-server --watch api/db.json"
   },
   "keywords": [
     "react",
@@ -22,16 +20,27 @@
   "author": "pidtchay",
   "license": "GPL v3",
   "dependencies": {
+    "node": "^15.10.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
+    "@types/node": "^14.14.35",
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
+    "@typescript-eslint/eslint-plugin": "4.4.1",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-import": "2.22.0",
+    "eslint-plugin-jsx-a11y": "6.3.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "7.20.3",
+    "eslint-plugin-react-hooks": "4.0.8",
+    "html-webpack-plugin": "^5.3.1",
+    "json-server": "^0.16.3",
+    "prettier": "^2.2.1",
     "ts-loader": "^8.0.3",
-    "typescript": "^3.9.6"
+    "typescript": "^3.9.6",
+    "webpack": "^5.27.0",
+    "webpack-cli": "^4.5.0"
   }
 }

@@ -1,20 +1,34 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-const TerserPlugin = require('terser-webpack-plugin');
-const commonConfig = require('./webpack.common');
+const webpackCommon = require('./webpack.common');
 
-module.exports = Object.assign({}, commonConfig, {
+const prodConfig = Object.assign(webpackCommon, {
     mode: 'production',
     devtool: false,
-    plugins: commonConfig.plugins || [],
-    optimization: Object.assign({}, commonConfig.optimization, {
-        minimize: true,
-        minimizer: [
-            new TerserPlugin({
-                cache: true,
-                extractComments: false,
-                parallel: 4,
-                sourceMap: true
-            })
-        ]
-    })
+    optimization: {
+        splitChunks: {
+            automaticNameDelimiter: '-',
+            cacheGroups: {
+                reactVendor: {
+                    test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+                    name: 'reactvendor'
+                },
+                utilityVendor: {
+                    test: /[\\/]node_modules[\\/](lodash|moment)[\\/]/,
+                    name: 'utilityVendor'
+                },
+                vendor: {
+                    name: 'node_vendors',
+                    test: /[\\/]node_modules[\\/](!lodash)(!moment)[\\/]/,
+                    chunks: 'all'
+                },
+                common: {
+                    test: /[\\/]src[\\/]Containers[\\/]/,
+                    chunks: 'all',
+                    minSize: 1000
+                }
+            }
+        }
+    },
+    plugins: [...webpackCommon.plugins]
 });
+
+module.exports = prodConfig;
