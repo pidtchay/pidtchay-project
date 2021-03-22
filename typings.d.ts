@@ -12,6 +12,6 @@ declare module '*.json' {
         [key: string]: string;
     }
 
-    const json_file: IJsonFile;
-    export = json_file;
+    const jsonFile: IJsonFile;
+    export = jsonFile;
 }

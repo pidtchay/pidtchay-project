@@ -5,8 +5,6 @@ module.exports = {
         'plugin:@typescript-eslint/recommended',
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
         'prettier',
-        'prettier/react',
-        'prettier/@typescript-eslint',
         'plugin:prettier/recommended'
     ],
     plugins: [
@@ -17,7 +15,7 @@ module.exports = {
     ],
     parser: '@typescript-eslint/parser',
     parserOptions: {
-        project: './tsconfig.js'
+        project: './tsconfig.json'
     },
     env: {
         browser: true,
@@ -25,4 +23,10 @@ module.exports = {
         es2017: true,
         node: true
     },
+    rules: {
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn",
+        "no-unused-vars": "off",
+        "import/prefer-default-export": "off",
+    }
 };

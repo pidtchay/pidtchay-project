@@ -8,9 +8,7 @@ const devConfig = Object.assign(webpackCommon, {
         host: 'localhost',
         port: 5454
     },
-    plugins: [
-        ...webpackCommon.plugins,
-    ]
+    plugins: [...webpackCommon.plugins]
 });
 
 module.exports = devConfig;
