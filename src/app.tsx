@@ -1,25 +1,28 @@
-import { INote } from 'Containers/NotesList/Models';
 import React, { lazy, Suspense } from 'react';
+import { getFakeNoteList } from 'dataNotes';
+import NotesForm from 'Containers/NotesList/NotesForm';
 
 const ErrorBoundary = lazy(() => import(/* webpackChunkName: "ErrorBoundary" */ 'Components/ErrorBoundary/ErrorBoundary'));
 
-const NotesList = lazy(() => import(/* webpackChunkName: "NotesList" */ 'Containers/NotesList/NotesList'));
-
-const mockNotes: INote[] = [
-    {
-        id: 1,
-        lastUpdate: '20210101',
-        startDate: '20200101',
-        text: 'QWERTYUI',
-        title: 'ytrewq'
-    }
-];
+const NOTES_DATA = getFakeNoteList();
 
 export const App = (): JSX.Element => {
+    const onChange = (value: string): void => {
+        console.group('NoteInput onChange');
+        console.debug({ value });
+        console.groupEnd();
+    };
     return (
         <Suspense fallback={<div>Loading...</div>}>
             <ErrorBoundary>
-                <NotesList notes={mockNotes} />
+                <>
+                    <NotesForm onStateChange={onChange}>
+                        <NotesForm.Header title="Notes" subtitle="Mocked notes list" />
+                        {NOTES_DATA.map((note) => (
+                            <NotesForm.NoteInput key={note.id} note={note} />
+                        ))}
+                    </NotesForm>
+                </>
             </ErrorBoundary>
         </Suspense>
     );

@@ -15,7 +15,8 @@ module.exports = {
     ],
     parser: '@typescript-eslint/parser',
     parserOptions: {
-        project: './tsconfig.json'
+        project: ['tsconfig.json'],
+        tsconfigRootDir: __dirname,
     },
     env: {
         browser: true,
@@ -24,9 +25,16 @@ module.exports = {
         node: true
     },
     rules: {
-        "react-hooks/rules-of-hooks": "error",
-        "react-hooks/exhaustive-deps": "warn",
-        "no-unused-vars": "off",
-        "import/prefer-default-export": "off",
+        // "react-hooks/rules-of-hooks": "error",
+        // "react-hooks/exhaustive-deps": "warn",
+        'react/require-default-props': 'off',
+        'react/jsx-props-no-spreading': 'off',
+        // "no-unused-vars": "off",
+        "import/prefer-default-export": 0,
+        "import/no-extraneous-dependencies": ["error", { devDependencies: true }],
+        "import/no-mutable-exports": 0,
+        'linebreak-style': 0,
+
+        'jsx-a11y/label-has-associated-control': 'warn'
     }
 };

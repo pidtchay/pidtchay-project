@@ -8,7 +8,7 @@
     "build": "webpack --config webpack/webpack.prod.js",
     "build:dev": "webpack --config webpack/webpack.dev.js",
     "format": "prettier --write src/**/*.{ts,tsx}",
-    "lint": "eslint src/**/*.{ts,tsx}",
+    "lint": "eslint src/**/*.{ts,tsx} --fix",
     "start": "webpack serve --config webpack/webpack.dev.js",
     "watch": "webpack --watch --config webpack/webpack.dev.js",
     "json-server": "json-server --watch api/db.json"
@@ -21,12 +21,15 @@
   "author": "pidtchay",
   "license": "GPL v3",
   "dependencies": {
+    "faker": "^5.4.0",
+    "moment": "^2.29.1",
     "node": "^15.10.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@types/faker": "^5.1.7",
     "@types/fork-ts-checker-webpack-plugin": "^0.4.5",
     "@types/node": "^14.14.35",
     "@types/react": "^16.9.49",
