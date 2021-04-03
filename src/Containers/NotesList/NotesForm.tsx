@@ -1,48 +1,56 @@
-import React, { lazy, ReactElement } from 'react';
+import NoteForm from 'Containers/Note/Form';
+import NoteView from 'Containers/Note/View';
+import React, { FC, lazy, ReactElement, useMemo } from 'react';
+import { NavLink, Route, Switch, useRouteMatch } from 'react-router-dom';
 
 const NotesFormInput = lazy(() => import(/* webpackChunkName: "NotesFormInput" */ 'Containers/NotesList/NotesFormInput'));
 const HeaderLazy = lazy(() => import(/* webpackChunkName: "NotesFormHeader" */ 'Components/Header/Header').then((mod) => ({ default: mod.Header })));
 
 interface Props {
-    onStateChange?(e: string): void;
-    defaultValue?: string;
+    onView?(value: string): void;
+    onEdit?(value: string): void;
 }
 
-interface State {
-    currentValue: string;
-    defaultValue?: string;
-}
+type TNotesFormProps<P> = FC<P> & {
+    displayName: string;
+    Header: typeof HeaderLazy;
+    NoteInput: typeof NotesFormInput;
+};
+const NotesForm: TNotesFormProps<React.PropsWithChildren<Props>> = ({ children, onView, onEdit }: React.PropsWithChildren<Props>) => {
+    const match = useRouteMatch();
 
-const NotesForm = ({ children, onStateChange, defaultValue }: React.PropsWithChildren<Props>): React.ReactElement => {
-    const [state, setState] = React.useState<State>({
-        currentValue: '',
-        defaultValue
-    });
-
-    const providerState = React.useMemo(
+    const providerState = useMemo(
         () => ({
-            onChange: (event: React.ChangeEvent<HTMLInputElement>): void => {
-                const { value } = event.target;
-                setState({
-                    currentValue: value
-                });
-                onStateChange?.(value);
+            onOpenView: (value: string): void => {
+                onView?.(value);
             },
-            ...state
+            onOpenEdit: (value: string): void => {
+                onEdit?.(value);
+            }
         }),
-        [state, onStateChange]
+        [onView, onEdit]
     );
 
     return (
-        <div>
-            <form>
-                {React.Children.map(children as ReactElement<any>, (child: ReactElement) =>
-                    React.cloneElement(child, {
-                        ...providerState
-                    })
-                )}
-            </form>
-        </div>
+        <>
+            <Switch>
+                <Route path={`${match.path}/create`}>
+                    <NoteForm isCreate />
+                </Route>
+                <Route path={`${match.path}/view/:id`}>
+                    <NoteView />
+                </Route>
+                <Route path={`${match.path}/edit/:id`}>
+                    <NoteForm isCreate={false} />
+                </Route>
+                <Route path={match.path}>
+                    <>
+                        <NavLink to={`${match.url}/create`}>Create</NavLink>
+                        <div>{React.Children.map(children as ReactElement<any>, (child: ReactElement) => React.cloneElement(child, { ...providerState }))}</div>
+                    </>
+                </Route>
+            </Switch>
+        </>
     );
 };
 

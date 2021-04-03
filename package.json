@@ -5,13 +5,14 @@
   "description": "Personal project on the react framework",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config webpack/webpack.prod.js",
+    "build": "npm run tsc && webpack --config webpack/webpack.prod.js",
     "build:dev": "webpack --config webpack/webpack.dev.js",
     "format": "prettier --write src/**/*.{ts,tsx}",
     "lint": "eslint src/**/*.{ts,tsx} --fix",
-    "start": "webpack serve --config webpack/webpack.dev.js",
-    "watch": "webpack --watch --config webpack/webpack.dev.js",
-    "json-server": "json-server --watch api/db.json"
+    "start": "npm run tsc && webpack serve --config webpack/webpack.dev.js",
+    "watch": "webpack  --watch —progress --max_old_space_size=4096 --config webpack/webpack.dev.js",
+    "json-server": "json-server --watch api/db.json",
+    "tsc": "node --max-old-space-size=4096 node_modules/typescript/bin/tsc -noEmit"
   },
   "keywords": [
     "react",
@@ -26,6 +27,7 @@
     "node": "^15.10.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
@@ -34,6 +36,8 @@
     "@types/node": "^14.14.35",
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
+    "@types/react-router-dom": "^5.1.7",
+    "@types/terser-webpack-plugin": "^5.0.3",
     "@types/webpack": "^4.41.26",
     "@typescript-eslint/eslint-plugin": "^4.4.1",
     "clean-webpack-plugin": "^3.0.0",
@@ -41,6 +45,7 @@
     "eslint-config-airbnb-typescript": "^12.3.1",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsdoc": "^32.3.0",
     "eslint-plugin-jsx-a11y": "6.3.1",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.20.3",
@@ -50,6 +55,7 @@
     "html-webpack-plugin": "^5.3.1",
     "json-server": "^0.16.3",
     "prettier": "^2.2.1",
+    "terser-webpack-plugin": "^5.1.1",
     "ts-loader": "^8.0.3",
     "typescript": "^3.9.6",
     "webpack": "^5.27.0",
