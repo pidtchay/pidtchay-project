@@ -1,6 +1,6 @@
-import { NOTES_DATA } from 'app';
 import NoteCard from 'Components/NoteCard/NoteCard';
 import { INote } from 'Containers/NotesList/Models';
+import { NotesContext } from 'Containers/NotesList/State/NotesContext';
 import React, { FC, useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
@@ -20,8 +20,10 @@ const NoteEditForm: TNoteForm<INoteFormProps> = ({ isCreate }: INoteFormProps) =
     const noteGuidRef = useRef(isCreate ? uuidv4() : id);
     const [note, setNote] = useState<INote>(null);
 
+    const { state } = React.useContext(NotesContext);
+
     useEffect(() => {
-        setNote(NOTES_DATA.filter((it) => it.id === noteGuidRef.current)[0]);
+        setNote((state.notes || []).filter((it) => it.id === noteGuidRef.current)[0]);
         return () => {
             setNote(null);
         };

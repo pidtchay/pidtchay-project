@@ -1,52 +1,36 @@
+import { defaultState, NotesProvider } from 'Containers/NotesList/State/NotesContext';
+import { notesSlice } from 'Containers/NotesList/State/reducer';
+// import { NOTES_DATA } from 'dataNotes';
 import React, { lazy, Suspense } from 'react';
-import { getFakeNoteList } from 'dataNotes';
-import NotesForm from 'Containers/NotesList/NotesForm';
-import { Switch, Route, Link, useHistory } from 'react-router-dom';
+import NotesForm from 'Containers/NotesList';
+import { Switch, Route, Link } from 'react-router-dom';
+import { ROUTE } from 'Routing/Consts';
 
 const ErrorBoundary = lazy(() => import(/* webpackChunkName: "ErrorBoundary" */ 'Components/ErrorBoundary/ErrorBoundary'));
-
-export const NOTES_DATA = getFakeNoteList();
 
 const Home = () => <h2>Home</h2>;
 
 export const App = (): JSX.Element => {
-    const history = useHistory();
-    const onOpenView = (value: string): void => {
-        console.group('NoteInput onChange');
-        console.debug({ value });
-        console.groupEnd();
-        history.push(`/notes/view/${value}`);
-    };
-
-    const onOpenEdit = (value: string): void => {
-        console.group('NoteInput onChange');
-        console.debug({ value });
-        console.groupEnd();
-        history.push(`/notes/edit/${value}`);
-    };
     return (
         <Suspense fallback={<div>Loading...</div>}>
             <ErrorBoundary>
                 <>
                     <ul>
                         <li>
-                            <Link to="/">Home</Link>
+                            <Link to={ROUTE.HOME.PATH}>Home</Link>
                         </li>
                         <li>
-                            <Link to="/notes">Notes</Link>
+                            <Link to={ROUTE.NOTES.PATH}>Notes</Link>
                         </li>
                     </ul>
                     <Switch>
-                        <Route exact path="/">
+                        <Route exact path={ROUTE.HOME.PATH}>
                             <Home />
                         </Route>
-                        <Route path="/notes">
-                            <NotesForm onView={onOpenView} onEdit={onOpenEdit}>
-                                <NotesForm.Header title="Notes" subtitle="Mocked notes list" />
-                                {NOTES_DATA.map((note) => (
-                                    <NotesForm.NoteInput note={note} key={note.id} />
-                                ))}
-                            </NotesForm>
+                        <Route path={ROUTE.NOTES.PATH}>
+                            <NotesProvider initialState={defaultState} reducer={notesSlice.reducer}>
+                                <NotesForm />
+                            </NotesProvider>
                         </Route>
                     </Switch>
                 </>

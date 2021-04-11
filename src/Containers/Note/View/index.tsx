@@ -1,6 +1,6 @@
-import { NOTES_DATA } from 'app';
 import NoteCard from 'Components/NoteCard/NoteCard';
 import { INote } from 'Containers/NotesList/Models';
+import { NotesContext } from 'Containers/NotesList/State/NotesContext';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { INodeQueryStringParams } from '../Models';
@@ -9,8 +9,10 @@ const NoteViewForm = (): JSX.Element => {
     const { id } = useParams<INodeQueryStringParams>();
     const [note, setNote] = useState<INote>(null);
 
+    const { state } = React.useContext(NotesContext);
+
     useEffect(() => {
-        setNote(NOTES_DATA.filter((it) => it.id === id)[0]);
+        setNote((state.notes || []).filter((it) => it.id === id)[0]);
         return () => {
             setNote(null);
         };

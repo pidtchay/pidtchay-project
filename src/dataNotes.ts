@@ -9,7 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const DATE_TIME_FORMAT = 'MM/DD/YYYY HH:mm:ss';
 
-export const getFakeNoteList = (): INote[] => {
+const getFakeNoteList = (): INote[] => {
     const fakeList = [] as INote[];
     for (let step = 0; step < 5; step++) {
         fakeList.push({
@@ -22,3 +22,5 @@ export const getFakeNoteList = (): INote[] => {
     }
     return fakeList;
 };
+
+export const NOTES_DATA = getFakeNoteList();

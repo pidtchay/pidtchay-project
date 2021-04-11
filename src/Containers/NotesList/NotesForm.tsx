@@ -1,7 +1,5 @@
-import NoteForm from 'Containers/Note/Form';
-import NoteView from 'Containers/Note/View';
 import React, { FC, lazy, ReactElement, useMemo } from 'react';
-import { NavLink, Route, Switch, useRouteMatch } from 'react-router-dom';
+import { NavLink, useRouteMatch } from 'react-router-dom';
 
 const NotesFormInput = lazy(() => import(/* webpackChunkName: "NotesFormInput" */ 'Containers/NotesList/NotesFormInput'));
 const HeaderLazy = lazy(() => import(/* webpackChunkName: "NotesFormHeader" */ 'Components/Header/Header').then((mod) => ({ default: mod.Header })));
@@ -33,23 +31,8 @@ const NotesForm: TNotesFormProps<React.PropsWithChildren<Props>> = ({ children, 
 
     return (
         <>
-            <Switch>
-                <Route path={`${match.path}/create`}>
-                    <NoteForm isCreate />
-                </Route>
-                <Route path={`${match.path}/view/:id`}>
-                    <NoteView />
-                </Route>
-                <Route path={`${match.path}/edit/:id`}>
-                    <NoteForm isCreate={false} />
-                </Route>
-                <Route path={match.path}>
-                    <>
-                        <NavLink to={`${match.url}/create`}>Create</NavLink>
-                        <div>{React.Children.map(children as ReactElement<any>, (child: ReactElement) => React.cloneElement(child, { ...providerState }))}</div>
-                    </>
-                </Route>
-            </Switch>
+            <NavLink to={`${match.url}/create`}>Create</NavLink>
+            <div>{React.Children.map(children as ReactElement<any>, (child: ReactElement) => React.cloneElement(child, { ...providerState }))}</div>
         </>
     );
 };

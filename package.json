@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npm run tsc && webpack --config webpack/webpack.prod.js",
-    "build:dev": "webpack --config webpack/webpack.dev.js",
+    "build:dev": "npm run tsc && webpack --config webpack/webpack.dev.js",
     "format": "prettier --write src/**/*.{ts,tsx}",
     "lint": "eslint src/**/*.{ts,tsx} --fix",
     "start": "npm run tsc && webpack serve --config webpack/webpack.dev.js",
@@ -22,6 +22,7 @@
   "author": "pidtchay",
   "license": "GPL v3",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.5.1",
     "faker": "^5.4.0",
     "moment": "^2.29.1",
     "node": "^15.10.0",
