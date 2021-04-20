@@ -1,0 +1,29 @@
+{
+    "Language_Bar": {
+        "title": "Interface language: {{language}}"
+    },
+    "MENU": {
+        "title": "Menu",
+        "home": "Dashboard",
+        "notes": "Notes"
+    },
+    "DataState": {
+        "Loading": {
+            "title": "Loading..."
+        },
+        "Error": {
+            "title": "Something wrong..."
+        }
+    },
+    "NotesForm": {
+        "guid": "GUID: {{guid}}",
+        "description": "Description: {{desc}}",
+        "created": "Created: {{createdDate}}",
+        "updated": "Updated: {{updatedDate}}"
+    },
+    "ACTIONS": {
+        "Create":"Create",
+        "Edit":"Edit",
+        "View": "View"
+    }
+}

@@ -7,7 +7,6 @@ export const notesSlice = createSlice({
     initialState: defaultState,
     reducers: {
         getDate: (state: TInitialState, action: PayloadAction<TInitialState>) => {
-            console.debug({ state, action });
             state.notes = action.payload.notes;
         },
         clearData: (state: TInitialState) => {

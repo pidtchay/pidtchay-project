@@ -1,0 +1,29 @@
+{
+    "Language_Bar": {
+        "title": "Язык интерфейса: {{language}}"
+    },
+    "MENU": {
+        "title": "Меню",
+        "home": "Рабочий стол",
+        "notes": "Заметки"
+    },
+    "DataState": {
+        "Loading": {
+            "title": "Загрузка..."
+        },
+        "Error": {
+            "title": "Что-то пошло не так..."
+        }
+    },
+    "NotesForm": {
+        "guid": "GUID: {{guid}}",
+        "description": "Описание: {{desc}}",
+        "created": "Создано: {{createdDate}}",
+        "updated": "Обновлено: {{updatedDate}}"
+    },
+    "ACTIONS": {
+        "Create":"Создать",
+        "Edit":"Изменить",
+        "View": "Просмотр"
+    }
+}

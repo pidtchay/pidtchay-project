@@ -1,4 +1,5 @@
 import React, { FC, lazy, ReactElement, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { NavLink, useRouteMatch } from 'react-router-dom';
 
 const NotesFormInput = lazy(() => import(/* webpackChunkName: "NotesFormInput" */ 'Containers/NotesList/NotesFormInput'));
@@ -15,6 +16,7 @@ type TNotesFormProps<P> = FC<P> & {
     NoteInput: typeof NotesFormInput;
 };
 const NotesForm: TNotesFormProps<React.PropsWithChildren<Props>> = ({ children, onView, onEdit }: React.PropsWithChildren<Props>) => {
+    const { t } = useTranslation(['common']);
     const match = useRouteMatch();
 
     const providerState = useMemo(
@@ -31,7 +33,7 @@ const NotesForm: TNotesFormProps<React.PropsWithChildren<Props>> = ({ children, 
 
     return (
         <>
-            <NavLink to={`${match.url}/create`}>Create</NavLink>
+            <NavLink to={`${match.url}/create`}>{t('common:ACTIONS.Create')}</NavLink>
             <div>{React.Children.map(children as ReactElement<any>, (child: ReactElement) => React.cloneElement(child, { ...providerState }))}</div>
         </>
     );

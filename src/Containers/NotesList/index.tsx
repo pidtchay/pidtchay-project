@@ -21,11 +21,6 @@ const Notes = (): JSX.Element => {
         };
     }, []);
 
-    React.useEffect(() => {
-        console.debug({ state: state.notes });
-        console.debug(notes.current);
-    }, [state.notes, notes.current]);
-
     const history = useHistory();
     const MATCH = useRouteMatch();
 
