@@ -3,13 +3,27 @@ import React from 'react';
 interface IProps {
     children: React.ReactChildren | React.ReactChild;
 }
+
+/**
+ * @prop {boolean} hasError Error flag.
+ * @prop {Error | null} error Error data model.
+ * @prop {React.ErrorInfo | null} errorInfo Information Data Model.
+ */
 interface IState {
     hasError: boolean;
     error: Error | null;
     errorInfo: React.ErrorInfo | null;
 }
 
+/**
+ * Environment variable indicating the web application launch mode.
+ */
 const { NODE_ENV } = process.env;
+
+/**
+ * React components that catch JavaScript errors anywhere in their child component tree, log those errors, and display a fallback UI instead of the component tree that crashed.
+ * Error boundaries catch errors during rendering, in lifecycle methods, and in constructors of the whole tree below them.
+ */
 class ErrorBoundary extends React.Component<IProps, IState> {
     // eslint-disable-next-line react/state-in-constructor
     state: IState = {

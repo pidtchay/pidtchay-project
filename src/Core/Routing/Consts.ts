@@ -1,3 +1,6 @@
+/**
+ * Web application route settings.
+ */
 export const ROUTE = {
     HOME: {
         PATH: '/'

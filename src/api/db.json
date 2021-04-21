@@ -1,1 +1,59 @@
-{ "id": 1, "title": "json-server", "author": "typicode" }
+{
+  "getData": {
+    "notes": [
+      {
+        "id": "2c543d34-64f3-4485-968f-014d587ee07c",
+        "startDate": "04/20/2021 19:01:45",
+        "lastUpdate": "04/20/2021 19:01:45",
+        "text": "Fugit similique illum ad quam culpa est nesciunt libero hic. Ut quidem molestiae nulla vitae sed natus provident dolor. Quia qui quidem rerum. Suscipit quibusdam hic fugiat sint ut nihil. Quia nam id consequatur adipisci ipsam impedit ducimus.\n \rSapiente optio sequi possimus dolor. Quae commodi id ab aut dolores. Dolor earum sed et. Excepturi itaque iusto labore vel illo.\n \rAspernatur expedita quisquam sint ipsam atque natus. Et sed qui. Sed rerum consectetur a. Est et corrupti consequatur eum neque quis ipsa itaque. Deleniti quasi nemo ratione molestias quo at facilis.",
+        "title": "Ut ut consequatur nesciunt aut odit incidunt est.\nAd temporibus itaque.\nAut quidem minus enim vero quia doloremque autem vel.\nSunt sint at."
+      },
+      {
+        "id": "d514c318-977f-4ea4-92fe-c1a6c348c43b",
+        "startDate": "04/20/2021 19:01:45",
+        "lastUpdate": "04/20/2021 19:01:45",
+        "text": "Ullam inventore quo animi et sunt atque dolor qui. Neque consequuntur et minus dolorem hic. Optio non aut minima eum. Quia deleniti qui sed velit. Eum quod iusto animi ut.\n \rAut aspernatur rerum et pariatur ut. Esse rerum doloribus maxime atque sed suscipit fugit. Assumenda aliquid incidunt beatae numquam et est. Soluta aut deserunt cupiditate autem. Sunt distinctio quia quis.\n \rVoluptates consequatur est hic. Est quasi sit adipisci voluptatibus eaque non qui quibusdam. Ut corporis enim sapiente repudiandae rem.",
+        "title": "Et commodi qui facere.\nVoluptatibus deserunt et numquam tenetur odit occaecati.\nVel quisquam et nulla aut reiciendis architecto.\nAsperiores molestiae sunt est eveniet ut."
+      },
+      {
+        "id": "a7d08540-b47f-471f-b09f-f71def65fc05",
+        "startDate": "04/20/2021 19:01:45",
+        "lastUpdate": "04/20/2021 19:01:45",
+        "text": "Error accusamus quam non est animi. Eaque expedita error sit. Qui et aut facilis eum ut soluta eum.\n \rUt velit minima adipisci. Rerum architecto est facilis animi beatae eaque laborum voluptas quos. Iusto est voluptatum. Cum eveniet dignissimos. Aut numquam aut corrupti et itaque et est id. Voluptatem alias officiis neque eius veritatis porro.\n \rAspernatur sequi iusto qui quam a quis sit ut asperiores. Sed sint velit odit nihil quam laboriosam omnis aut iure. Laudantium ea velit aspernatur ut voluptas. Debitis aut nam.",
+        "title": "Dignissimos cum corporis consequatur dolorem eaque omnis quia fuga.\nOfficiis voluptatum ipsa.\nSed voluptas dolor magnam enim et."
+      },
+      {
+        "id": "74430e6b-b831-4e04-b8e7-456b7bb7060e",
+        "startDate": "04/20/2021 19:01:45",
+        "lastUpdate": "04/20/2021 19:01:45",
+        "text": "Voluptatibus ea voluptatem. Accusantium et magni est voluptas qui facilis. Placeat sapiente dignissimos veritatis voluptatum animi pariatur rerum rem est. Reiciendis error tenetur iste doloribus voluptatibus autem ut. Architecto sed magni eum sunt. At vel nihil est sit in praesentium ut.\n \rNostrum sed iste qui ad reprehenderit et quia est ut. Animi ullam blanditiis. Eum corrupti molestiae. Qui ea omnis perferendis hic porro.\n \rLibero sunt quibusdam nisi iste nesciunt quia quasi. Ut voluptas architecto quia quidem ut quidem. Velit voluptatibus quam doloribus error ipsum odit fuga voluptas. Culpa esse accusamus ratione in dolore voluptatem consequatur. Vitae laudantium veritatis dolorem veritatis ea id debitis.",
+        "title": "Rerum consequatur dolores non.\nDebitis deleniti eveniet minima pariatur.\nEst dolorem sed et necessitatibus doloremque ullam autem id.\nReprehenderit distinctio quia explicabo deserunt sed non mollitia error.\nMagnam non blanditiis dolorem asperiores dolore et repellendus adipisci non."
+      },
+      {
+        "id": "6cc6543a-a6f6-4214-943c-4946cb8496a5",
+        "startDate": "04/20/2021 19:01:45",
+        "lastUpdate": "04/20/2021 19:01:45",
+        "text": "Quaerat quia expedita ipsam doloremque repellat cupiditate quaerat. Ipsum numquam dignissimos praesentium id nihil odit. Quas hic maxime et. Accusantium laudantium veritatis. Recusandae dolores exercitationem blanditiis rerum repudiandae maiores.\n \rConsequatur consequatur itaque sunt fuga sequi suscipit minima mollitia. Est quisquam quas asperiores ut hic ipsum in necessitatibus totam. Architecto provident inventore non atque consectetur ratione dolorem soluta.\n \rFacere ut aut dolorem aliquid. Ea sed suscipit corrupti fuga dicta ipsum voluptas. Explicabo velit earum provident aut recusandae. Aut rerum omnis excepturi eius dicta suscipit. Iusto eos sed blanditiis ipsa sequi quisquam temporibus quia est. Et dolorem officiis soluta.",
+        "title": "Suscipit odit adipisci in voluptatem sit.\nEt quae illo voluptatem provident."
+      }
+    ]
+  },
+  "getDataById": {
+    "note": {
+      "id": "6cc6543a-a6f6-4214-943c-4946cb8496a5",
+      "startDate": "04/20/2021 19:01:45",
+      "lastUpdate": "04/20/2021 19:01:45",
+      "text": "Quaerat quia expedita ipsam doloremque repellat cupiditate quaerat. Ipsum numquam dignissimos praesentium id nihil odit. Quas hic maxime et. Accusantium laudantium veritatis. Recusandae dolores exercitationem blanditiis rerum repudiandae maiores.\n \rConsequatur consequatur itaque sunt fuga sequi suscipit minima mollitia. Est quisquam quas asperiores ut hic ipsum in necessitatibus totam. Architecto provident inventore non atque consectetur ratione dolorem soluta.\n \rFacere ut aut dolorem aliquid. Ea sed suscipit corrupti fuga dicta ipsum voluptas. Explicabo velit earum provident aut recusandae. Aut rerum omnis excepturi eius dicta suscipit. Iusto eos sed blanditiis ipsa sequi quisquam temporibus quia est. Et dolorem officiis soluta.",
+      "title": "Suscipit odit adipisci in voluptatem sit.\nEt quae illo voluptatem provident."
+    }
+  },
+  "create": {
+    "note": {
+      "id": "74430e6b-b831-4e04-b8e7-456b7bb7060e",
+      "startDate": "04/20/2021 19:01:45",
+      "lastUpdate": "04/20/2021 19:01:45",
+      "text": "Voluptatibus ea voluptatem. Accusantium et magni est voluptas qui facilis. Placeat sapiente dignissimos veritatis voluptatum animi pariatur rerum rem est. Reiciendis error tenetur iste doloribus voluptatibus autem ut. Architecto sed magni eum sunt. At vel nihil est sit in praesentium ut.\n \rNostrum sed iste qui ad reprehenderit et quia est ut. Animi ullam blanditiis. Eum corrupti molestiae. Qui ea omnis perferendis hic porro.\n \rLibero sunt quibusdam nisi iste nesciunt quia quasi. Ut voluptas architecto quia quidem ut quidem. Velit voluptatibus quam doloribus error ipsum odit fuga voluptas. Culpa esse accusamus ratione in dolore voluptatem consequatur. Vitae laudantium veritatis dolorem veritatis ea id debitis.",
+      "title": "Rerum consequatur dolores non.\nDebitis deleniti eveniet minima pariatur.\nEst dolorem sed et necessitatibus doloremque ullam autem id.\nReprehenderit distinctio quia explicabo deserunt sed non mollitia error.\nMagnam non blanditiis dolorem asperiores dolore et repellendus adipisci non."
+    }
+  }
+}

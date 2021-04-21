@@ -1,6 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
+/**
+ * Panel for switching the language of the web application interface.
+ * @returns {JSX.Element} Returns the interface language switches.
+ */
 export const LanguageBar = (): JSX.Element => {
     const { t, i18n } = useTranslation(['translation', 'common']);
     const changeLanguage = (code: string) => i18n.changeLanguage(code);

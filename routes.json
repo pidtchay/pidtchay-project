@@ -1,0 +1,6 @@
+{
+    "/api/rest/notes/*":"/$1",
+    "/api/rest/note/*":"/$1",
+    "/api/rest/*": "/$1",
+    "/api/*": "/$1"
+}

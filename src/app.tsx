@@ -1,9 +1,9 @@
-import { defaultState, NotesProvider } from 'Containers/NotesList/State/NotesContext';
-import { notesSlice } from 'Containers/NotesList/State/reducer';
+import { defaultState, NotesProvider } from 'Modules/Notes/State/NotesContext';
+import { notesSlice } from 'Modules/Notes/State/Reducer';
 import React, { lazy, Suspense } from 'react';
-import NotesForm from 'Containers/NotesList';
+import NotesForm from 'Modules/Notes/List';
 import { Switch, Route, Link } from 'react-router-dom';
-import { ROUTE } from 'Routing/Consts';
+import { ROUTE } from 'Core/Routing/Consts';
 import { useTranslation } from 'react-i18next';
 
 const ErrorBoundary = lazy(() => import(/* webpackChunkName: "ErrorBoundary" */ 'Components/ErrorBoundary/ErrorBoundary'));

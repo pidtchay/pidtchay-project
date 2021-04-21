@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 const TerserPlugin = require('terser-webpack-plugin');
 const webpackCommon = require('./webpack.common');
 
@@ -31,7 +29,6 @@ const prodConfig = Object.assign(webpackCommon, {
             }
         },
         minimize: true,
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call
         minimizer: [new TerserPlugin()]
     },
     plugins: [...webpackCommon.plugins]

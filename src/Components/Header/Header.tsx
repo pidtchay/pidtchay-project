@@ -1,11 +1,20 @@
 import React, { FC } from 'react';
 
+/**
+ * @prop {string} title Title text.
+ * @prop {string} [subtitle] Subtitle text.
+ */
 interface IHeader {
     title: string;
     subtitle?: string;
 }
 
-const Header: FC<IHeader> = (props: IHeader) => {
+/**
+ * Component for displaying the header.
+ * @param {IHeader} props Properties of the component for displaying the header.
+ * @returns {JSX.Element} Header component.
+ */
+const Header: FC<IHeader> = (props: IHeader): JSX.Element => {
     const { title, subtitle } = props;
     return (
         <div>

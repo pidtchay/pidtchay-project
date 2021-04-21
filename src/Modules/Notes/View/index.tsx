@@ -1,10 +1,14 @@
 import NoteCard from 'Components/NoteCard/NoteCard';
-import { INote } from 'Containers/NotesList/Models';
-import { NotesContext } from 'Containers/NotesList/State/NotesContext';
+import { NotesContext } from 'Modules/Notes/State/NotesContext';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { INote } from 'Modules/Notes/Models';
 import { INodeQueryStringParams } from '../Models';
 
+/**
+ * View note form.
+ * @returns {JSX.Element} View form.
+ */
 const NoteViewForm = (): JSX.Element => {
     const { id } = useParams<INodeQueryStringParams>();
     const [note, setNote] = useState<INote>(null);

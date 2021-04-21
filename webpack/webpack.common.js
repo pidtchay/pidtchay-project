@@ -1,5 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable @typescript-eslint/no-var-requires */
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');

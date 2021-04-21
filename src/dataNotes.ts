@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable no-plusplus */
-import { INote } from 'Containers/NotesList/Models';
+import { INote } from 'Modules/Notes/Models';
 import faker from 'faker';
 import moment from 'moment';
 import { v4 as uuidv4 } from 'uuid';

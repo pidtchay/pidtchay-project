@@ -1,4 +1,4 @@
-import i18n from 'i18next';
+import i18n, { Resource } from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import commonEn from 'assets/locales/en/common.json';
 import translationEn from 'assets/locales/en/translations.json';
@@ -7,7 +7,11 @@ import commonRu from 'assets/locales/ru/common.json';
 import translationRu from 'assets/locales/ru/translations.json';
 import welcomeRu from 'assets/locales/ru/welcome.json';
 
-const resources = {
+/**
+ * Configuration of lists for translation.
+ * @returns {Resource} Map of translation lists.
+ */
+const resources: Resource = {
     en: {
         translation: translationEn,
         welcome: welcomeEn,

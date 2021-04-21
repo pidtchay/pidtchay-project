@@ -1,3 +1,7 @@
+export interface INodeQueryStringParams {
+    id: string;
+}
+
 export interface INote {
     id: string;
     startDate: string;

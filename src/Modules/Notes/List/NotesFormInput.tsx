@@ -1,16 +1,26 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/button-has-type */
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { INote } from './Models';
+import { INote } from 'Modules/Notes/Models';
 
+/**
+ * @prop {} note Note data.
+ * @prop {Function} [onOpenView] Note viewer handler.
+ * @prop {Function} [onOpenEdit] Note editing handler.
+ */
 interface NotesFormInputProps {
     note: INote;
     onOpenView?(evalue: string): void;
     onOpenEdit?(value: string): void;
 }
 
-// eslint-disable-next-line react/prop-types
-const NotesFormInput = ({ note, onOpenEdit, onOpenView }: NotesFormInputProps): React.ReactElement => {
+/**
+ * Composite notes list item form.
+ * @param {NotesFormInputProps} param0 Basic properties of the component.
+ * @returns {JSX.Element} List item form.
+ */
+const NotesFormInput: React.FC<NotesFormInputProps> = ({ note, onOpenEdit, onOpenView }: NotesFormInputProps): React.ReactElement => {
     const { t } = useTranslation(['common']);
     return (
         <li key={note.id}>
