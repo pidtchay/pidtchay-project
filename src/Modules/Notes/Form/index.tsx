@@ -1,8 +1,8 @@
 import NoteCard from 'Components/NoteCard/NoteCard';
+import { INote } from 'Modules/Notes/Models';
 import React, { FC, useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
-import { INote } from 'Modules/Notes/Models';
 import { INodeQueryStringParams } from '../Models';
 import { NotesContext } from '../State/NotesContext';
 

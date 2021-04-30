@@ -1,6 +1,6 @@
+import { INote } from 'Modules/Notes/Models';
 import React from 'react';
 import { AnyAction } from 'redux';
-import { INote } from 'Modules/Notes/Models';
 
 export type TInitialState = {
     details: INote;
@@ -14,7 +14,7 @@ export const defaultState: TInitialState = {
 
 type TNotesContext = {
     state: TInitialState;
-    dispatch: React.Dispatch<any>;
+    dispatch: React.Dispatch<AnyAction>;
 };
 
 /**

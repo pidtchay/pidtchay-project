@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/button-has-type */
+import { INote } from 'Modules/Notes/Models';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { INote } from 'Modules/Notes/Models';
 
 /**
  * @prop {} note Note data.

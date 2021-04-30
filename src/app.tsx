@@ -1,10 +1,11 @@
+import { Header } from 'Components/Header/Header';
+import { ROUTE } from 'Core/Routing/Consts';
+import NotesForm from 'Modules/Notes/List';
 import { defaultState, NotesProvider } from 'Modules/Notes/State/NotesContext';
 import { notesSlice } from 'Modules/Notes/State/Reducer';
 import React, { lazy, Suspense } from 'react';
-import NotesForm from 'Modules/Notes/List';
-import { Switch, Route, Link } from 'react-router-dom';
-import { ROUTE } from 'Core/Routing/Consts';
 import { useTranslation } from 'react-i18next';
+import { Switch, Route, Link } from 'react-router-dom';
 
 const ErrorBoundary = lazy(() => import(/* webpackChunkName: "ErrorBoundary" */ 'Components/ErrorBoundary/ErrorBoundary'));
 const LanguageBar = lazy(() => import(/* webpackChunkName: "LanguageBar" */ 'Components/LanguageBar/LanguageBar').then((module) => ({ default: module.LanguageBar })));
@@ -17,9 +18,8 @@ export const App = (): JSX.Element => {
         <Suspense fallback={<div>{t('common:DataState.Loading.title', 'Loading there')}</div>}>
             <ErrorBoundary>
                 <>
-                    <h1>{t('welcome:title', 'Hello there.')}</h1>
+                    <Header title={t('welcome:title', 'Hello there.')} subtitle={t('common:MENU.title', 'Menu there.')} />
                     <LanguageBar />
-                    <h3>{t('common:MENU.title', 'Menu there.')}</h3>
                     <ul>
                         <li>
                             <Link to={ROUTE.HOME.PATH}>{t('common:MENU.home', 'Home there.')}</Link>

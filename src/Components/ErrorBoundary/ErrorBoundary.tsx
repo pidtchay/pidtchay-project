@@ -25,16 +25,15 @@ const { NODE_ENV } = process.env;
  * Error boundaries catch errors during rendering, in lifecycle methods, and in constructors of the whole tree below them.
  */
 class ErrorBoundary extends React.Component<IProps, IState> {
-    // eslint-disable-next-line react/state-in-constructor
+    static getDerivedStateFromError(): Partial<IState> {
+        return { hasError: true };
+    }
+
     state: IState = {
         hasError: false,
         error: null,
         errorInfo: null
     };
-
-    static getDerivedStateFromError(): Partial<IState> {
-        return { hasError: true };
-    }
 
     componentDidCatch(error: Error | null, errorInfo: React.ErrorInfo | null): void {
         const { hasError } = this.state;

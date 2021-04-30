@@ -1,8 +1,8 @@
-import React from 'react';
+import { IRoutingConfig } from 'Common/Consts';
 import { ROUTE } from 'Core/Routing/Consts';
 import NoteForm from 'Modules/Notes/Form';
 import NoteView from 'Modules/Notes/View';
-import { IRoutingConfig } from 'Common/Consts';
+import React from 'react';
 
 /**
  * Notes route settings.
