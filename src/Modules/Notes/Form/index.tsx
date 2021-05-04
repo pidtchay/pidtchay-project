@@ -1,6 +1,8 @@
-import NoteCard from 'Components/NoteCard/NoteCard';
+import { CardLayout, IFooterActions } from 'Common/Components/CardLayout/CardLayout';
 import { INote } from 'Modules/Notes/Models';
+import { NotesServices } from 'Modules/Notes/State/Services';
 import React, { FC, useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import { INodeQueryStringParams } from '../Models';
@@ -23,28 +25,60 @@ type TNoteForm<P> = FC<P> & {
  * @returns {JSX.Element} Create form.
  */
 const NoteEditForm: TNoteForm<INoteFormProps> = ({ isCreate }: INoteFormProps) => {
+    const { t } = useTranslation(['common']);
     const { id } = useParams<INodeQueryStringParams>();
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-    const noteGuidRef = useRef(isCreate ? uuidv4() : id);
+    const noteGuidRef = useRef<string>(isCreate ? uuidv4() : id);
     const [note, setNote] = useState<INote>(null);
 
     const { state } = React.useContext(NotesContext);
 
     useEffect(() => {
-        setNote((state.notes || []).filter((it) => it.id === noteGuidRef.current)[0]);
+        NotesServices.getDataById({ entityGUID: noteGuidRef.current }).then((data) => setNote(data.note));
         return () => {
             setNote(null);
         };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    const handleSave = () => {
+        NotesServices.create({ note });
+    };
+
+    const handleClose = () => {
+        //
+    };
+
+    const calculateFooterButtons = (isErrorData: boolean): IFooterActions[] => {
+        const actions: IFooterActions[] = [
+            {
+                label: t('common:ACTIONS.Cancel'),
+                action: handleClose
+            }
+        ];
+
+        if (!isErrorData) {
+            actions.push({
+                label: t('common:ACTIONS.Create'),
+                action: handleSave,
+                isGeneral: true
+            });
+        }
+
+        return actions;
+    };
+
+    const isErrorRequest = !state.notes;
+
     return (
-        <NoteCard>
-            <NoteCard.Header title={note?.title || `Requested note ID: ${id}`} />
-            <NoteCard.Container>
-                <textarea name="text" id="text" value={note?.text} />
-            </NoteCard.Container>
-        </NoteCard>
+        <CardLayout
+            title={note?.title || `Requested note ID: ${id}`}
+            isLoading={state.notes.length === 0}
+            isSuccess={state.notes.length > 0}
+            isError={isErrorRequest}
+            footerActions={calculateFooterButtons(isErrorRequest)}
+        >
+            <textarea name="text" id="text" value={note?.text} />
+        </CardLayout>
     );
 };
 

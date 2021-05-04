@@ -1,11 +1,9 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/button-has-type */
 import { INote } from 'Modules/Notes/Models';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 /**
- * @prop {} note Note data.
+ * @prop {INote} note Note data.
  * @prop {Function} [onOpenView] Note viewer handler.
  * @prop {Function} [onOpenEdit] Note editing handler.
  */
@@ -30,12 +28,24 @@ const NotesFormInput: React.FC<NotesFormInputProps> = ({ note, onOpenEdit, onOpe
                 <div>{t('common:NotesForm.created', { createdDate: note.startDate })}</div>
                 <div>{t('common:NotesForm.updated', { updatedDate: note.lastUpdate })}</div>
             </div>
-            <div>{onOpenEdit && <button onClick={() => onOpenEdit(note.id)}>{t('common:ACTIONS.Edit')}</button>}</div>
-            <div>{onOpenView && <button onClick={() => onOpenView(note.id)}>{t('common:ACTIONS.View')}</button>}</div>
+            <div>
+                {onOpenEdit && (
+                    <button type="button" onClick={() => onOpenEdit(note.id)}>
+                        {t('common:ACTIONS.Edit')}
+                    </button>
+                )}
+            </div>
+            <div>
+                {onOpenView && (
+                    <button type="button" onClick={() => onOpenView(note.id)}>
+                        {t('common:ACTIONS.View')}
+                    </button>
+                )}
+            </div>
         </li>
     );
 };
 
-NotesFormInput.displayName = 'NoteItem';
+NotesFormInput.displayName = 'NotesFormInput';
 
 export default NotesFormInput;

@@ -12,7 +12,9 @@
             "title": "Loading..."
         },
         "Error": {
-            "title": "Something wrong..."
+            "title": "Something wrong...",
+            "subtitle": "Refresh the page or go to home.",
+            "text":"An error has occurred in the operation of our web application. We are sorry. We are already addressing the cause of the error."
         }
     },
     "NotesForm": {
@@ -24,6 +26,7 @@
     "ACTIONS": {
         "Create":"Create",
         "Edit":"Edit",
-        "View": "View"
+        "View": "View",
+        "Cancel": "Cancel"
     }
 }

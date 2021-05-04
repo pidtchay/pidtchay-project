@@ -42,7 +42,11 @@ type TNotesProvider = {
  * @param {TNotesProvider} param0  Basic properties of the component.
  * @returns {JSX.Element} The context provider for notes.
  */
-export const NotesProvider: React.FC<React.PropsWithChildren<TNotesProvider>> = ({ children, reducer, initialState }: React.PropsWithChildren<TNotesProvider>) => {
+export const NotesProvider: React.FC<React.PropsWithChildren<TNotesProvider>> = ({
+    children,
+    reducer,
+    initialState
+}: React.PropsWithChildren<TNotesProvider>) => {
     const [state, dispatch] = React.useReducer(reducer, initialState);
     return <NotesContext.Provider value={{ state, dispatch }}>{children}</NotesContext.Provider>;
 };
