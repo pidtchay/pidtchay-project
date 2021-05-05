@@ -65,7 +65,7 @@ const NotesForm: TNotesFormProps<React.PropsWithChildren<Props>> = ({
             {isSuccess && (
                 <>
                     <NavLink to={`${match.url}/create`}>{t('common:ACTIONS.Create')}</NavLink>
-                    <div>
+                    <div style={{ listStyle: 'none' }}>
                         {React.Children.map(children as ReactElement<any>, (child: ReactElement) => React.cloneElement(child, { ...providerState }))}
                     </div>
                 </>

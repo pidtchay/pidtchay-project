@@ -19,12 +19,13 @@
     },
     "NotesForm": {
         "guid": "GUID: {{guid}}",
-        "description": "Description: {{desc}}",
+        "description": "Description: ",
         "created": "Created: {{createdDate}}",
         "updated": "Updated: {{updatedDate}}"
     },
     "ACTIONS": {
         "Create":"Create",
+        "Save":"Save",
         "Edit":"Edit",
         "View": "View",
         "Cancel": "Cancel"

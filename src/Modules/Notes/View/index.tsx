@@ -1,11 +1,12 @@
 import { CardLayout, IFooterActions } from 'Common/Components/CardLayout/CardLayout';
-import { INoteData } from 'Modules/Notes/Models';
-import { NotesContext } from 'Modules/Notes/State/NotesContext';
-import React, { useEffect, useState } from 'react';
+import { MarkdownField } from 'Components/MarkdownField/MarkdownField';
+import { INodeQueryStringParams, INoteData } from 'Modules/Notes/Models';
+import { SelectedNoteGuidStateAtom } from 'Modules/Notes/Store/atoms/SelectedNoteGuiState';
+import { SelectedNoteStateSelector } from 'Modules/Notes/Store/selectors/SelectedNoteState';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useParams } from 'react-router-dom';
-import { INodeQueryStringParams } from '../Models';
-import { NotesServices } from '../State/Services';
+import { useHistory, useParams } from 'react-router-dom';
+import { useRecoilValueLoadable, useResetRecoilState, useSetRecoilState } from 'recoil';
 
 /**
  * View note form.
@@ -13,24 +14,26 @@ import { NotesServices } from '../State/Services';
  */
 const NoteViewForm = (): JSX.Element => {
     const { t } = useTranslation(['common']);
+    const history = useHistory();
     const { id } = useParams<INodeQueryStringParams>();
-    const [note, setNote] = useState<INoteData>(null);
-
-    const { state } = React.useContext(NotesContext);
+    const setNoteGuid = useSetRecoilState(SelectedNoteGuidStateAtom);
+    const currentNote = useRecoilValueLoadable(SelectedNoteStateSelector);
+    // Use useResetRecoilState to reset state
+    const resetNoteState = useResetRecoilState(SelectedNoteGuidStateAtom);
 
     useEffect(() => {
-        NotesServices.getDataById({ entityGUID: id }).then((data) => setNote(data.note));
+        setNoteGuid(id);
         return () => {
-            setNote(null);
+            resetNoteState();
         };
     }, []);
 
-    const handleSave = () => {
-        //
+    const handleClose = () => {
+        history.push(`/notes`);
     };
 
-    const handleClose = () => {
-        //
+    const handleEdit = () => {
+        history.push(`/notes/edit/${(currentNote.contents as INoteData)?.id}`);
     };
 
     const calculateFooterButtons = (isErrorData: boolean): IFooterActions[] => {
@@ -43,8 +46,8 @@ const NoteViewForm = (): JSX.Element => {
 
         if (!isErrorData) {
             actions.push({
-                label: t('common:ACTIONS.Create'),
-                action: handleSave,
+                label: t('common:ACTIONS.Edit'),
+                action: handleEdit,
                 isGeneral: true
             });
         }
@@ -52,17 +55,19 @@ const NoteViewForm = (): JSX.Element => {
         return actions;
     };
 
-    const isErrorRequest = !state.notes;
+    const isSuccessRequest = currentNote.state === 'hasValue';
+    const isErrorRequest = currentNote.state === 'hasError';
+    const title = isSuccessRequest ? (currentNote.contents as INoteData)?.title : `Requested note ID: ${id}`;
 
     return (
         <CardLayout
-            title={note?.title || `Requested note ID: ${id}`}
-            isLoading={state.notes.length === 0}
-            isSuccess={state.notes.length > 0}
+            title={title}
+            isLoading={currentNote.state === 'loading'}
+            isSuccess={isSuccessRequest}
             isError={isErrorRequest}
             footerActions={calculateFooterButtons(isErrorRequest)}
         >
-            <p>{note?.text}</p>
+            {isSuccessRequest && <MarkdownField source={(currentNote.contents as INoteData)?.text} />}
         </CardLayout>
     );
 };

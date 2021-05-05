@@ -1,49 +1,27 @@
-/* eslint-disable no-console */
-import { NotesContext } from 'Modules/Notes/State/NotesContext';
-import { notesSlice } from 'Modules/Notes/State/Reducer';
-import { NotesServices } from 'Modules/Notes/State/Services';
+import { NODE_ENV } from 'Common/Consts';
+import { DebugObserver } from 'Core/DebugObserver/DebugObserver';
+import NotesForm from 'Modules/Notes/List/NotesForm';
+import RoutingConfig from 'Modules/Notes/List/Routing';
+import { INoteData } from 'Modules/Notes/Models';
+import { NotesListStateAtom } from 'Modules/Notes/Store/atoms/NoteListState';
 import React from 'react';
 import { Switch, Route, useHistory, useRouteMatch } from 'react-router-dom';
-import NotesForm from './NotesForm';
-import RoutingConfig from './Routing';
-
-const { getData, clearData } = notesSlice.actions;
+import { useRecoilValueLoadable } from 'recoil';
 
 /**
  * Notes list form.
  * @returns {JSX.Element} List form.
  */
-const Notes = (): JSX.Element => {
-    const { state, dispatch } = React.useContext(NotesContext);
-
-    const initView = async () => {
-        await NotesServices.getData().then((data) => dispatch(getData({ notes: data.notes })));
-    };
-
-    React.useEffect(() => {
-        initView();
-        return () => {
-            dispatch(clearData());
-        };
-    }, []);
-
+const NotesComponent = (): JSX.Element => {
+    const notesList = useRecoilValueLoadable(NotesListStateAtom);
     const history = useHistory();
-    const MATCH = useRouteMatch();
+    const match = useRouteMatch();
 
-    const onOpenView = (value: string): void => {
-        console.group('NoteInput onChange');
-        console.debug({ value });
-        console.groupEnd();
-        history.push(`/notes/view/${value}`);
-    };
+    const onOpenView = (value: string): void => history.push(`/notes/view/${value}`);
 
-    const onOpenEdit = (value: string): void => {
-        console.group('NoteInput onChange');
-        console.debug({ value });
-        console.groupEnd();
-        history.push(`/notes/edit/${value}`);
-    };
+    const onOpenEdit = (value: string): void => history.push(`/notes/edit/${value}`);
 
+    const isSuccessData = notesList.state === 'hasValue';
     return (
         <>
             <Switch>
@@ -52,23 +30,29 @@ const Notes = (): JSX.Element => {
                         {route.component}
                     </Route>
                 ))}
-                <Route path={MATCH.path}>
+                <Route path={match.path}>
                     <NotesForm
+                        isLoading={notesList.state === 'loading'}
+                        isError={notesList.state === 'hasError'}
+                        isSuccess={isSuccessData}
                         onView={onOpenView}
                         onEdit={onOpenEdit}
-                        isLoading={state.notes.length === 0}
-                        isSuccess={state.notes.length > 0}
-                        isError={!state.notes}
                     >
                         <NotesForm.Header title="Notes" subtitle="Mocked notes list" />
-                        {(state.notes || []).map((note) => (
-                            <NotesForm.NoteInput note={note} key={note.id} />
-                        ))}
+                        {isSuccessData &&
+                            ((notesList.contents as INoteData[]) || []).map((note) => <NotesForm.NoteInput note={note} key={note.id} />)}
                     </NotesForm>
                 </Route>
             </Switch>
         </>
     );
 };
+
+const Notes = (): JSX.Element => (
+    <>
+        {NODE_ENV === 'development' && <DebugObserver />}
+        <NotesComponent />
+    </>
+);
 
 export default Notes;

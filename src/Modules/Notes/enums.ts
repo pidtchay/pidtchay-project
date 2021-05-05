@@ -4,13 +4,16 @@ export enum ESyntaxType {
 }
 
 export enum ESpecialSyntax {
-    HEADER = '#',
+    HEADER1 = '#',
+    HEADER2 = '##',
+    HEADER3 = '###',
     BOLD = '****',
     ITALIAN = '**',
     STRIKETHROUGH = '~~~~',
     BLOCK_QUOTE = '>',
     BLOCK_CODE = '```\n\n```',
-    BLOCK_TABLE = '| ColumnName1 | ColumnName2 |\n| --------- | ------- |\n| Value1 | Value2 |\n'
+    IMAGE = '![text](url)',
+    HYPER_LINK = '[text](url)'
 }
 
 export enum EOperationType {

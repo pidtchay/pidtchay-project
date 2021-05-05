@@ -1,6 +1,6 @@
+import { ISelectionOption } from 'Modules/Notes/Models';
+import { useMarkdownInputField } from 'Modules/Notes/Utils/hooks/useMarkdownInputField';
 import { useRef } from 'react';
-import { ISelectionOption } from '../Models';
-import { useMarkdownInputField } from './useMarkdownInputField';
 
 /**
  * Custom hook.

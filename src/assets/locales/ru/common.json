@@ -19,12 +19,13 @@
     },
     "NotesForm": {
         "guid": "GUID: {{guid}}",
-        "description": "Описание: {{desc}}",
+        "description": "Описание: ",
         "created": "Создано: {{createdDate}}",
         "updated": "Обновлено: {{updatedDate}}"
     },
     "ACTIONS": {
         "Create":"Создать",
+        "Save":"Сохранить",
         "Edit":"Изменить",
         "View": "Просмотр",
         "Cancel": "Отмена"

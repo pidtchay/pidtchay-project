@@ -13,6 +13,10 @@ export interface IFooterActions extends IHeaderActions {
     isDisabled?: boolean;
 }
 
+export interface IMarkdownActions extends IHeaderActions {
+    isCollapse?: boolean;
+}
+
 interface IProps {
     title: string;
     headerActions?: IHeaderActions[];
@@ -28,7 +32,7 @@ type TCardLayout<P> = React.FC<React.PropsWithChildren<P>> & {
 };
 
 const getFooterButtons = (buttons: IFooterActions[]) => {
-    return buttons.map((item) => {
+    return (buttons || []).map((item) => {
         if (item.isGeneral) {
             return (
                 <button type="submit" key={item.label} onClick={item.action} disabled={item.isDisabled}>

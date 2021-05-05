@@ -1,8 +1,5 @@
 import { Header } from 'Components/Header/Header';
 import { ROUTE } from 'Core/Routing/Consts';
-import NotesForm from 'Modules/Notes/List';
-import { defaultState, NotesProvider } from 'Modules/Notes/State/NotesContext';
-import { notesSlice } from 'Modules/Notes/State/Reducer';
 import React, { lazy, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Switch, Route } from 'react-router-dom';
@@ -12,8 +9,8 @@ const ErrorBoundary = lazy(() => import(/* webpackChunkName: "ErrorBoundary" */ 
 const LanguageBar = lazy(() =>
     import(/* webpackChunkName: "LanguageBar" */ 'Components/LanguageBar/LanguageBar').then((module) => ({ default: module.LanguageBar }))
 );
-
-const Home = () => <h2>Home</h2>;
+const NotesForm = lazy(() => import(/* webpackChunkName: "NotesForm" */ 'Modules/Notes/List'));
+const Dashboard = lazy(() => import(/* webpackChunkName: "Dashboard" */ 'Modules/Notes/Dashboard').then((module) => ({ default: module.Dashboard })));
 
 export const App = (): JSX.Element => {
     const { t } = useTranslation(['welcome', 'common']);
@@ -21,17 +18,15 @@ export const App = (): JSX.Element => {
         <Suspense fallback={<div>{t('common:DataState.Loading.title', 'Loading there')}</div>}>
             <ErrorBoundary>
                 <>
-                    <Header title={t('welcome:title', 'Hello there.')} subtitle={t('common:MENU.title', 'Menu there.')} />
                     <LanguageBar />
+                    <Header title={t('welcome:title', 'Hello there.')} subtitle={t('common:MENU.title', 'Menu there.')} />
                     <NavBar />
                     <Switch>
                         <Route exact path={ROUTE.HOME.PATH}>
-                            <Home />
+                            <Dashboard />
                         </Route>
                         <Route path={ROUTE.NOTES.PATH}>
-                            <NotesProvider initialState={defaultState} reducer={notesSlice.reducer}>
-                                <NotesForm />
-                            </NotesProvider>
+                            <NotesForm />
                         </Route>
                     </Switch>
                 </>

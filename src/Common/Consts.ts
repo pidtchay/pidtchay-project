@@ -14,7 +14,7 @@ export interface IRoutingConfig {
 /**
  * Environment variable indicating the web application launch mode.
  */
-const { NODE_ENV } = process.env;
+export const { NODE_ENV } = process.env;
 
 /**
  * Part of the path for REST API requests.

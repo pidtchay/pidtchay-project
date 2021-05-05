@@ -8,6 +8,7 @@ import API from './api';
 export const GET = <TResponse, TParams = null>(url: string) => async (params?: TParams): Promise<TResponse> => {
     try {
         const resp = await API.get<TResponse>(url, { params });
+        await new Promise((r) => setTimeout(r, 1000));
         return resp.data;
     } catch (e) {
         throw TypeError(`😱 Axios request failed: ${e}`);
@@ -22,6 +23,7 @@ export const GET = <TResponse, TParams = null>(url: string) => async (params?: T
 export const POST = <TResponse, TData = null, TParams = null>(url: string) => async (data?: TData, params?: TParams): Promise<TResponse> => {
     try {
         const resp = await API.post<TResponse>(url, data, { params });
+        await new Promise((r) => setTimeout(r, 1000));
         return resp.data;
     } catch (e) {
         throw TypeError(`😱 Axios request failed: ${e}`);
