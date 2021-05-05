@@ -1,14 +1,14 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { INote } from 'Modules/Notes/Models';
+import { INoteData } from 'Modules/Notes/Models';
 import { defaultState } from './NotesContext';
 
 type TNotePayload = {
-    note: INote;
+    note: INoteData;
 };
 
 type TNotesPayload = {
-    notes: INote[];
+    notes: INoteData[];
 };
 
 export const notesSlice = createSlice({

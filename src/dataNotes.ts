@@ -3,14 +3,14 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable no-plusplus */
 import faker from 'faker';
-import { INote } from 'Modules/Notes/Models';
+import { INoteData } from 'Modules/Notes/Models';
 import moment from 'moment';
 import { v4 as uuidv4 } from 'uuid';
 
 const DATE_TIME_FORMAT = 'MM/DD/YYYY HH:mm:ss';
 
-const getFakeNoteList = (): INote[] => {
-    const fakeList = [] as INote[];
+const getFakeNoteList = (): INoteData[] => {
+    const fakeList = [] as INoteData[];
     for (let step = 0; step < 5; step++) {
         fakeList.push({
             id: uuidv4(),

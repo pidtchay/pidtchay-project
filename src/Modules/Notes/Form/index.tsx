@@ -1,10 +1,11 @@
 import { CardLayout, IFooterActions } from 'Common/Components/CardLayout/CardLayout';
-import { INote } from 'Modules/Notes/Models';
+import { INoteData } from 'Modules/Notes/Models';
 import { NotesServices } from 'Modules/Notes/State/Services';
 import React, { FC, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
+import { useTextAreaState } from '../MarkdownInputField/hooks/useMarkdownInputFieldState';
 import { INodeQueryStringParams } from '../Models';
 import { NotesContext } from '../State/NotesContext';
 
@@ -29,7 +30,8 @@ const NoteEditForm: TNoteForm<INoteFormProps> = ({ isCreate }: INoteFormProps) =
     const { id } = useParams<INodeQueryStringParams>();
     // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     const noteGuidRef = useRef<string>(isCreate ? uuidv4() : id);
-    const [note, setNote] = useState<INote>(null);
+    const [note, setNote] = useState<INoteData>(null);
+    const { textareaRef, getLastState, getState, setState, setStateSyntax, processChange, processChangeSyntax } = useTextAreaState(note);
 
     const { state } = React.useContext(NotesContext);
 
@@ -77,7 +79,7 @@ const NoteEditForm: TNoteForm<INoteFormProps> = ({ isCreate }: INoteFormProps) =
             isError={isErrorRequest}
             footerActions={calculateFooterButtons(isErrorRequest)}
         >
-            <textarea name="text" id="text" value={note?.text} />
+            <textarea name="text" id="text" value={note?.text} ref={textareaRef} rows={10} />
         </CardLayout>
     );
 };

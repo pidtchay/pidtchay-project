@@ -1,5 +1,5 @@
 import { CardLayout, IFooterActions } from 'Common/Components/CardLayout/CardLayout';
-import { INote } from 'Modules/Notes/Models';
+import { INoteData } from 'Modules/Notes/Models';
 import { NotesContext } from 'Modules/Notes/State/NotesContext';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -14,7 +14,7 @@ import { NotesServices } from '../State/Services';
 const NoteViewForm = (): JSX.Element => {
     const { t } = useTranslation(['common']);
     const { id } = useParams<INodeQueryStringParams>();
-    const [note, setNote] = useState<INote>(null);
+    const [note, setNote] = useState<INoteData>(null);
 
     const { state } = React.useContext(NotesContext);
 

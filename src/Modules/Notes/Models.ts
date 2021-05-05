@@ -3,9 +3,12 @@ export interface INodeQueryStringParams {
 }
 
 export interface INote {
+    title: string;
+    text: string;
+}
+
+export interface INoteData extends INote {
     id: string;
     startDate: string;
     lastUpdate: string;
-    title: string;
-    text: string;
 }

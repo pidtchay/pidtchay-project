@@ -1,4 +1,4 @@
-import { INote } from 'Modules/Notes/Models';
+import { INoteData } from 'Modules/Notes/Models';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
  * @prop {Function} [onOpenEdit] Note editing handler.
  */
 interface NotesFormInputProps {
-    note: INote;
+    note: INoteData;
     onOpenView?(evalue: string): void;
     onOpenEdit?(value: string): void;
 }

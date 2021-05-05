@@ -1,10 +1,10 @@
-import { INote } from 'Modules/Notes/Models';
+import { INoteData } from 'Modules/Notes/Models';
 import React from 'react';
 import { AnyAction } from 'redux';
 
 export type TInitialState = {
-    details: INote;
-    notes: INote[];
+    details: INoteData;
+    notes: INoteData[];
 };
 
 export const defaultState: TInitialState = {
