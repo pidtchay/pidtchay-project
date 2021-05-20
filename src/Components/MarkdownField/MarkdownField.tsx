@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 import parse from 'html-react-parser';
 import { parseMarkdown } from 'Modules/Notes/Utils';
 import React from 'react';

@@ -1,5 +1,7 @@
-import { ErrorPage } from 'Components/ErrorPage/ErrorPage';
-import NoteCard from 'Components/NoteCard/NoteCard';
+import { Button } from 'Common/Components/Button/Button';
+import { SubmitButton } from 'Common/Components/Button/SubmitButton';
+import { ErrorPage } from 'Common/Components/ErrorPage/ErrorPage';
+import NoteCard from 'Common/Components/NoteCard/NoteCard';
 import React from 'react';
 import Loader from 'react-loader-spinner';
 
@@ -35,15 +37,15 @@ const getFooterButtons = (buttons: IFooterActions[]) => {
     return (buttons || []).map((item) => {
         if (item.isGeneral) {
             return (
-                <button type="submit" key={item.label} onClick={item.action} disabled={item.isDisabled}>
+                <SubmitButton key={item.label} onClick={item.action} disabled={item.isDisabled}>
                     {item.label}
-                </button>
+                </SubmitButton>
             );
         }
         return (
-            <button type="button" key={item.label} onClick={item.action} disabled={item.isDisabled}>
+            <Button key={item.label} onClick={item.action} disabled={item.isDisabled}>
                 {item.label}
-            </button>
+            </Button>
         );
     });
 };
@@ -56,9 +58,9 @@ export const CardLayout: TCardLayout<IProps> = ({ children, ...props }: React.Pr
                 {headerActions && (
                     <NoteCard.Header.Actions>
                         {headerActions.map((item) => (
-                            <button key={item.label} type="button" onClick={item.action}>
+                            <Button key={item.label} onClick={item.action}>
                                 {item.label}
-                            </button>
+                            </Button>
                         ))}
                     </NoteCard.Header.Actions>
                 )}

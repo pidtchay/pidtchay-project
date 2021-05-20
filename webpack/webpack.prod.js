@@ -31,7 +31,7 @@ const prodConfig = Object.assign(webpackCommon, {
         minimize: true,
         minimizer: [new TerserPlugin()]
     },
-    plugins: [...webpackCommon.plugins]
+    plugins: webpackCommon.plugins || []
 });
 
 module.exports = prodConfig;

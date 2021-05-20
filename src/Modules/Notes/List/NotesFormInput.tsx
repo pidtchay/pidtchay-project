@@ -1,4 +1,5 @@
 /* eslint-disable react/require-default-props */
+import { Button } from 'Common/Components/Button/Button';
 import { MarkdownField } from 'Components/MarkdownField/MarkdownField';
 import { INoteData } from 'Modules/Notes/Models';
 import React from 'react';
@@ -35,16 +36,8 @@ const NotesFormInput: React.FC<NotesFormInputProps> = ({ note, onOpenEdit, onOpe
                 <div>{t('common:NotesForm.updated', { updatedDate: note.lastUpdate })}</div>
             </div>
             <div style={{ display: 'flex' }}>
-                {onOpenEdit && (
-                    <button type="button" onClick={() => onOpenEdit(note.id)}>
-                        {t('common:ACTIONS.Edit')}
-                    </button>
-                )}
-                {onOpenView && (
-                    <button type="button" onClick={() => onOpenView(note.id)}>
-                        {t('common:ACTIONS.View')}
-                    </button>
-                )}
+                {onOpenEdit && <Button onClick={() => onOpenEdit(note.id)}>{t('common:ACTIONS.Edit')}</Button>}
+                {onOpenView && <Button onClick={() => onOpenView(note.id)}>{t('common:ACTIONS.View')}</Button>}
             </div>
         </li>
     );

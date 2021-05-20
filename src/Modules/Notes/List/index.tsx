@@ -1,5 +1,6 @@
 import { NODE_ENV } from 'Common/Consts';
 import { DebugObserver } from 'Core/DebugObserver/DebugObserver';
+import { isError, isLoading, isSuccess } from 'Core/Utils/Utils';
 import NotesForm from 'Modules/Notes/List/NotesForm';
 import RoutingConfig from 'Modules/Notes/List/Routing';
 import { INoteData } from 'Modules/Notes/Models';
@@ -21,7 +22,7 @@ const NotesComponent = (): JSX.Element => {
 
     const onOpenEdit = (value: string): void => history.push(`/notes/edit/${value}`);
 
-    const isSuccessData = notesList.state === 'hasValue';
+    const isSuccessData = isSuccess(notesList);
     return (
         <>
             <Switch>
@@ -32,8 +33,8 @@ const NotesComponent = (): JSX.Element => {
                 ))}
                 <Route path={match.path}>
                     <NotesForm
-                        isLoading={notesList.state === 'loading'}
-                        isError={notesList.state === 'hasError'}
+                        isLoading={isLoading(notesList)}
+                        isError={isError(notesList)}
                         isSuccess={isSuccessData}
                         onView={onOpenView}
                         onEdit={onOpenEdit}

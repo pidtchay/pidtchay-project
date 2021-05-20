@@ -2,8 +2,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const HappyPack = require('happypack');
+// const os = require('os');
 const path = require('path');
 const pkg = require('../package.json');
+
+// const threadPool = HappyPack.ThreadPool({ size: os.cpus().length - 1 });
 
 // Корневые директории проекта
 const PATHS = {
@@ -24,31 +29,67 @@ module.exports = {
     // https://webpack.js.org/configuration/performance/#performancehints
     performance: {
         hints: 'warning',
-        maxAssetSize: 300 * 1024, // 300 KiB
-        maxEntrypointSize: 300 * 1024 // 300 KiB
+        maxAssetSize: 500 * 1024, // 300 KiB
+        maxEntrypointSize: 500 * 1024 // 300 KiB
     },
     resolve: {
         modules: ['node_modules', 'src'],
         extensions: ['.ts', '.tsx', '.js']
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            template: './src/index.html'
-        }),
-        new ForkTsCheckerWebpackPlugin({
-            async: false
-        }),
+        new CleanWebpackPlugin(),
         new ESLintPlugin({
             extensions: ['js', 'jsx', 'ts', 'tsx']
         }),
-        new CleanWebpackPlugin()
+        new ForkTsCheckerWebpackPlugin({
+            async: true,
+        }),
+        // new HappyPack({
+        //     id: 'happyTsLoader',
+        //     threadPool: threadPool,
+        //     loaders: [{
+        //         loader: 'ts-loader',
+        //         options: {
+        //             transpileOnly: true,
+        //             happyPackMode: true,
+        //         }
+        //     }]
+        // }),
+        new HtmlWebpackPlugin({
+            template: './src/index.html'
+        }),
+        new MiniCssExtractPlugin({
+            filename: 'css/[name].[hash].css',
+            chunkFilename: 'css/[name].[hash].css'
+        })
     ],
     module: {
         rules: [
             {
-                test: /\.(ts|js)x?$/i,
-                exclude: /node_modules/,
-                loader: 'ts-loader'
+                test: /\.tsx?$/,
+                exclude: /(node_modules)/,
+                use: 'ts-loader'
+                // use: 'happypack/loader?id=happyTsLoader'
+            },
+            {
+                test: /\.less$/,
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 1,
+                            modules: {
+                                localIdentName: '[local]__[hash:base64:5]'
+                            }
+                        }
+                    },
+                    {
+                        loader: 'less-loader'
+                    }
+                ]
             }
         ]
     }

@@ -1,13 +1,13 @@
-import { Header } from 'Components/Header/Header';
+import { Header } from 'Common/Components/Header/Header';
 import { ROUTE } from 'Core/Routing/Consts';
 import React, { lazy, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Switch, Route } from 'react-router-dom';
 
-const NavBar = lazy(() => import(/* webpackChunkName: "NavBar" */ 'Components/NavBar/NavBar').then((module) => ({ default: module.NavBar })));
-const ErrorBoundary = lazy(() => import(/* webpackChunkName: "ErrorBoundary" */ 'Common/Components/ErrorBoundary/ErrorBoundary'));
+const NavBar = lazy(() => import(/* webpackChunkName: "NavBar" */ 'Common/Components/NavBar/NavBar').then((module) => ({ default: module.NavBar })));
+const ErrorBoundary = lazy(() => import(/* webpackChunkName: "ErrorBoundary" */ 'Core/ErrorBoundary/ErrorBoundary'));
 const LanguageBar = lazy(() =>
-    import(/* webpackChunkName: "LanguageBar" */ 'Components/LanguageBar/LanguageBar').then((module) => ({ default: module.LanguageBar }))
+    import(/* webpackChunkName: "LanguageBar" */ 'Common/Components/LanguageBar/LanguageBar').then((module) => ({ default: module.LanguageBar }))
 );
 const NotesForm = lazy(() => import(/* webpackChunkName: "NotesForm" */ 'Modules/Notes/List'));
 const Dashboard = lazy(() => import(/* webpackChunkName: "Dashboard" */ 'Modules/Notes/Dashboard').then((module) => ({ default: module.Dashboard })));

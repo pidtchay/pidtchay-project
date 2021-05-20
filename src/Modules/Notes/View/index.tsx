@@ -1,5 +1,6 @@
 import { CardLayout, IFooterActions } from 'Common/Components/CardLayout/CardLayout';
 import { MarkdownField } from 'Components/MarkdownField/MarkdownField';
+import { isError, isLoading, isSuccess } from 'Core/Utils/Utils';
 import { INodeQueryStringParams, INoteData } from 'Modules/Notes/Models';
 import { SelectedNoteGuidStateAtom } from 'Modules/Notes/Store/atoms/SelectedNoteGuiState';
 import { SelectedNoteStateSelector } from 'Modules/Notes/Store/selectors/SelectedNoteState';
@@ -7,6 +8,7 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory, useParams } from 'react-router-dom';
 import { useRecoilValueLoadable, useResetRecoilState, useSetRecoilState } from 'recoil';
+import { MockPasswd, useCryptoAES256 } from '../Utils/hooks/useCryproAES256';
 
 /**
  * View note form.
@@ -20,6 +22,8 @@ const NoteViewForm = (): JSX.Element => {
     const currentNote = useRecoilValueLoadable(SelectedNoteStateSelector);
     // Use useResetRecoilState to reset state
     const resetNoteState = useResetRecoilState(SelectedNoteGuidStateAtom);
+
+    const { decryptMessage } = useCryptoAES256();
 
     useEffect(() => {
         setNoteGuid(id);
@@ -55,19 +59,21 @@ const NoteViewForm = (): JSX.Element => {
         return actions;
     };
 
-    const isSuccessRequest = currentNote.state === 'hasValue';
-    const isErrorRequest = currentNote.state === 'hasError';
-    const title = isSuccessRequest ? (currentNote.contents as INoteData)?.title : `Requested note ID: ${id}`;
+    const isSuccessRequest = isSuccess(currentNote);
+    const isErrorRequest = isError(currentNote);
+    const decryptedTitle = decryptMessage((currentNote.contents as INoteData)?.title ?? '', MockPasswd);
+    const decryptedText = decryptMessage((currentNote.contents as INoteData)?.text ?? '', MockPasswd);
+    const title = isSuccessRequest ? decryptedTitle : `Requested note ID: ${id}`;
 
     return (
         <CardLayout
             title={title}
-            isLoading={currentNote.state === 'loading'}
+            isLoading={isLoading(currentNote)}
             isSuccess={isSuccessRequest}
             isError={isErrorRequest}
             footerActions={calculateFooterButtons(isErrorRequest)}
         >
-            {isSuccessRequest && <MarkdownField source={(currentNote.contents as INoteData)?.text} />}
+            {isSuccessRequest && <MarkdownField source={decryptedText} />}
         </CardLayout>
     );
 };

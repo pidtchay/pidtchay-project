@@ -1,5 +1,8 @@
-import { CardLayout, IFooterActions, IMarkdownActions } from 'Common/Components/CardLayout/CardLayout';
+import { Button } from 'Common/Components/Button/Button';
+import { CardLayout, IMarkdownActions } from 'Common/Components/CardLayout/CardLayout';
 import { DATE_TIME_FORMAT } from 'Common/Consts';
+import ComponentBox from 'Components/ComponentBox/ComponentBox';
+import { isError, isLoading, isSuccess } from 'Core/Utils/Utils';
 import { EOperationType, ESpecialSyntax, ESyntaxType } from 'Modules/Notes/enums';
 import { INodeQueryStringParams, INoteData, ISelectionOption, SpecialSyntaxRules } from 'Modules/Notes/Models';
 import { NotesServices } from 'Modules/Notes/Services';
@@ -9,13 +12,12 @@ import { getTitle } from 'Modules/Notes/Utils';
 import { useMarkdownInputFieldSelection } from 'Modules/Notes/Utils/hooks/useMarkdownInputFieldSelection';
 import moment from 'moment';
 import React, { FC, useEffect, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useParams, useHistory } from 'react-router-dom';
 import { useSetRecoilState, useRecoilValueLoadable, useResetRecoilState } from 'recoil';
 import { v4 as uuidv4 } from 'uuid';
+import { MockPasswd, useCryptoAES256 } from '../Utils/hooks/useCryproAES256';
 
 const DefaultFieldValue = { title: `${ESpecialSyntax.HEADER1} `, text: `${ESpecialSyntax.HEADER1} ` };
-
 /**
  * @prop {boolean} isCreate Create/Edit form flag.
  */
@@ -44,20 +46,20 @@ const NoteEditForm: TNoteForm<INoteFormProps> = ({ isCreate }: INoteFormProps) =
 
     const noteGuidRef = useRef(isCreate ? uuidv4() : id);
     const createDateRef = useRef(isCreate ? moment(new Date()).format(DATE_TIME_FORMAT) : (currentNote.contents as INoteData)?.startDate);
-    const fieldRef = useRef<HTMLTextAreaElement>();
+    const fieldRef = useRef<HTMLTextAreaElement>(null);
 
+    const { encryptMessage, decryptMessage } = useCryptoAES256();
     const { getSelection, getLastSelection, setSelection } = useMarkdownInputFieldSelection(fieldRef);
 
     const [visibleActions, setVisibleActions] = React.useState(false);
     const [fieldValue, setFieldValue] = React.useState(isCreate ? DefaultFieldValue.text : '');
     const [syntax, setSyntax] = React.useState<ESpecialSyntax>(ESpecialSyntax.HEADER1);
 
-    const { t } = useTranslation(['common']);
     const history = useHistory();
 
-    const isSuccessRequest = currentNote.state === 'hasValue';
-    const isErrorRequest = currentNote.state === 'hasError';
-    const title = isSuccessRequest ? (currentNote.contents as INoteData)?.title : `Requested note ID: ${id}`;
+    const isSuccessRequest = isSuccess(currentNote);
+    const isErrorRequest = isError(currentNote);
+    const title = isSuccessRequest ? decryptMessage((currentNote.contents as INoteData)?.title ?? '', MockPasswd) : `Requested note ID: ${id}`;
 
     useEffect(() => {
         setNoteGuid(noteGuidRef.current);
@@ -68,7 +70,7 @@ const NoteEditForm: TNoteForm<INoteFormProps> = ({ isCreate }: INoteFormProps) =
 
     useEffect(() => {
         if (isSuccessRequest && currentNote.contents && fieldValue !== (currentNote.contents as INoteData)?.text) {
-            setFieldValue((currentNote.contents as INoteData)?.text);
+            setFieldValue(decryptMessage((currentNote.contents as INoteData)?.text, MockPasswd));
         }
     }, [currentNote.contents, currentNote.state]);
 
@@ -131,13 +133,19 @@ const NoteEditForm: TNoteForm<INoteFormProps> = ({ isCreate }: INoteFormProps) =
             ? NotesServices.create({
                   note: {
                       id: noteGuidRef.current,
-                      title: getTitle(fieldValue),
-                      text: fieldValue,
+                      title: encryptMessage(getTitle(fieldValue), MockPasswd),
+                      text: encryptMessage(fieldValue, MockPasswd),
                       startDate: createDateRef.current,
                       lastUpdate: createDateRef.current
                   }
               })
-            : NotesServices.update({ note: currentNote.getValue() })
+            : NotesServices.update({
+                  note: {
+                      ...(currentNote.contents as INoteData),
+                      title: encryptMessage((currentNote.contents as INoteData).title, MockPasswd),
+                      text: encryptMessage((currentNote.contents as INoteData).text, MockPasswd)
+                  }
+              })
         ).then((data) => {
             if (data.note) {
                 setNoteDataState(data.note);
@@ -165,25 +173,6 @@ const NoteEditForm: TNoteForm<INoteFormProps> = ({ isCreate }: INoteFormProps) =
         if (visibleActions) {
             handleToggleActionsVisible();
         }
-    };
-
-    const calculateFooterButtons = (isErrorData: boolean): IFooterActions[] => {
-        const actions: IFooterActions[] = [
-            {
-                label: t('common:ACTIONS.Cancel'),
-                action: handleClose
-            }
-        ];
-
-        if (!isErrorData) {
-            actions.push({
-                label: t('common:ACTIONS.Save'),
-                action: handleSave,
-                isGeneral: true
-            });
-        }
-
-        return actions;
     };
 
     const calculateActions = (): IMarkdownActions[] => {
@@ -227,49 +216,32 @@ const NoteEditForm: TNoteForm<INoteFormProps> = ({ isCreate }: INoteFormProps) =
             {
                 label: 'C',
                 action: () => handleChangeSyntax(ESpecialSyntax.BLOCK_CODE)
-            },
-            {
-                label: 'Img',
-                action: () => handleChangeSyntax(ESpecialSyntax.IMAGE)
-            },
-            {
-                label: 'Link',
-                action: () => handleChangeSyntax(ESpecialSyntax.HYPER_LINK)
             }
         ];
         return actions;
     };
 
     return (
-        <CardLayout
-            title={title}
-            isLoading={currentNote.state === 'loading'}
-            isSuccess={isSuccessRequest}
-            isError={isErrorRequest}
-            footerActions={calculateFooterButtons(isErrorRequest)}
-        >
+        <CardLayout title={title} isLoading={isLoading(currentNote)} isSuccess={isSuccessRequest} isError={isErrorRequest}>
             {isSuccessRequest && (
                 <div>
                     <div style={{ display: 'flex' }}>
                         {calculateActions().map(
                             (it) =>
                                 !it.isCollapse && (
-                                    <button type="button" key={uuidv4()} onClick={it.action}>
+                                    <Button key={uuidv4()} onClick={it.action}>
                                         {it.label}
-                                    </button>
+                                    </Button>
                                 )
                         )}
                     </div>
-                    <div>
-                        <textarea
-                            ref={fieldRef}
-                            name="markdownField"
-                            id="markdownField"
-                            rows={10}
-                            value={fieldValue}
-                            onChange={(e) => handleChange(e.target.value)}
-                        />
-                    </div>
+                    <ComponentBox
+                        textRef={fieldRef}
+                        fieldValue={fieldValue}
+                        onChangeValue={handleChange}
+                        onClose={handleClose}
+                        onSubmit={handleSave}
+                    />
                 </div>
             )}
         </CardLayout>

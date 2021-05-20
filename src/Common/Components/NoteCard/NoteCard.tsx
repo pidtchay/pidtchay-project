@@ -1,4 +1,4 @@
-import { Header } from 'Components/Header/Header';
+import { Header } from 'Common/Components/Header/Header';
 import React from 'react';
 import NoteCardContainer from './NoteCardContainer';
 import NoteCardFooter from './NoteCardFooter';

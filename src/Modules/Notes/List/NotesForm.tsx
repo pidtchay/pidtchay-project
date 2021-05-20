@@ -1,11 +1,13 @@
-import { ErrorPage } from 'Components/ErrorPage/ErrorPage';
+import { ErrorPage } from 'Common/Components/ErrorPage/ErrorPage';
 import React, { FC, lazy, ReactElement, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import Loader from 'react-loader-spinner';
 import { NavLink, useRouteMatch } from 'react-router-dom';
 
 const NotesFormInput = lazy(() => import(/* webpackChunkName: "NotesFormInput" */ 'Modules/Notes/List/NotesFormInput'));
-const HeaderLazy = lazy(() => import(/* webpackChunkName: "NotesFormHeader" */ 'Components/Header/Header').then((mod) => ({ default: mod.Header })));
+const HeaderLazy = lazy(() =>
+    import(/* webpackChunkName: "NotesFormHeader" */ 'Common/Components/Header/Header').then((mod) => ({ default: mod.Header }))
+);
 
 /**
  * @prop {boolean} isLoading Data load flag.
