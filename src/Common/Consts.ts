@@ -24,4 +24,4 @@ const pathName = '/api/rest';
 /**
  * Path for REST API requests.
  */
-export const apiUrl = NODE_ENV === 'development' ? `http://localhost:3000${pathName}` : pathName;
+export const apiUrl = NODE_ENV === 'development' ? `http://localhost:5000${pathName}` : pathName;

@@ -11,8 +11,8 @@
     "lint": "eslint src/**/*.{ts,tsx} --fix",
     "lint:check": "eslint src/**/*.{ts,tsx}",
     "start": "npm run tsc && webpack serve --config webpack/webpack.dev.js",
-    "watch": "webpack  --watch —progress --max_old_space_size=4096 --config webpack/webpack.dev.js",
-    "json-server": "json-server --middlewares server.js --routes routes.json --watch src/api/db.json --port 3000",
+    "watch": "webpack  --watch —progress --config webpack/webpack.dev.js",
+    "json-server": "ts-node --project ./src/api/tsconfig.json ./src/api/json-server.ts",
     "tsc": "node --max-old-space-size=4096 node_modules/typescript/bin/tsc -noEmit"
   },
   "keywords": [
@@ -44,6 +44,7 @@
     "@types/axios": "^0.14.0",
     "@types/classnames": "^2.3.1",
     "@types/crypto-js": "^4.0.1",
+    "@types/express": "^4.17.12",
     "@types/faker": "^5.1.7",
     "@types/fork-ts-checker-webpack-plugin": "^0.4.5",
     "@types/i18next": "^13.0.0",
@@ -82,6 +83,8 @@
     "style-loader": "^2.0.0",
     "terser-webpack-plugin": "^5.1.1",
     "ts-loader": "^9.2.1",
+    "ts-node": "^10.0.0",
+    "tslib": "^2.2.0",
     "typescript": "^3.9.9",
     "webpack": "^5.27.0",
     "webpack-cli": "^4.5.0",

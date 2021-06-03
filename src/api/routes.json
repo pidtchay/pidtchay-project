@@ -1,0 +1,11 @@
+{
+    "dbRoutes": {
+        "example/routes/to/*": "/$1"
+    },
+    "customRoutes": [
+        {"pattern": "/api/rest/notes/getData", "scriptPath": "/notes/list"},
+        {"pattern": "/api/rest/note/get/:id", "scriptPath": "/note/id"},
+        {"pattern": "/api/rest/note/create", "scriptPath": "/note/create"},
+        {"pattern": "/api/rest/note/update", "scriptPath": "/note/update"}
+    ]
+}
